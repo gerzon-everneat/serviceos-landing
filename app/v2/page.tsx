@@ -333,25 +333,29 @@ function Nav() {
 function Hero() {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden pt-20">
-      {/* Grid bg */}
+      {/* AI-generated Kling video background */}
+      <video
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        style={{ opacity: 0.22 }}
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/assets/hero-video-poster.jpg"
+      >
+        <source src="/assets/hero-video.webm" type="video/webm" />
+        <source src="/assets/hero-video-web.mp4" type="video/mp4" />
+      </video>
+      {/* Directional overlay: solid left (text area), transparent right */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.016]"
-        style={{
-          backgroundImage: `linear-gradient(var(--color-ink) 1px, transparent 1px), linear-gradient(90deg, var(--color-ink) 1px, transparent 1px)`,
-          backgroundSize: "80px 80px",
-        }}
+        className="pointer-events-none absolute inset-0"
+        style={{ background: "linear-gradient(105deg, var(--color-canvas) 35%, rgba(9,8,7,0.82) 58%, rgba(9,8,7,0.35) 100%)" }}
       />
-      {/* Glows */}
-      <div className="pointer-events-none absolute inset-0">
-        <div
-          className="absolute left-[30%] top-[40%] h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(191,146,69,0.065) 0%, transparent 65%)", filter: "blur(60px)" }}
-        />
-        <div
-          className="absolute right-[5%] top-[30%] h-[500px] w-[500px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(96,165,250,0.04) 0%, transparent 70%)", filter: "blur(80px)" }}
-        />
-      </div>
+      {/* Bottom fade */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-40"
+        style={{ background: "linear-gradient(to bottom, transparent, var(--color-canvas))" }}
+      />
 
       <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 px-6 pb-24 pt-16 lg:grid-cols-2">
         {/* Left */}
@@ -512,6 +516,7 @@ function Logos() {
 const AI_FEATS = [
   {
     icon: <IconBrain />,
+    img: "/assets/feat-dispatch.png",
     title: "AI Dispatch Engine",
     desc: "The moment a booking lands, AI weighs skills, proximity, availability, and rating — then assigns the best-fit pro without a single click from you.",
     stat: "98% auto-assignment",
@@ -519,6 +524,7 @@ const AI_FEATS = [
   },
   {
     icon: <IconRoute />,
+    img: "/assets/feat-conflict.png",
     title: "Conflict Resolution",
     desc: "Double-booked? Unavailable? ServiceOS detects conflicts the instant they form and reroutes to the next best pro — silently, in seconds.",
     stat: "0 manual reschedules",
@@ -526,6 +532,7 @@ const AI_FEATS = [
   },
   {
     icon: <IconTrend />,
+    img: "/assets/feat-pricing.png",
     title: "Pricing Intelligence",
     desc: "AI reads demand signals, seasonality, and job complexity to suggest optimal prices. Capture more revenue on premium slots without losing budget customers.",
     stat: "+18% avg revenue",
@@ -533,6 +540,7 @@ const AI_FEATS = [
   },
   {
     icon: <IconMsg />,
+    img: "/assets/feat-comms.png",
     title: "Automated Comms",
     desc: "Review nudges, rebooking reminders, and follow-ups — all drafted and sent automatically. Your customer relationship managed, hands-free.",
     stat: "89% review rate",
@@ -562,30 +570,37 @@ function AIFeatures() {
           {AI_FEATS.map((f, i) => (
             <Reveal key={i} delay={i * 75}>
               <div
-                className="group relative h-full overflow-hidden rounded-2xl border border-edge p-8 transition-all duration-400 hover:border-edge-2"
+                className="group relative h-full overflow-hidden rounded-2xl border border-edge transition-all duration-400 hover:border-edge-2"
                 style={{ background: "var(--color-canvas)" }}
               >
-                {/* hover glow */}
-                <div
-                  className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  style={{ background: `radial-gradient(ellipse at 20% 20%, ${f.accent.glow}, transparent 55%)` }}
-                />
-                {/* scan line */}
+                {/* AI-generated image header */}
+                <div className="relative h-48 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={f.img}
+                    alt=""
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(to bottom, transparent 30%, var(--color-canvas) 100%)" }}
+                  />
+                  <span className={`absolute right-4 top-4 rounded-full px-3 py-1 text-[10px] font-medium backdrop-blur-sm ${f.accent.bg} ${f.accent.text}`}>
+                    {f.stat}
+                  </span>
+                </div>
+
+                {/* hover scan line */}
                 <div
                   className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  style={{ background: `linear-gradient(90deg, transparent, ${f.accent.glow.replace("0.06", "0.6")}, transparent)` }}
+                  style={{ background: `linear-gradient(90deg, transparent, ${f.accent.glow.replace("0.06", "0.5")}, transparent)` }}
                 />
 
-                <div className="relative">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className={`inline-flex rounded-xl p-3 ${f.accent.bg} ${f.accent.text}`}>
-                      {f.icon}
-                    </div>
-                    <span className={`mt-1 rounded-full px-3 py-1 text-[10px] font-medium ${f.accent.bg} ${f.accent.text}`}>
-                      {f.stat}
-                    </span>
+                <div className="relative px-8 pb-8 pt-2">
+                  <div className={`inline-flex rounded-xl p-2.5 ${f.accent.bg} ${f.accent.text}`}>
+                    {f.icon}
                   </div>
-                  <h3 className="mt-6 font-display text-2xl font-semibold italic text-ink">{f.title}</h3>
+                  <h3 className="mt-4 font-display text-2xl font-semibold italic text-ink">{f.title}</h3>
                   <p className="mt-3 text-sm leading-[1.85] text-ink-2">{f.desc}</p>
                 </div>
               </div>
