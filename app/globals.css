@@ -1,19 +1,21 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-canvas: #090807;
-  --color-card: #0F0D0B;
-  --color-card-2: #171412;
-  --color-card-3: #201C18;
-  --color-gold: #BF9245;
-  --color-gold-hi: #D4A862;
-  --color-gold-lo: #7A5C2A;
-  --color-ink: #EDE6DB;
-  --color-ink-2: #ADA69B;
-  --color-ink-3: #6B6460;
-  --color-ink-4: #312E2A;
-  --color-edge: #191714;
-  --color-edge-2: #272320;
+  --color-canvas: #FFFFFF;
+  --color-canvas-warm: #FDFCFA;
+  --color-card: #FAFAF9;
+  --color-card-2: #F5F2EE;
+  --color-card-3: #EDEAE6;
+  --color-gold: #B07D2E;
+  --color-gold-hi: #C49040;
+  --color-gold-lo: #7A5820;
+  --color-ink: #1A1410;
+  --color-ink-warm: #241A10;
+  --color-ink-2: #4A443C;
+  --color-ink-3: #867E74;
+  --color-ink-4: #C2BAB0;
+  --color-edge: #E8E3DC;
+  --color-edge-2: #D0C9BE;
 
   --font-display: var(--font-cormorant);
   --font-sans: var(--font-dm-sans);
@@ -32,7 +34,7 @@ body {
 }
 
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--color-canvas); }
+::-webkit-scrollbar-track { background: var(--color-card); }
 ::-webkit-scrollbar-thumb { background: var(--color-edge-2); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-gold-lo); }
 
@@ -56,10 +58,16 @@ body {
   50%       { transform: translateY(-6px); }
 }
 
-.animate-rise  { animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-rise   { animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .animate-rise-1 { animation: rise 0.9s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .animate-rise-2 { animation: rise 0.9s 0.30s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .animate-rise-3 { animation: rise 0.9s 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .animate-float  { animation: float  6s ease-in-out infinite; }
 .animate-float2 { animation: float2 7s 1s ease-in-out infinite; }
 .animate-float3 { animation: float3 8s 2s ease-in-out infinite; }
+.animate-marquee { animation: marquee 38s linear infinite; will-change: transform; }
