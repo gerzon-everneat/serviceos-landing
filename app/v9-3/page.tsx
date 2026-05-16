@@ -86,10 +86,10 @@ const IconRepeat  = () => (<svg width="20" height="20" viewBox="0 0 24 24" fill=
 
 /* Hero AI Feed — customer experience theme */
 const SCENARIOS = [
-  { incoming: "Job #1042 — Maria G. booked 9am", thinking: "Matching to Sarah M. (4.9★, 2.1 mi, preferred)...", decision: "Sarah assigned. Maria notified instantly.", sub: "Same great cleaner she had last time", accent: { text: "text-emerald-400", bg: "bg-emerald-500/10", glow: "rgba(52,211,153,0.10)" } },
-  { incoming: "Job #1044 — 10am conflict forming", thinking: "Conflict detected. Rerouting before customer notices...", decision: "Alex P. rerouted. No disruption.", sub: "Maria never received a cancellation", accent: { text: "text-blue-400", bg: "bg-blue-500/10", glow: "rgba(96,165,250,0.10)" } },
-  { incoming: "Job #1042 completed — no review yet", thinking: "Optimal nudge window open. Sending follow-up...", decision: "Personalised SMS sent to Maria G.", sub: "Review received 18 minutes later: ★★★★★", accent: { text: "text-yellow-400", bg: "bg-yellow-500/10", glow: "rgba(234,179,8,0.10)" } },
-  { incoming: "Maria G. — 47 days since last booking", thinking: "Rebooking likelihood: 84%. Sending nudge...", decision: "Personalised rebooking invite sent", sub: "Booked again within 2 hours", accent: { text: "text-purple-400", bg: "bg-purple-500/10", glow: "rgba(192,132,252,0.10)" } },
+  { incoming: "New customer — 'deep clean, 4bd/2ba'", thinking: "AI asking right questions: access, pets, add-ons...", decision: "Service scoped correctly. Slot confirmed.", sub: "Right job booked first time. No surprises.", accent: { text: "text-emerald-400", bg: "bg-emerald-500/10", glow: "rgba(52,211,153,0.10)" } },
+  { incoming: "Returning customer — Sarah M. on widget", thinking: "Recognising history, pre-filling preferences...", decision: "Preferred service and time pre-filled.", sub: "Rebooked in one tap. Premium feel.", accent: { text: "text-blue-400", bg: "bg-blue-500/10", glow: "rgba(96,165,250,0.10)" } },
+  { incoming: "Customer: 'what’s included in post-reno?'", thinking: "Answering service question with detail...", decision: "Full scope explained. Slot suggested.", sub: "Customer felt informed. Booked with confidence.", accent: { text: "text-yellow-400", bg: "bg-yellow-500/10", glow: "rgba(234,179,8,0.10)" } },
+  { incoming: "Customer requests reschedule", thinking: "Finding matching open slots for same service...", decision: "3 alternatives shown instantly.", sub: "Smooth experience. No frustration. No churn.", accent: { text: "text-purple-400", bg: "bg-purple-500/10", glow: "rgba(192,132,252,0.10)" } },
 ];
 
 function AIFeed() {
@@ -108,16 +108,16 @@ function AIFeed() {
       <div className="flex items-center gap-3 px-5 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: "rgba(184,146,42,0.12)", border: "1px solid rgba(184,146,42,0.20)", color: "#B8922A" }}><IconBrain /></div>
         <div className="flex-1">
-          <p className="text-xs font-medium text-white">Customer Experience Engine</p>
+          <p className="text-xs font-medium text-white">AI Booking Assistant</p>
           <div className="mt-0.5 flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" style={{ animation: "pulse 1.5s infinite" }} />
-            <p className="text-[10px] text-emerald-400">89% review rate · 4.9★ avg</p>
+            <p className="text-[10px] text-emerald-400">Live · taking bookings</p>
           </div>
         </div>
         <span className="font-mono text-[10px]" style={{ color: "rgba(255,255,255,0.25)" }}>live</span>
       </div>
       <div className="px-5 py-4">
-        <p className="mb-3 text-[9px] font-medium uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Customer touchpoint</p>
+        <p className="mb-3 text-[9px] font-medium uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Customer booking</p>
         <div className="rounded-xl border p-4 transition-all duration-500" style={{ borderColor: phase === "done" ? "rgba(184,146,42,0.22)" : "rgba(255,255,255,0.08)", background: phase === "done" ? `radial-gradient(circle at 100% 0%, ${s.accent.glow}, transparent 60%), #161616` : "#161616" }}>
           <div className="flex items-start gap-2.5">
             <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-yellow-500" style={{ animation: phase !== "done" ? "pulse 1s infinite" : "none" }} />
@@ -138,8 +138,8 @@ function AIFeed() {
         </div>
       </div>
       <div className="flex items-center justify-between px-5 py-3 text-[10px]" style={{ borderTop: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.35)" }}>
-        <span>312 reviews this quarter</span>
-        <span className="rounded-full bg-yellow-500/10 px-2 py-0.5 text-yellow-400">4.9★ average</span>
+        <span>58 self-serve bookings today</span>
+        <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-400">0 calls needed</span>
       </div>
     </div>
   );
@@ -232,9 +232,9 @@ function Hero() {
               <AIFeed />
             </div>
             <div className="animate-float2 absolute -left-20 top-12 shimmer-card rounded-xl p-4 shadow-2xl" style={{ background: "#111111", border: "1px solid rgba(255,255,255,0.10)", width: "160px" }}>
-              <p className="text-[9px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Review growth</p>
-              <p className="mt-1 text-2xl font-bold" style={{ letterSpacing: "-0.04em", color: "#B8922A" }}>40→312</p>
-              <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.35)" }}>in 90 days</p>
+              <p className="text-[9px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Bookings self-served</p>
+              <p className="mt-1 text-2xl font-bold" style={{ letterSpacing: "-0.04em", color: "#B8922A" }}>58 today</p>
+              <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.35)" }}>0 calls needed</p>
               <div className="mt-2.5 flex items-end gap-0.5" style={{ height: "22px" }}>
                 {[18, 22, 28, 35, 45, 60, 75, 90, 100].map((h, i) => (<div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: "rgba(184,146,42,0.35)" }} />))}
               </div>
@@ -283,11 +283,11 @@ function Statement() {
         <Reveal>
           <Tag dark={false}>The honest version</Tag>
           <blockquote style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(2rem, 4.8vw, 4rem)", lineHeight: 1.2, color: "#141210" }}>
-            &ldquo;Most booking software books the job.<br />
-            <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>ServiceOS makes sure they come back.&rdquo;</span>
+            &ldquo;The booking experience<br />
+            <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>is the first impression.&rdquo;</span>
           </blockquote>
           <p className="mx-auto mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: "#787068" }}>
-            Your reputation is built one job at a time — the right pro, arriving on schedule, followed by a perfect message that asks for a review at exactly the right moment. ServiceOS orchestrates every one of those touchpoints, automatically.
+            Customers judge your business before the team arrives. A clunky booking flow — back-and-forth calls, unclear pricing, slow confirmation — already costs you stars. ServiceOS gives customers a fast, clear, professional booking experience that sets the right expectation from the start.
           </p>
         </Reveal>
       </div>
@@ -298,30 +298,30 @@ function Statement() {
 const AI_CARDS = [
   {
     icon: <IconBrain />,
-    title: "Best-Fit Matching",
+    title: "Right Service, First Time",
     stat: "4.9★", statLabel: "avg customer rating",
-    desc: "Every customer gets matched to the right pro — not just available, but skilled, nearby, and ideally the same person they loved last time.",
+    desc: "AI asks the right questions upfront — size, access, add-ons, special needs. Jobs arrive correctly scoped. No surprises on the day.",
     color: "#B8922A", bg: "rgba(184,146,42,0.07)", border: "rgba(184,146,42,0.18)",
   },
   {
-    icon: <IconRoute />,
-    title: "Invisible Conflict Shield",
-    stat: "0", statLabel: "customer cancellations",
-    desc: "When a conflict forms, ServiceOS resolves it silently — rerouting before the customer ever hears a word. Every job shows up as promised.",
+    icon: <IconCalendar />,
+    title: "Friction-Free Booking",
+    stat: "3 min", statLabel: "avg booking time",
+    desc: "Customers book in minutes — clear options, live availability, no phone tag. A smooth booking sets the tone for a 5-star experience.",
     color: "#3B82F6", bg: "rgba(59,130,246,0.07)", border: "rgba(59,130,246,0.18)",
   },
   {
     icon: <IconMsg />,
-    title: "Review Capture Engine",
-    stat: "89%", statLabel: "review capture rate",
-    desc: "AI detects the optimal post-job window and sends a personalised nudge. Review rate jumped from 71% to 89% on average across businesses.",
+    title: "Professional Comms",
+    stat: "< 1s", statLabel: "confirmation time",
+    desc: "Instant booking confirmation, automated reminders before the job. Customers feel looked after before your team even arrives.",
     color: "#C8FF00", bg: "rgba(200,255,0,0.06)", border: "rgba(200,255,0,0.15)",
   },
   {
     icon: <IconRepeat />,
-    title: "Rebooking Autopilot",
-    stat: "71%", statLabel: "customer rebooking rate",
-    desc: "ServiceOS tracks every customer and nudges them to rebook at exactly the right time — before they search for a competitor.",
+    title: "Customer Self-Service",
+    stat: "80%", statLabel: "fewer inbound calls",
+    desc: "Customers book, reschedule, and track online. A portal that feels premium — so your brand does too.",
     color: "#A855F7", bg: "rgba(168,85,247,0.07)", border: "rgba(168,85,247,0.18)",
   },
 ];
@@ -334,10 +334,10 @@ function AIEngine() {
         <Reveal className="mb-16 max-w-2xl">
           <Tag>Customer experience AI</Tag>
           <h2 style={{ fontFamily: "var(--font-dm-sans), system-ui", fontWeight: 700, letterSpacing: "-0.045em", lineHeight: 0.95, color: "#FFFFFF", fontSize: "clamp(2.8rem, 6.5vw, 5.5rem)" }}>
-            Every job a<br /><span style={{ color: "#B8922A" }}>5-star experience.</span>
+            A booking that<br /><span style={{ color: "#B8922A" }}>feels like 5 stars.</span>
           </h2>
           <p className="mt-6 text-base" style={{ color: "rgba(255,255,255,0.48)" }}>
-            From first booking to rebooking — your brand on autopilot.
+            The booking experience sets the tone. When customers feel cared for from the first click, they rate accordingly.
           </p>
         </Reveal>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

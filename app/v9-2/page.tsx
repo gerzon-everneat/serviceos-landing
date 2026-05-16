@@ -86,10 +86,10 @@ const IconMap     = () => (<svg width="20" height="20" viewBox="0 0 24 24" fill=
 
 /* Hero AI Feed — scale theme: multiple crews, high volume */
 const SCENARIOS = [
-  { incoming: "Monday 7:00 AM — 18 bookings incoming", thinking: "Routing across 8 crews by zone, skill, load...", decision: "All 18 assigned in 1.2 seconds", sub: "3 locations. Zero manual decisions.", accent: { text: "text-emerald-400", bg: "bg-emerald-500/10", glow: "rgba(52,211,153,0.10)" } },
-  { incoming: "Location #2: 3 simultaneous conflicts", thinking: "Cascading reroute — optimising across all crews...", decision: "All 3 resolved without gaps", sub: "Customers never knew. Revenue protected.", accent: { text: "text-blue-400", bg: "bg-blue-500/10", glow: "rgba(96,165,250,0.10)" } },
-  { incoming: "Q4 peak week — 40% volume surge", thinking: "Demand spike: capacity modelling active...", decision: "Rate floor raised, waitlist opened", sub: "+$6,200 additional revenue captured", accent: { text: "text-yellow-400", bg: "bg-yellow-500/10", glow: "rgba(234,179,8,0.10)" } },
-  { incoming: "New location launch — 0 existing history", thinking: "Bootstrapping routing rules from model...", decision: "Live in 2 days. First booking assigned.", sub: "No new hires. No new processes.", accent: { text: "text-purple-400", bg: "bg-purple-500/10", glow: "rgba(192,132,252,0.10)" } },
+  { incoming: "Monday 7:00 AM — 18 new bookings", thinking: "Checking availability across all slots...", decision: "All 18 confirmed. Customers notified.", sub: "3 locations. Zero phone calls needed.", accent: { text: "text-emerald-400", bg: "bg-emerald-500/10", glow: "rgba(52,211,153,0.10)" } },
+  { incoming: "Q4 peak week — 40% booking surge", thinking: "Handling concurrent booking sessions...", decision: "All sessions processed. Slots filled.", sub: "No new staff needed. System scaled.", accent: { text: "text-blue-400", bg: "bg-blue-500/10", glow: "rgba(96,165,250,0.10)" } },
+  { incoming: "New location launch — widget goes live", thinking: "Surfacing local availability, accepting bookings...", decision: "First 8 bookings in under 3 hours.", sub: "No calls fielded. All self-served.", accent: { text: "text-yellow-400", bg: "bg-yellow-500/10", glow: "rgba(234,179,8,0.10)" } },
+  { incoming: "Customer requesting reschedule", thinking: "Finding matching open slots for same service...", decision: "3 alternatives presented instantly.", sub: "Handled without any staff involvement.", accent: { text: "text-purple-400", bg: "bg-purple-500/10", glow: "rgba(192,132,252,0.10)" } },
 ];
 
 function AIFeed() {
@@ -108,16 +108,16 @@ function AIFeed() {
       <div className="flex items-center gap-3 px-5 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: "rgba(184,146,42,0.12)", border: "1px solid rgba(184,146,42,0.20)", color: "#B8922A" }}><IconBrain /></div>
         <div className="flex-1">
-          <p className="text-xs font-medium text-white">Scale Engine</p>
+          <p className="text-xs font-medium text-white">AI Booking Assistant</p>
           <div className="mt-0.5 flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" style={{ animation: "pulse 1.5s infinite" }} />
-            <p className="text-[10px] text-emerald-400">3 locations · 24 crews active</p>
+            <p className="text-[10px] text-emerald-400">Live · taking bookings</p>
           </div>
         </div>
         <span className="font-mono text-[10px]" style={{ color: "rgba(255,255,255,0.25)" }}>live</span>
       </div>
       <div className="px-5 py-4">
-        <p className="mb-3 text-[9px] font-medium uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Scaling event</p>
+        <p className="mb-3 text-[9px] font-medium uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Customer booking</p>
         <div className="rounded-xl border p-4 transition-all duration-500" style={{ borderColor: phase === "done" ? "rgba(184,146,42,0.22)" : "rgba(255,255,255,0.08)", background: phase === "done" ? `radial-gradient(circle at 100% 0%, ${s.accent.glow}, transparent 60%), #161616` : "#161616" }}>
           <div className="flex items-start gap-2.5">
             <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-yellow-500" style={{ animation: phase !== "done" ? "pulse 1s infinite" : "none" }} />
@@ -138,8 +138,8 @@ function AIFeed() {
         </div>
       </div>
       <div className="flex items-center justify-between px-5 py-3 text-[10px]" style={{ borderTop: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.35)" }}>
-        <span>342 dispatched today</span>
-        <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-400">Scaling smoothly</span>
+        <span>342 self-serve bookings today</span>
+        <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-400">0 calls fielded</span>
       </div>
     </div>
   );
@@ -215,7 +215,7 @@ function Hero() {
 
           <Reveal delay={340}>
             <div className="mt-12 grid grid-cols-3 gap-8 border-t pt-10" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-              {[{ n: 5200, s: "+", l: "businesses scaled" }, { n: 300, s: "%", l: "avg volume handled" }, { n: 98, s: "%", l: "dispatched at any size" }].map(({ n, s, l }) => (
+              {[{ n: 5200, s: "+", l: "businesses scaled" }, { n: 80, s: "%", l: "bookings without calls" }, { n: 14, s: " hrs", l: "saved per week" }].map(({ n, s, l }) => (
                 <div key={l}>
                   <p style={{ fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#ffffff", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}><Counter to={n} suffix={s} /></p>
                   <p className="mt-1.5 text-[11px] tracking-wide" style={{ color: "rgba(255,255,255,0.36)" }}>{l}</p>
@@ -232,9 +232,9 @@ function Hero() {
               <AIFeed />
             </div>
             <div className="animate-float2 absolute -left-20 top-12 shimmer-card rounded-xl p-4 shadow-2xl" style={{ background: "#111111", border: "1px solid rgba(255,255,255,0.10)", width: "160px" }}>
-              <p className="text-[9px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Revenue at scale</p>
-              <p className="mt-1 text-2xl font-bold" style={{ letterSpacing: "-0.04em", color: "#B8922A" }}>+$6,200</p>
-              <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.35)" }}>from peak AI pricing</p>
+              <p className="text-[9px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Bookings self-served</p>
+              <p className="mt-1 text-2xl font-bold" style={{ letterSpacing: "-0.04em", color: "#B8922A" }}>342 today</p>
+              <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.35)" }}>0 calls fielded</p>
               <div className="mt-2.5 flex items-end gap-0.5" style={{ height: "22px" }}>
                 {[30, 45, 35, 62, 50, 78, 65, 90, 82].map((h, i) => (<div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: "rgba(184,146,42,0.35)" }} />))}
               </div>
@@ -283,11 +283,11 @@ function Statement() {
         <Reveal>
           <Tag dark={false}>The honest version</Tag>
           <blockquote style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(2rem, 4.8vw, 4rem)", lineHeight: 1.2, color: "#141210" }}>
-            &ldquo;A calendar doesn&apos;t scale.<br />
-            <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>An operations engine does.&rdquo;</span>
+            &ldquo;A phone number doesn&apos;t scale.<br />
+            <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>A self-booking system does.&rdquo;</span>
           </blockquote>
           <p className="mx-auto mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: "#787068" }}>
-            Every service business hits the same wall: more jobs, more staff, more locations — and suddenly the spreadsheets and group chats can&apos;t keep up. ServiceOS is the system that grows with you, handling more volume without more overhead.
+            Every service business hits the same wall: more bookings means more calls. ServiceOS takes bookings off the phone entirely — customers book themselves, at any volume, across any number of locations, without adding staff.
           </p>
         </Reveal>
       </div>
@@ -298,30 +298,30 @@ function Statement() {
 const AI_CARDS = [
   {
     icon: <IconBrain />,
-    title: "Dispatch at Any Volume",
-    stat: "1.2s", statLabel: "to route 18 bookings",
-    desc: "Whether you run 10 jobs or 300, every booking gets matched to the best-fit pro instantly — by skill, zone, load, and rating.",
+    title: "AI Books for You",
+    stat: "3 min", statLabel: "avg booking time",
+    desc: "AI guides customers through every question — service, size, date, details — across 3 locations or 30. Same quality, any volume.",
     color: "#B8922A", bg: "rgba(184,146,42,0.07)", border: "rgba(184,146,42,0.18)",
   },
   {
-    icon: <IconRoute />,
-    title: "Conflict Resolution at Scale",
-    stat: "0", statLabel: "cascading failures",
-    desc: "As volume grows, conflicts multiply. ServiceOS detects and resolves them across all crews and locations before they reach a customer.",
+    icon: <IconCalendar />,
+    title: "Live Availability at Scale",
+    stat: "0", statLabel: "overbookings",
+    desc: "Every location's real-time calendar, live. Customers see actual open slots — no matter how many crews or cities you run.",
     color: "#3B82F6", bg: "rgba(59,130,246,0.07)", border: "rgba(59,130,246,0.18)",
   },
   {
-    icon: <IconTrend />,
-    title: "Dynamic Pricing",
-    stat: "+18%", statLabel: "avg revenue at peak",
-    desc: "AI reads volume surges and demand signals in real time, raising rates when demand is high and protecting margin when it's not.",
+    icon: <IconZap />,
+    title: "Instant at Any Volume",
+    stat: "< 1s", statLabel: "booking to confirmed",
+    desc: "18 bookings or 180 — every confirmation fires instantly. Your staff sees the job. The customer gets the confirmation. Zero bottleneck.",
     color: "#C8FF00", bg: "rgba(200,255,0,0.06)", border: "rgba(200,255,0,0.15)",
   },
   {
     icon: <IconMap />,
     title: "Multi-location Ready",
     stat: "∞", statLabel: "locations supported",
-    desc: "Add a new city, a new service line, a new crew — ServiceOS is ready. Same system, same rules, same quality of operations.",
+    desc: "Add a city, a new service line, a new widget — the booking system extends without extra setup. Same experience everywhere.",
     color: "#A855F7", bg: "rgba(168,85,247,0.07)", border: "rgba(168,85,247,0.18)",
   },
 ];
@@ -334,10 +334,10 @@ function AIEngine() {
         <Reveal className="mb-16 max-w-2xl">
           <Tag>Built for growth</Tag>
           <h2 style={{ fontFamily: "var(--font-dm-sans), system-ui", fontWeight: 700, letterSpacing: "-0.045em", lineHeight: 0.95, color: "#FFFFFF", fontSize: "clamp(2.8rem, 6.5vw, 5.5rem)" }}>
-            Operations that<br /><span style={{ color: "#B8922A" }}>never hit a ceiling.</span>
+            Booking volume that<br /><span style={{ color: "#B8922A" }}>never hits a ceiling.</span>
           </h2>
           <p className="mt-6 text-base" style={{ color: "rgba(255,255,255,0.48)" }}>
-            ServiceOS handles more volume without more overhead — that&apos;s the point.
+            Customers self-book at any volume. The widget scales. You don&apos;t need more staff to take more bookings.
           </p>
         </Reveal>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -475,8 +475,8 @@ function Numbers() {
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl md:grid-cols-3" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
           {[
             { n: 5200, s: "+",   l: "Service businesses\nalready at scale" },
-            { n: 98,   s: "%",   l: "Jobs dispatched\nat any volume level" },
-            { n: 18,   s: "%",   l: "Avg revenue lift\nfrom dynamic pricing" },
+            { n: 80,   s: "%",   l: "Bookings self-served\nat any volume" },
+            { n: 14,   s: " hrs", l: "Saved per owner\nevery single week" },
           ].map(({ n, s, l }, i) => (
             <Reveal key={i} delay={i * 80}>
               <div className="px-10 py-16 text-center" style={{ background: "#0E0E0E" }}>
