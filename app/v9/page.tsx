@@ -89,10 +89,10 @@ const IconX       = () => (<svg width="12" height="12" viewBox="0 0 12 12" fill=
 
 /* ─── AI Dispatch Feed (Hero widget) ─────────────────────────────────────────── */
 const SCENARIOS = [
-  { incoming: "Deep Clean · 9:00 AM · 4bd/3ba", thinking: "Matching 14 pros by skill, distance, rating...", decision: "Sarah M. assigned (4.9★, 2.1 mi)", sub: "Route optimised · 18 min saved", accent: { text: "text-emerald-400", bg: "bg-emerald-500/10", glow: "rgba(52,211,153,0.10)" } },
-  { incoming: "Move-out Clean · 11:30 AM · Rush", thinking: "Conflict on Mike T. — scanning alternatives...", decision: "Alex P. rerouted · conflict auto-cleared", sub: "Zero manual input required", accent: { text: "text-blue-400", bg: "bg-blue-500/10", glow: "rgba(96,165,250,0.10)" } },
-  { incoming: "Post-Reno · 2:00 PM · Large", thinking: "Market rate analysis: $285 (+12% premium)...", decision: "$285 suggested · customer accepted", sub: "+$35 vs standard rate", accent: { text: "text-yellow-400", bg: "bg-yellow-500/10", glow: "rgba(234,179,8,0.10)" } },
-  { incoming: "Follow-up: Job #1042 (no review yet)", thinking: "Day 2 — nudge threshold reached...", decision: "Automated SMS sent to customer", sub: "Review rate lifted 71% → 89%", accent: { text: "text-purple-400", bg: "bg-purple-500/10", glow: "rgba(192,132,252,0.10)" } },
+  { incoming: "New customer — 'deep clean, 4bd/2ba, Friday'", thinking: "Checking availability, surfacing matching slots...", decision: "3 open slots shown. Customer picked 10am.", sub: "Booked in 3 minutes. No call needed.", accent: { text: "text-emerald-400", bg: "bg-emerald-500/10", glow: "rgba(52,211,153,0.10)" } },
+  { incoming: "Returning customer — Sarah M. on the widget", thinking: "Recognising service history, pre-filling details...", decision: "Last service pre-filled. One tap to confirm.", sub: "Rebooked in 40 seconds. Zero friction.", accent: { text: "text-blue-400", bg: "bg-blue-500/10", glow: "rgba(96,165,250,0.10)" } },
+  { incoming: "Customer: 'what's included in post-reno?'", thinking: "Answering service question, surfacing booking...", decision: "Full breakdown shown. Slot suggested.", sub: "Booked without calling your number.", accent: { text: "text-yellow-400", bg: "bg-yellow-500/10", glow: "rgba(234,179,8,0.10)" } },
+  { incoming: "Customer requests reschedule", thinking: "Finding matching open slots for same service...", decision: "3 alternatives presented instantly.", sub: "Handled without any staff involvement.", accent: { text: "text-purple-400", bg: "bg-purple-500/10", glow: "rgba(192,132,252,0.10)" } },
 ];
 
 function AIFeed() {
@@ -111,10 +111,10 @@ function AIFeed() {
       <div className="flex items-center gap-3 px-5 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: "rgba(184,146,42,0.12)", border: "1px solid rgba(184,146,42,0.20)", color: "#B8922A" }}><IconBrain /></div>
         <div className="flex-1">
-          <p className="text-xs font-medium text-white">AI Dispatch Engine</p>
+          <p className="text-xs font-medium text-white">AI Booking Assistant</p>
           <div className="mt-0.5 flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" style={{ animation: "pulse 1.5s infinite" }} />
-            <p className="text-[10px] text-emerald-400">Live · processing</p>
+            <p className="text-[10px] text-emerald-400">Live · taking bookings</p>
           </div>
         </div>
         <span className="font-mono text-[10px]" style={{ color: "rgba(255,255,255,0.25)" }}>v3.0</span>
@@ -141,8 +141,8 @@ function AIFeed() {
         </div>
       </div>
       <div className="flex items-center justify-between px-5 py-3 text-[10px]" style={{ borderTop: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.35)" }}>
-        <span>246 dispatched today</span>
-        <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-400">0 conflicts</span>
+        <span>58 self-serve bookings today</span>
+        <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-400">0 calls needed</span>
       </div>
     </div>
   );
@@ -221,7 +221,7 @@ function Hero() {
 
           <Reveal delay={340}>
             <div className="mt-12 grid grid-cols-3 gap-8 border-t pt-10" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-              {[{ n: 5200, s: "+", l: "service businesses" }, { n: 14, s: " hrs", l: "saved per week" }, { n: 98, s: "%", l: "auto-dispatched" }].map(({ n, s, l }) => (
+              {[{ n: 5200, s: "+", l: "service businesses" }, { n: 14, s: " hrs", l: "saved per week" }, { n: 80, s: "%", l: "bookings self-served" }].map(({ n, s, l }) => (
                 <div key={l}>
                   <p style={{ fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#ffffff", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}><Counter to={n} suffix={s} /></p>
                   <p className="mt-1.5 text-[11px] tracking-wide" style={{ color: "rgba(255,255,255,0.36)" }}>{l}</p>
@@ -291,12 +291,12 @@ function Statement() {
         <Reveal>
           <Tag dark={false}>The honest version</Tag>
           <blockquote style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(2rem, 4.8vw, 4rem)", lineHeight: 1.2, color: "#141210" }}>
-            &ldquo;Most booking software gives you a calendar.
+            &ldquo;Most booking software is for you to manage.
             <br />
-            <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>ServiceOS gives you an operations engine.&rdquo;</span>
+            <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>ServiceOS is for your customers to use.&rdquo;</span>
           </blockquote>
           <p className="mx-auto mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: "#787068" }}>
-            The difference isn&apos;t a feature list. It&apos;s that ServiceOS does the actual work — dispatching, rerouting, repricing, following up — so you stop managing software and start running a business.
+            The difference isn&apos;t a feature list. It&apos;s where the work happens. ServiceOS puts the booking experience in front of your customer — so they handle it, and you just see the confirmed jobs flow in.
           </p>
         </Reveal>
       </div>
@@ -308,30 +308,30 @@ function Statement() {
 const AI_CARDS = [
   {
     icon: <IconBrain />,
-    title: "AI Dispatch",
-    stat: "98%", statLabel: "auto-assigned",
-    desc: "Every booking matched to the best-fit pro by skill, proximity, and rating. Zero manual clicks. Ever.",
+    title: "AI Booking Assistant",
+    stat: "3 min", statLabel: "avg booking time",
+    desc: "AI guides every customer through the right questions — service type, size, date, access details — so they book correctly without calling you.",
     color: "#B8922A", bg: "rgba(184,146,42,0.07)", border: "rgba(184,146,42,0.18)",
   },
   {
-    icon: <IconRoute />,
-    title: "Conflict Resolution",
-    stat: "0", statLabel: "manual reschedules",
-    desc: "Double-booked? ServiceOS detects it the instant it forms, reroutes silently. Your customer never finds out.",
+    icon: <IconCalendar />,
+    title: "Live Availability",
+    stat: "0", statLabel: "back-and-forth calls",
+    desc: "Customers see your real schedule and pick from actual open slots. No 'let me check and call you back.' No overbooking.",
     color: "#3B82F6", bg: "rgba(59,130,246,0.07)", border: "rgba(59,130,246,0.18)",
   },
   {
-    icon: <IconTrend />,
-    title: "Pricing Intelligence",
-    stat: "+18%", statLabel: "avg revenue lift",
-    desc: "AI reads demand, seasonality, and complexity to push your rate on every high-value slot. Automatic.",
+    icon: <IconZap />,
+    title: "Instant Confirmation",
+    stat: "< 1s", statLabel: "booking to confirmed",
+    desc: "Customer books → confirmation fires → job appears in your dashboard. No approvals, no phone tag, no delays.",
     color: "#C8FF00", bg: "rgba(200,255,0,0.06)", border: "rgba(200,255,0,0.15)",
   },
   {
-    icon: <IconMsg />,
-    title: "Automated Comms",
-    stat: "89%", statLabel: "review capture rate",
-    desc: "Review nudges, rebooking reminders, follow-ups — drafted and sent. Your customer relationships, hands-free.",
+    icon: <IconUsers />,
+    title: "Full Self-Service",
+    stat: "80%", statLabel: "fewer inbound calls",
+    desc: "Customers book, reschedule, and track jobs without calling you. Your phone stays quiet. Your team stays focused on the work.",
     color: "#A855F7", bg: "rgba(168,85,247,0.07)", border: "rgba(168,85,247,0.18)",
   },
 ];
@@ -344,10 +344,10 @@ function AIEngine() {
         <Reveal className="mb-16 max-w-2xl">
           <Tag>AI Engine</Tag>
           <h2 style={{ fontFamily: "var(--font-dm-sans), system-ui", fontWeight: 700, letterSpacing: "-0.045em", lineHeight: 0.95, color: "#FFFFFF", fontSize: "clamp(2.8rem, 6.5vw, 5.5rem)" }}>
-            AI that runs<br /><span style={{ color: "#B8922A" }}>your operations.</span>
+            AI that fills<br /><span style={{ color: "#B8922A" }}>your calendar.</span>
           </h2>
           <p className="mt-6 text-base" style={{ color: "rgba(255,255,255,0.48)" }}>
-            While you&apos;re running the business, ServiceOS is running the software.
+            Customers book themselves. You just see the jobs show up.
           </p>
         </Reveal>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -487,9 +487,9 @@ function Numbers() {
         </Reveal>
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl md:grid-cols-3" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
           {[
-            { n: 5200, s: "+",   l: "Service businesses\nautomating their operations" },
+            { n: 5200, s: "+",   l: "Service businesses\nonline and self-booking" },
             { n: 14,   s: " hrs", l: "Saved per owner\nevery single week" },
-            { n: 98,   s: "%",   l: "Jobs dispatched\nwithout manual intervention" },
+            { n: 80,   s: "%",   l: "Bookings completed\nwithout a phone call" },
           ].map(({ n, s, l }, i) => (
             <Reveal key={i} delay={i * 80}>
               <div className="px-10 py-16 text-center" style={{ background: "#0E0E0E" }}>
