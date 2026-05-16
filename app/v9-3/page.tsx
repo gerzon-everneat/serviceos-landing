@@ -138,7 +138,7 @@ function AIFeed() {
         </div>
       </div>
       <div className="flex items-center justify-between px-5 py-3 text-[10px]" style={{ borderTop: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.35)" }}>
-        <span>58 self-serve bookings today</span>
+        <span>Widget live · ready to take bookings</span>
         <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-400">0 calls needed</span>
       </div>
     </div>
@@ -215,7 +215,7 @@ function Hero() {
 
           <Reveal delay={340}>
             <div className="mt-12 grid grid-cols-3 gap-8 border-t pt-10" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-              {[{ n: 89, s: "%", l: "review capture rate" }, { n: 312, s: "", l: "reviews in 90 days" }, { n: 71, s: "%", l: "rebooking rate" }].map(({ n, s, l }) => (
+              {[{ n: 3, s: " min", l: "avg customer booking time" }, { n: 0, s: " calls", l: "to confirm a booking" }, { n: 24, s: "/7", l: "always open for bookings" }].map(({ n, s, l }) => (
                 <div key={l}>
                   <p style={{ fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#ffffff", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}><Counter to={n} suffix={s} /></p>
                   <p className="mt-1.5 text-[11px] tracking-wide" style={{ color: "rgba(255,255,255,0.36)" }}>{l}</p>
@@ -232,8 +232,8 @@ function Hero() {
               <AIFeed />
             </div>
             <div className="animate-float2 absolute -left-20 top-12 shimmer-card rounded-xl p-4 shadow-2xl" style={{ background: "#111111", border: "1px solid rgba(255,255,255,0.10)", width: "160px" }}>
-              <p className="text-[9px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Bookings self-served</p>
-              <p className="mt-1 text-2xl font-bold" style={{ letterSpacing: "-0.04em", color: "#B8922A" }}>58 today</p>
+              <p className="text-[9px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Avg booking time</p>
+              <p className="mt-1 text-2xl font-bold" style={{ letterSpacing: "-0.04em", color: "#B8922A" }}>3 min</p>
               <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.35)" }}>0 calls needed</p>
               <div className="mt-2.5 flex items-end gap-0.5" style={{ height: "22px" }}>
                 {[18, 22, 28, 35, 45, 60, 75, 90, 100].map((h, i) => (<div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: "rgba(184,146,42,0.35)" }} />))}
@@ -252,12 +252,12 @@ function Hero() {
 }
 
 const TICKER_QUOTES = [
-  '"We went from 40 reviews to 312 in 90 days. That alone paid for the platform 10× over." — Derek, SwiftMaid',
-  '"My customers get a confirmation, a reminder, and a thank-you. Automatically. They love it." — Priya, NeatPros',
-  '"We have a 4.9-star rating on Google. The AI follow-ups are why." — Marcus, Webb Cleaning',
-  '"Customers rebook without us asking. The system nudges them at exactly the right time." — Jen, HomeSpark',
-  '"Zero cancellation no-shows. Customers get reminders so they actually show up." — Tom, CleanCo',
-  '"Our referral rate doubled because the whole experience feels premium." — Vanessa, PureSpace',
+  "Deep clean · 3bd/2ba · Customer self-booked · No call needed",
+  "Move-out clean · Rush slot · Confirmed in 2 minutes · Staff notified",
+  "Post-reno · Customer asked 'what's included?' · AI answered · Booked",
+  "Returning customer · Details pre-filled · Rebooked in one tap",
+  "First booking on a new site · Live in 48 hours · No developer needed",
+  "Reschedule request · 3 alternatives shown instantly · No staff involved",
 ];
 
 function QuoteTicker() {
@@ -474,9 +474,9 @@ function Numbers() {
         </Reveal>
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl md:grid-cols-3" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
           {[
-            { n: 89,  s: "%",   l: "Review capture rate\nafter AI follow-up" },
-            { n: 71,  s: "%",   l: "Customer rebooking rate\nwithin 60 days" },
-            { n: 312, s: "",    l: "Avg new reviews\nin first 90 days" },
+            { n: 3,   s: " min", l: "Avg booking time\nopen to confirmed" },
+            { n: 48,  s: " hrs", l: "From sign-up to your\nfirst live widget" },
+            { n: 0,   s: " calls", l: "Needed to confirm\nor reschedule" },
           ].map(({ n, s, l }, i) => (
             <Reveal key={i} delay={i * 80}>
               <div className="px-10 py-16 text-center" style={{ background: "#0E0E0E" }}>
@@ -493,10 +493,10 @@ function Numbers() {
   );
 }
 
-const TESTI = [
-  { q: "Our review count went from 40 to 312 in 90 days. The AI follow-up system is relentless in the best possible way. That reputation is now our biggest sales tool.", name: "Derek Hollis", biz: "SwiftMaid", tag: "Field services" },
-  { q: "My customers feel taken care of at every step — confirmation, reminder, follow-up. Several have told me it feels like a premium service. We just have a great system.", name: "Priya Anand", biz: "NeatPros", tag: "Home services" },
-  { q: "We have a 4.9-star average across 400+ reviews. I haven't personally asked for a review in over a year. ServiceOS does it all, better than I ever did.", name: "Marcus Webb", biz: "Webb Cleaning Co.", tag: "Cleaning" },
+const STEPS = [
+  { step: "01", title: "The booking IS the impression", tag: "Experience", desc: "A clean, fast, professional booking flow signals quality before the job even starts. Customers notice the difference from the very first tap." },
+  { step: "02", title: "Every touchpoint builds trust", tag: "Communication", desc: "Instant confirmation, pre-job reminder, clear details — customers feel looked after from the moment they book to the moment you arrive." },
+  { step: "03", title: "Good experiences get shared", tag: "Reputation", desc: "When customers book without friction and feel taken care of throughout, they remember it. That reputation builds through the quality of the experience itself." },
 ];
 
 function Testimonials() {
@@ -505,25 +505,22 @@ function Testimonials() {
       <Grid alpha={0.028} />
       <div className="relative mx-auto max-w-6xl px-6">
         <Reveal className="mb-16">
-          <Tag>Real owners</Tag>
+          <Tag>How it works</Tag>
           <h2 style={{ fontFamily: "var(--font-dm-sans), system-ui", fontWeight: 700, letterSpacing: "-0.045em", lineHeight: 0.95, color: "#FFFFFF", fontSize: "clamp(2.8rem, 6.5vw, 5.5rem)" }}>
-            Their reputation<br />
-            <span style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", color: "#B8922A", fontSize: "clamp(2.4rem, 5.5vw, 4.8rem)" }}>sells itself now.</span>
+            Three steps.<br />
+            <span style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", color: "#B8922A", fontSize: "clamp(2.4rem, 5.5vw, 4.8rem)" }}>5-star by default.</span>
           </h2>
         </Reveal>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {TESTI.map((t, i) => (
+          {STEPS.map((s, i) => (
             <Reveal key={i} delay={i * 80}>
               <div className="shimmer-card flex h-full flex-col rounded-2xl p-8" style={{ background: "rgba(255,255,255,0.028)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                <div className="mb-4 flex gap-0.5">
-                  {[...Array(5)].map((_, j) => (<span key={j} style={{ color: "#B8922A", fontSize: "11px" }}>★</span>))}
-                </div>
-                <blockquote className="flex-1 text-[15px] font-medium leading-[1.8]" style={{ color: "rgba(255,255,255,0.80)" }}>&ldquo;{t.q}&rdquo;</blockquote>
+                <p style={{ fontFamily: "var(--font-dm-sans)", fontWeight: 700, fontSize: "13px", letterSpacing: "0.01em", color: "#B8922A", marginBottom: "12px" }}>{s.step}</p>
+                <p className="flex-1 text-[15px] font-medium leading-[1.8]" style={{ color: "rgba(255,255,255,0.80)" }}>{s.desc}</p>
                 <div className="mt-7 flex items-center gap-3 border-t pt-6" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold" style={{ background: "rgba(184,146,42,0.14)", color: "#B8922A" }}>{t.name[0]}</div>
                   <div>
-                    <p className="text-sm font-medium text-white">{t.name}</p>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.38)" }}>{t.biz} · {t.tag}</p>
+                    <p className="text-sm font-medium text-white">{s.title}</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.38)" }}>{s.tag}</p>
                   </div>
                 </div>
               </div>

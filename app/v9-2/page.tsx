@@ -138,7 +138,7 @@ function AIFeed() {
         </div>
       </div>
       <div className="flex items-center justify-between px-5 py-3 text-[10px]" style={{ borderTop: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.35)" }}>
-        <span>342 self-serve bookings today</span>
+        <span>Widget live · ready to take bookings</span>
         <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-400">0 calls fielded</span>
       </div>
     </div>
@@ -215,7 +215,7 @@ function Hero() {
 
           <Reveal delay={340}>
             <div className="mt-12 grid grid-cols-3 gap-8 border-t pt-10" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-              {[{ n: 5200, s: "+", l: "businesses scaled" }, { n: 80, s: "%", l: "bookings without calls" }, { n: 14, s: " hrs", l: "saved per week" }].map(({ n, s, l }) => (
+              {[{ n: 3, s: " min", l: "avg customer booking time" }, { n: 0, s: " calls", l: "to confirm a booking" }, { n: 24, s: "/7", l: "always open for bookings" }].map(({ n, s, l }) => (
                 <div key={l}>
                   <p style={{ fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#ffffff", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}><Counter to={n} suffix={s} /></p>
                   <p className="mt-1.5 text-[11px] tracking-wide" style={{ color: "rgba(255,255,255,0.36)" }}>{l}</p>
@@ -232,8 +232,8 @@ function Hero() {
               <AIFeed />
             </div>
             <div className="animate-float2 absolute -left-20 top-12 shimmer-card rounded-xl p-4 shadow-2xl" style={{ background: "#111111", border: "1px solid rgba(255,255,255,0.10)", width: "160px" }}>
-              <p className="text-[9px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Bookings self-served</p>
-              <p className="mt-1 text-2xl font-bold" style={{ letterSpacing: "-0.04em", color: "#B8922A" }}>342 today</p>
+              <p className="text-[9px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Avg booking time</p>
+              <p className="mt-1 text-2xl font-bold" style={{ letterSpacing: "-0.04em", color: "#B8922A" }}>3 min</p>
               <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.35)" }}>0 calls fielded</p>
               <div className="mt-2.5 flex items-end gap-0.5" style={{ height: "22px" }}>
                 {[30, 45, 35, 62, 50, 78, 65, 90, 82].map((h, i) => (<div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: "rgba(184,146,42,0.35)" }} />))}
@@ -252,12 +252,12 @@ function Hero() {
 }
 
 const TICKER_QUOTES = [
-  '"Went from 2 crews to 8 in 6 months. The system just scaled with us." — Marcus, Webb Cleaning',
-  '"Opened a second location in another city. Same ops team. No new hires." — Priya, NeatPros',
-  '"Managing 300 jobs a week. Zero extra admin overhead vs when we did 50." — Derek, SwiftMaid',
-  '"We franchise now. ServiceOS is what makes it possible to replicate the model." — Jen, HomeSpark',
-  '"Growth used to mean chaos. Not anymore." — Tom, CleanCo',
-  '"Added 3 service lines in a year. ServiceOS handled all of them." — Vanessa, PureSpace',
+  "Deep clean · 3bd/2ba · Customer self-booked · No call needed",
+  "Move-out clean · Rush slot · Confirmed in 2 minutes · Staff notified",
+  "Post-reno · Customer asked 'what's included?' · AI answered · Booked",
+  "Returning customer · Details pre-filled · Rebooked in one tap",
+  "First booking on a new site · Live in 48 hours · No developer needed",
+  "Reschedule request · 3 alternatives shown instantly · No staff involved",
 ];
 
 function QuoteTicker() {
@@ -474,7 +474,7 @@ function Numbers() {
         </Reveal>
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl md:grid-cols-3" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
           {[
-            { n: 5200, s: "+",   l: "Service businesses\nalready at scale" },
+            { n: 48,   s: " hrs", l: "From sign-up to live\nat any location" },
             { n: 80,   s: "%",   l: "Bookings self-served\nat any volume" },
             { n: 14,   s: " hrs", l: "Saved per owner\nevery single week" },
           ].map(({ n, s, l }, i) => (
@@ -493,10 +493,10 @@ function Numbers() {
   );
 }
 
-const TESTI = [
-  { q: "We went from 2 crews to 8 in 6 months. I never changed a single thing in ServiceOS — it just handled more. That's the system I needed.", name: "Marcus Webb", biz: "Webb Cleaning Co.", tag: "Cleaning" },
-  { q: "I opened a second location in another city with the same ops team. ServiceOS handled everything. No new hires, no new processes, same quality.", name: "Priya Anand", biz: "NeatPros", tag: "Home services" },
-  { q: "We run 300+ jobs a week across 3 locations. It's the same amount of admin work as when we ran 50. That's a different kind of business.", name: "Derek Hollis", biz: "SwiftMaid", tag: "Field services" },
+const STEPS = [
+  { step: "01", title: "Set up once", tag: "Setup", desc: "Your booking widget goes live in an afternoon. Add a new location? Same setup, no extra code. The system works the same at 2 crews or 20." },
+  { step: "02", title: "Volume handles itself", tag: "Scale", desc: "Customers book into any location from the same widget. Availability updates in real time. No manual calendar juggling as you grow." },
+  { step: "03", title: "One dashboard for everything", tag: "Operations", desc: "Every location, every booking, every crew — managed from the same place. Adding a new location doesn't add new admin work." },
 ];
 
 function Testimonials() {
@@ -505,25 +505,22 @@ function Testimonials() {
       <Grid alpha={0.028} />
       <div className="relative mx-auto max-w-6xl px-6">
         <Reveal className="mb-16">
-          <Tag>Real owners</Tag>
+          <Tag>How it works</Tag>
           <h2 style={{ fontFamily: "var(--font-dm-sans), system-ui", fontWeight: 700, letterSpacing: "-0.045em", lineHeight: 0.95, color: "#FFFFFF", fontSize: "clamp(2.8rem, 6.5vw, 5.5rem)" }}>
-            They scaled without<br />
-            <span style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", color: "#B8922A", fontSize: "clamp(2.4rem, 5.5vw, 4.8rem)" }}>the chaos.</span>
+            Three steps.<br />
+            <span style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", color: "#B8922A", fontSize: "clamp(2.4rem, 5.5vw, 4.8rem)" }}>Built to scale.</span>
           </h2>
         </Reveal>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {TESTI.map((t, i) => (
+          {STEPS.map((s, i) => (
             <Reveal key={i} delay={i * 80}>
               <div className="shimmer-card flex h-full flex-col rounded-2xl p-8" style={{ background: "rgba(255,255,255,0.028)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                <div className="mb-4 flex gap-0.5">
-                  {[...Array(5)].map((_, j) => (<span key={j} style={{ color: "#B8922A", fontSize: "11px" }}>★</span>))}
-                </div>
-                <blockquote className="flex-1 text-[15px] font-medium leading-[1.8]" style={{ color: "rgba(255,255,255,0.80)" }}>&ldquo;{t.q}&rdquo;</blockquote>
+                <p style={{ fontFamily: "var(--font-dm-sans)", fontWeight: 700, fontSize: "13px", letterSpacing: "0.01em", color: "#B8922A", marginBottom: "12px" }}>{s.step}</p>
+                <p className="flex-1 text-[15px] font-medium leading-[1.8]" style={{ color: "rgba(255,255,255,0.80)" }}>{s.desc}</p>
                 <div className="mt-7 flex items-center gap-3 border-t pt-6" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold" style={{ background: "rgba(184,146,42,0.14)", color: "#B8922A" }}>{t.name[0]}</div>
                   <div>
-                    <p className="text-sm font-medium text-white">{t.name}</p>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.38)" }}>{t.biz} · {t.tag}</p>
+                    <p className="text-sm font-medium text-white">{s.title}</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.38)" }}>{s.tag}</p>
                   </div>
                 </div>
               </div>

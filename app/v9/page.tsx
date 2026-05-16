@@ -141,7 +141,7 @@ function AIFeed() {
         </div>
       </div>
       <div className="flex items-center justify-between px-5 py-3 text-[10px]" style={{ borderTop: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.35)" }}>
-        <span>58 self-serve bookings today</span>
+        <span>Widget live · ready to take bookings</span>
         <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-400">0 calls needed</span>
       </div>
     </div>
@@ -208,7 +208,7 @@ function Hero() {
 
           <Reveal delay={150}>
             <p className="mt-9 max-w-md text-base leading-[1.85]" style={{ color: "rgba(255,255,255,0.50)" }}>
-              ServiceOS is the AI-powered booking system for cleaning, maintenance & field service businesses — that dispatches jobs, resolves conflicts, and follows up with customers automatically.
+              ServiceOS puts a self-booking assistant on your site — so customers pick their own slot, get instant confirmation, and job details flow straight to your dashboard. No phone calls needed.
             </p>
           </Reveal>
 
@@ -221,7 +221,7 @@ function Hero() {
 
           <Reveal delay={340}>
             <div className="mt-12 grid grid-cols-3 gap-8 border-t pt-10" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-              {[{ n: 5200, s: "+", l: "service businesses" }, { n: 14, s: " hrs", l: "saved per week" }, { n: 80, s: "%", l: "bookings self-served" }].map(({ n, s, l }) => (
+              {[{ n: 3, s: " min", l: "avg customer booking time" }, { n: 0, s: " calls", l: "to confirm a booking" }, { n: 24, s: "/7", l: "always open for bookings" }].map(({ n, s, l }) => (
                 <div key={l}>
                   <p style={{ fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#ffffff", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}><Counter to={n} suffix={s} /></p>
                   <p className="mt-1.5 text-[11px] tracking-wide" style={{ color: "rgba(255,255,255,0.36)" }}>{l}</p>
@@ -239,9 +239,9 @@ function Hero() {
             </div>
             {/* Floating stat card */}
             <div className="animate-float2 absolute -left-20 top-12 shimmer-card rounded-xl p-4 shadow-2xl" style={{ background: "#111111", border: "1px solid rgba(255,255,255,0.10)", width: "160px" }}>
-              <p className="text-[9px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>AI pricing uplift</p>
-              <p className="mt-1 text-2xl font-bold" style={{ letterSpacing: "-0.04em", color: "#B8922A" }}>+$2,840</p>
-              <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.35)" }}>this month</p>
+              <p className="text-[9px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Avg booking time</p>
+              <p className="mt-1 text-2xl font-bold" style={{ letterSpacing: "-0.04em", color: "#B8922A" }}>3 min</p>
+              <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.35)" }}>open to confirmed</p>
               <div className="mt-2.5 flex items-end gap-0.5" style={{ height: "22px" }}>
                 {[30, 45, 35, 62, 50, 78, 65, 90, 82].map((h, i) => (<div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: "rgba(184,146,42,0.35)" }} />))}
               </div>
@@ -260,12 +260,12 @@ function Hero() {
 
 /* ─── Quote ticker ───────────────────────────────────────────────────────────── */
 const TICKER_QUOTES = [
-  '"Saved 14 hours last week alone." — Marcus, Webb Cleaning',
-  '"AI dispatch is unreal. Zero conflicts in 3 months." — Priya, NeatPros',
-  '"Review count went from 40 to 312 in 90 days." — Derek, SwiftMaid',
-  '"Live in 45 minutes. No developer needed." — Jen, HomeSpark',
-  '"Our team stopped calling me about scheduling." — Tom, CleanCo',
-  '"Best ROI of any software we run." — Vanessa, PureSpace',
+  "Deep clean · 3bd/2ba · Customer self-booked · No call needed",
+  "Move-out clean · Rush slot · Confirmed in 2 minutes · Staff notified",
+  "Post-reno · Customer asked 'what's included?' · AI answered · Booked",
+  "Returning customer · Details pre-filled · Rebooked in one tap",
+  "First booking on a new site · Live in 48 hours · No developer needed",
+  "Reschedule request · 3 alternatives shown instantly · No staff involved",
 ];
 function QuoteTicker() {
   return (
@@ -487,7 +487,7 @@ function Numbers() {
         </Reveal>
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl md:grid-cols-3" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
           {[
-            { n: 5200, s: "+",   l: "Service businesses\nonline and self-booking" },
+            { n: 48,   s: " hrs", l: "From sign-up to your\nfirst live booking widget" },
             { n: 14,   s: " hrs", l: "Saved per owner\nevery single week" },
             { n: 80,   s: "%",   l: "Bookings completed\nwithout a phone call" },
           ].map(({ n, s, l }, i) => (
@@ -506,11 +506,11 @@ function Numbers() {
   );
 }
 
-/* ─── Testimonials (DARK) ────────────────────────────────────────────────────── */
-const TESTI = [
-  { q: "We went from spreadsheets to a fully automated booking system in a week. The AI dispatch alone saves my team 10+ hours every single week.", name: "Marcus Webb", biz: "Webb Cleaning Co.", tag: "Cleaning" },
-  { q: "Zero conflicts in 3 months. Our booking system handles double-bookings automatically. I haven't touched the schedule manually since day one.", name: "Priya Anand", biz: "NeatPros", tag: "Home services" },
-  { q: "The AI follow-up system took our review count from 40 to 312 in 90 days. That alone paid for the platform 10× over.", name: "Derek Hollis", biz: "SwiftMaid", tag: "Field services" },
+/* ─── How it works (DARK) ───────────────────────────────────────────────────── */
+const STEPS = [
+  { step: "01", title: "Add the widget", tag: "Setup", desc: "One snippet goes on your site. It takes minutes. Your booking page is live — 24/7, no dev time, no support calls required." },
+  { step: "02", title: "Customers book themselves", tag: "Booking", desc: "AI guides them through the right questions. They pick a slot from your real availability and get instant confirmation. No phone call to you." },
+  { step: "03", title: "Jobs land in your dashboard", tag: "Operations", desc: "Every booking shows up with full details — service, time, location, notes. Your team sees it. You see it. Nothing gets lost." },
 ];
 
 function Testimonials() {
@@ -519,25 +519,22 @@ function Testimonials() {
       <Grid alpha={0.028} />
       <div className="relative mx-auto max-w-6xl px-6">
         <Reveal className="mb-16">
-          <Tag>Real owners</Tag>
+          <Tag>How it works</Tag>
           <h2 style={{ fontFamily: "var(--font-dm-sans), system-ui", fontWeight: 700, letterSpacing: "-0.045em", lineHeight: 0.95, color: "#FFFFFF", fontSize: "clamp(2.8rem, 6.5vw, 5.5rem)" }}>
-            They were running<br />
-            <span style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", color: "#B8922A", fontSize: "clamp(2.4rem, 5.5vw, 4.8rem)" }}>on spreadsheets.</span>
+            Three steps.<br />
+            <span style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", color: "#B8922A", fontSize: "clamp(2.4rem, 5.5vw, 4.8rem)" }}>Up and running.</span>
           </h2>
         </Reveal>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {TESTI.map((t, i) => (
+          {STEPS.map((s, i) => (
             <Reveal key={i} delay={i * 80}>
               <div className="shimmer-card flex h-full flex-col rounded-2xl p-8" style={{ background: "rgba(255,255,255,0.028)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                <div className="mb-4 flex gap-0.5">
-                  {[...Array(5)].map((_, j) => (<span key={j} style={{ color: "#B8922A", fontSize: "11px" }}>★</span>))}
-                </div>
-                <blockquote className="flex-1 text-[15px] font-medium leading-[1.8]" style={{ color: "rgba(255,255,255,0.80)" }}>&ldquo;{t.q}&rdquo;</blockquote>
+                <p style={{ fontFamily: "var(--font-dm-sans)", fontWeight: 700, fontSize: "13px", letterSpacing: "0.01em", color: "#B8922A", marginBottom: "12px" }}>{s.step}</p>
+                <p className="flex-1 text-[15px] font-medium leading-[1.8]" style={{ color: "rgba(255,255,255,0.80)" }}>{s.desc}</p>
                 <div className="mt-7 flex items-center gap-3 border-t pt-6" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold" style={{ background: "rgba(184,146,42,0.14)", color: "#B8922A" }}>{t.name[0]}</div>
                   <div>
-                    <p className="text-sm font-medium text-white">{t.name}</p>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.38)" }}>{t.biz} · {t.tag}</p>
+                    <p className="text-sm font-medium text-white">{s.title}</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.38)" }}>{s.tag}</p>
                   </div>
                 </div>
               </div>
