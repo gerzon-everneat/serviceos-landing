@@ -86,10 +86,10 @@ const IconClock   = () => (<svg width="20" height="20" viewBox="0 0 24 24" fill=
 
 /* Hero AI Feed — owner burden removal theme */
 const SCENARIOS = [
-  { incoming: "Saturday 8:00 AM — 4 new bookings", thinking: "Assigning by proximity, skill, and rating...", decision: "All 4 auto-assigned. No action needed.", sub: "You were still asleep", accent: { text: "text-emerald-400", bg: "bg-emerald-500/10", glow: "rgba(52,211,153,0.10)" } },
-  { incoming: "Conflict: Mike double-booked at 10 AM", thinking: "Finding nearest available alt — 2.4 mi away...", decision: "Alex P. rerouted silently", sub: "Customer never knew. Neither did you.", accent: { text: "text-blue-400", bg: "bg-blue-500/10", glow: "rgba(96,165,250,0.10)" } },
-  { incoming: "Post-Reno · 2:00 PM — premium slot", thinking: "Peak demand: suggesting $295 (+16%)...", decision: "$295 accepted by customer", sub: "+$40 without you lifting a finger", accent: { text: "text-yellow-400", bg: "bg-yellow-500/10", glow: "rgba(234,179,8,0.10)" } },
-  { incoming: "Job #1038 — no review after 24 hrs", thinking: "Follow-up threshold met. Sending nudge...", decision: "Automated SMS dispatched", sub: "Review came in 22 minutes later", accent: { text: "text-purple-400", bg: "bg-purple-500/10", glow: "rgba(192,132,252,0.10)" } },
+  { incoming: "New customer — 'deep clean, 4bd/2ba, Friday'", thinking: "Checking availability, surfacing matching slots...", decision: "3 open slots shown. Customer picked 10am.", sub: "Booked in 3 minutes. No call needed.", accent: { text: "text-emerald-400", bg: "bg-emerald-500/10", glow: "rgba(52,211,153,0.10)" } },
+  { incoming: "Returning customer — Sarah M. on the widget", thinking: "Recognising service history, pre-filling details...", decision: "Last service pre-filled. One tap to confirm.", sub: "Rebooked in 40 seconds. Zero friction.", accent: { text: "text-blue-400", bg: "bg-blue-500/10", glow: "rgba(96,165,250,0.10)" } },
+  { incoming: "Customer: 'what’s included in post-reno?'", thinking: "Answering service question, surfacing booking...", decision: "Full breakdown shown. Slot suggested.", sub: "Booked without calling your number.", accent: { text: "text-yellow-400", bg: "bg-yellow-500/10", glow: "rgba(234,179,8,0.10)" } },
+  { incoming: "Customer requests reschedule", thinking: "Finding matching open slots for same service...", decision: "3 alternatives presented instantly.", sub: "Handled without any staff involvement.", accent: { text: "text-purple-400", bg: "bg-purple-500/10", glow: "rgba(192,132,252,0.10)" } },
 ];
 
 function AIFeed() {
@@ -108,16 +108,16 @@ function AIFeed() {
       <div className="flex items-center gap-3 px-5 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: "rgba(184,146,42,0.12)", border: "1px solid rgba(184,146,42,0.20)", color: "#B8922A" }}><IconBrain /></div>
         <div className="flex-1">
-          <p className="text-xs font-medium text-white">Running while you sleep</p>
+          <p className="text-xs font-medium text-white">AI Booking Assistant</p>
           <div className="mt-0.5 flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" style={{ animation: "pulse 1.5s infinite" }} />
-            <p className="text-[10px] text-emerald-400">Always on · zero input</p>
+            <p className="text-[10px] text-emerald-400">Live · taking bookings</p>
           </div>
         </div>
         <span className="font-mono text-[10px]" style={{ color: "rgba(255,255,255,0.25)" }}>24/7</span>
       </div>
       <div className="px-5 py-4">
-        <p className="mb-3 text-[9px] font-medium uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Handled automatically</p>
+        <p className="mb-3 text-[9px] font-medium uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Customer booking</p>
         <div className="rounded-xl border p-4 transition-all duration-500" style={{ borderColor: phase === "done" ? "rgba(184,146,42,0.22)" : "rgba(255,255,255,0.08)", background: phase === "done" ? `radial-gradient(circle at 100% 0%, ${s.accent.glow}, transparent 60%), #161616` : "#161616" }}>
           <div className="flex items-start gap-2.5">
             <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-yellow-500" style={{ animation: phase !== "done" ? "pulse 1s infinite" : "none" }} />
@@ -138,8 +138,8 @@ function AIFeed() {
         </div>
       </div>
       <div className="flex items-center justify-between px-5 py-3 text-[10px]" style={{ borderTop: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.35)" }}>
-        <span>0 decisions needed from you</span>
-        <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-400">All handled</span>
+        <span>58 self-serve bookings today</span>
+        <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-400">0 calls needed</span>
       </div>
     </div>
   );
@@ -215,7 +215,7 @@ function Hero() {
 
           <Reveal delay={340}>
             <div className="mt-12 grid grid-cols-3 gap-8 border-t pt-10" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-              {[{ n: 14, s: " hrs", l: "reclaimed per week" }, { n: 98, s: "%", l: "dispatched without you" }, { n: 5200, s: "+", l: "owners using it" }].map(({ n, s, l }) => (
+              {[{ n: 14, s: " hrs", l: "saved on booking calls" }, { n: 80, s: "%", l: "bookings self-served" }, { n: 5200, s: "+", l: "owners using it" }].map(({ n, s, l }) => (
                 <div key={l}>
                   <p style={{ fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1, color: "#ffffff", fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}><Counter to={n} suffix={s} /></p>
                   <p className="mt-1.5 text-[11px] tracking-wide" style={{ color: "rgba(255,255,255,0.36)" }}>{l}</p>
@@ -232,9 +232,9 @@ function Hero() {
               <AIFeed />
             </div>
             <div className="animate-float2 absolute -left-20 top-12 shimmer-card rounded-xl p-4 shadow-2xl" style={{ background: "#111111", border: "1px solid rgba(255,255,255,0.10)", width: "160px" }}>
-              <p className="text-[9px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Hours saved today</p>
-              <p className="mt-1 text-2xl font-bold" style={{ letterSpacing: "-0.04em", color: "#B8922A" }}>3.2 hrs</p>
-              <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.35)" }}>before 9am</p>
+              <p className="text-[9px] uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.30)" }}>Calls not taken</p>
+              <p className="mt-1 text-2xl font-bold" style={{ letterSpacing: "-0.04em", color: "#B8922A" }}>58 today</p>
+              <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.35)" }}>all self-served</p>
               <div className="mt-2.5 flex items-end gap-0.5" style={{ height: "22px" }}>
                 {[30, 45, 35, 62, 50, 78, 65, 90, 82].map((h, i) => (<div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: "rgba(184,146,42,0.35)" }} />))}
               </div>
@@ -284,10 +284,10 @@ function Statement() {
           <Tag dark={false}>The honest version</Tag>
           <blockquote style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(2rem, 4.8vw, 4rem)", lineHeight: 1.2, color: "#141210" }}>
             &ldquo;You started a service business,<br />
-            <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>not a scheduling department.&rdquo;</span>
+            <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>not a call centre.&rdquo;</span>
           </blockquote>
           <p className="mx-auto mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: "#787068" }}>
-            Most owners spend 2–3 hours a day dispatching jobs, rerouting conflicts, and chasing reviews. That&apos;s time you can&apos;t spend growing your business, serving customers, or having a life. ServiceOS gives those hours back — permanently.
+            Most owners spend 2–3 hours a day fielding calls from customers who just want to book, reschedule, or ask what&apos;s included. ServiceOS puts a self-serve booking flow on your site so customers handle it themselves — and your phone goes quiet.
           </p>
         </Reveal>
       </div>
@@ -298,30 +298,30 @@ function Statement() {
 const AI_CARDS = [
   {
     icon: <IconBrain />,
-    title: "Dispatch — Hands-free",
-    stat: "0", statLabel: "clicks to assign",
-    desc: "Every booking routed to the best-fit pro the moment it comes in — skill, distance, rating. You never touch it.",
+    title: "AI Booking Assistant",
+    stat: "3 min", statLabel: "avg booking time",
+    desc: "AI guides every customer — what service, what size, what date, what access details. They book correctly without calling you to ask.",
     color: "#B8922A", bg: "rgba(184,146,42,0.07)", border: "rgba(184,146,42,0.18)",
   },
   {
-    icon: <IconRoute />,
-    title: "Conflicts — Self-clearing",
-    stat: "0", statLabel: "reschedule calls",
-    desc: "Double-booked? ServiceOS detects it instantly, reroutes silently, and your customer never hears a word.",
+    icon: <IconCalendar />,
+    title: "Live Availability",
+    stat: "0", statLabel: "back-and-forth calls",
+    desc: "Customers see your real schedule. They pick real open slots. No 'let me check and call you back.' No overbooking.",
     color: "#3B82F6", bg: "rgba(59,130,246,0.07)", border: "rgba(59,130,246,0.18)",
   },
   {
-    icon: <IconTrend />,
-    title: "Pricing — Self-adjusting",
-    stat: "+18%", statLabel: "avg revenue, passive",
-    desc: "AI reads demand and complexity in real time, nudges rates higher on premium slots. You just see the uplift.",
+    icon: <IconZap />,
+    title: "Instant Confirmation",
+    stat: "< 1s", statLabel: "booking to confirmed",
+    desc: "Customer books → confirmation fires → job appears in your dashboard. No approvals, no follow-up calls, no delays.",
     color: "#C8FF00", bg: "rgba(200,255,0,0.06)", border: "rgba(200,255,0,0.15)",
   },
   {
-    icon: <IconMsg />,
-    title: "Follow-ups — Automated",
-    stat: "89%", statLabel: "reviews captured",
-    desc: "Review nudges, rebooking reminders, thank-you messages — all sent without you writing a single word.",
+    icon: <IconUsers />,
+    title: "Full Self-Service",
+    stat: "80%", statLabel: "fewer inbound calls",
+    desc: "Customers book, reschedule, and track jobs without calling you. Your phone stays quiet. Your time stays yours.",
     color: "#A855F7", bg: "rgba(168,85,247,0.07)", border: "rgba(168,85,247,0.18)",
   },
 ];
@@ -332,12 +332,12 @@ function AIEngine() {
       <Grid />
       <div className="relative mx-auto max-w-6xl px-6">
         <Reveal className="mb-16 max-w-2xl">
-          <Tag>What gets off your plate</Tag>
+          <Tag>What the AI handles</Tag>
           <h2 style={{ fontFamily: "var(--font-dm-sans), system-ui", fontWeight: 700, letterSpacing: "-0.045em", lineHeight: 0.95, color: "#FFFFFF", fontSize: "clamp(2.8rem, 6.5vw, 5.5rem)" }}>
-            Four jobs you&apos;ll never<br /><span style={{ color: "#B8922A" }}>do manually again.</span>
+            Customers book.<br /><span style={{ color: "#B8922A" }}>You stop fielding calls.</span>
           </h2>
           <p className="mt-6 text-base" style={{ color: "rgba(255,255,255,0.48)" }}>
-            ServiceOS runs the operations. You run the business.
+            The AI handles the booking conversation. You handle the work.
           </p>
         </Reveal>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -475,8 +475,8 @@ function Numbers() {
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl md:grid-cols-3" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
           {[
             { n: 14,   s: " hrs",  l: "Reclaimed per owner\nevery single week" },
-            { n: 98,   s: "%",    l: "Jobs dispatched\nwith zero manual input" },
-            { n: 5200, s: "+",    l: "Owners who stopped\nbeing the dispatcher" },
+            { n: 80,   s: "%",    l: "Bookings self-served\nwithout a phone call" },
+            { n: 5200, s: "+",    l: "Owners who stopped\ntaking booking calls" },
           ].map(({ n, s, l }, i) => (
             <Reveal key={i} delay={i * 80}>
               <div className="px-10 py-16 text-center" style={{ background: "#0E0E0E" }}>
