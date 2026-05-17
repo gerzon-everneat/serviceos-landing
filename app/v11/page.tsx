@@ -55,32 +55,7 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
 /* ─── Hero background ────────────────────────────────────────────────────────── */
 function HeroBg() {
   return (
-    <>
-      <style>{`
-        @keyframes blob1 {
-          0%,100% { transform: translate(0,0) scale(1); }
-          33% { transform: translate(24px,-44px) scale(1.09); }
-          66% { transform: translate(-18px,22px) scale(0.94); }
-        }
-        @keyframes blob2 {
-          0%,100% { transform: translate(0,0) scale(1); }
-          40% { transform: translate(-28px,32px) scale(1.06); }
-          70% { transform: translate(18px,-22px) scale(0.96); }
-        }
-        @keyframes widgetFloat {
-          0%,100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-10px) rotate(0.5deg); }
-        }
-        @keyframes notifIn {
-          from { opacity: 0; transform: translateY(14px) scale(0.95); }
-          to   { opacity: 1; transform: translateY(0)    scale(1); }
-        }
-        @keyframes glow {
-          0%,100% { opacity: 0.55; }
-          50% { opacity: 0.85; }
-        }
-      `}</style>
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {/* dot grid */}
         <div style={{
           position: "absolute", inset: 0,
@@ -104,8 +79,7 @@ function HeroBg() {
           background: "radial-gradient(circle, rgba(99,102,241,0.10) 0%, transparent 68%)",
           animation: "blob2 11s ease-in-out infinite",
         }} />
-      </div>
-    </>
+    </div>
   );
 }
 
