@@ -52,6 +52,108 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   return <span ref={ref}>{val}{suffix}</span>;
 }
 
+/* ─── Hero background ────────────────────────────────────────────────────────── */
+function HeroBg() {
+  return (
+    <>
+      <style>{`
+        @keyframes blob1 {
+          0%,100% { transform: translate(0,0) scale(1); }
+          33% { transform: translate(24px,-44px) scale(1.09); }
+          66% { transform: translate(-18px,22px) scale(0.94); }
+        }
+        @keyframes blob2 {
+          0%,100% { transform: translate(0,0) scale(1); }
+          40% { transform: translate(-28px,32px) scale(1.06); }
+          70% { transform: translate(18px,-22px) scale(0.96); }
+        }
+        @keyframes widgetFloat {
+          0%,100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-10px) rotate(0.5deg); }
+        }
+        @keyframes notifIn {
+          from { opacity: 0; transform: translateY(14px) scale(0.95); }
+          to   { opacity: 1; transform: translateY(0)    scale(1); }
+        }
+        @keyframes glow {
+          0%,100% { opacity: 0.55; }
+          50% { opacity: 0.85; }
+        }
+      `}</style>
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* dot grid */}
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: "radial-gradient(#CBD5E1 1.5px, transparent 1.5px)",
+          backgroundSize: "28px 28px",
+          opacity: 0.55,
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%)",
+          maskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%)",
+        }} />
+        {/* blue blob top-right */}
+        <div style={{
+          position: "absolute", top: "-18%", right: "-10%",
+          width: 680, height: 680, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 68%)",
+          animation: "blob1 9s ease-in-out infinite",
+        }} />
+        {/* indigo blob bottom-left */}
+        <div style={{
+          position: "absolute", bottom: "-28%", left: "-14%",
+          width: 580, height: 580, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(99,102,241,0.10) 0%, transparent 68%)",
+          animation: "blob2 11s ease-in-out infinite",
+        }} />
+      </div>
+    </>
+  );
+}
+
+/* ─── Live booking notifications ─────────────────────────────────────────────── */
+const NOTIFS = [
+  { name: "Sarah M.", detail: "Deep clean · Thu 22 May · 9:00am" },
+  { name: "James K.", detail: "Regular clean · Fri 23 May · 2:00pm" },
+  { name: "Priya L.", detail: "Move-out clean · Mon 26 May · 9:00am" },
+  { name: "Tom W.", detail: "Post-reno clean · Sat 24 May · 10:00am" },
+];
+
+function LiveNotif() {
+  const [idx, setIdx] = useState(0);
+  const [animKey, setAnimKey] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => {
+      setIdx(i => (i + 1) % NOTIFS.length);
+      setAnimKey(k => k + 1);
+    }, 3200);
+    return () => clearInterval(t);
+  }, []);
+  const n = NOTIFS[idx];
+  return (
+    <div key={animKey} style={{
+      display: "flex", alignItems: "center", gap: 10,
+      background: "#FFFFFF", border: "1px solid #E5E7EB",
+      borderRadius: 14, padding: "10px 14px",
+      boxShadow: "0 8px 32px rgba(0,0,0,0.10)",
+      width: 290,
+      animation: "notifIn 0.45s cubic-bezier(0.16,1,0.3,1) both",
+    }}>
+      <div style={{
+        width: 8, height: 8, borderRadius: "50%",
+        background: "#10B981", flexShrink: 0,
+        animation: "glow 2s ease-in-out infinite",
+        boxShadow: "0 0 6px rgba(16,185,129,0.6)",
+      }} />
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <p style={{ fontSize: 12, fontWeight: 600, color: "#111827", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          New booking — {n.name}
+        </p>
+        <p style={{ fontSize: 11, color: "#6B7280", marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{n.detail}</p>
+      </div>
+      <p style={{ fontSize: 10, color: "#9CA3AF", flexShrink: 0 }}>just now</p>
+    </div>
+  );
+}
+
 /* ─── Booking widget demo ────────────────────────────────────────────────────── */
 function BookingWidget() {
   const [step, setStep] = useState(0);
@@ -185,7 +287,8 @@ function Hero() {
 
   return (
     <section className="relative overflow-hidden pt-28 pb-24" style={{ background: "#FFFFFF" }}>
-      <div className="mx-auto max-w-6xl px-6">
+      <HeroBg />
+      <div className="relative mx-auto max-w-6xl px-6">
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
           {/* Left */}
           <div>
@@ -239,8 +342,22 @@ function Hero() {
           </div>
 
           {/* Right — interactive booking widget demo */}
-          <Reveal delay={200} className="flex justify-center lg:justify-end" y={28}>
-            <BookingWidget />
+          <Reveal delay={200} className="flex flex-col items-center gap-4 lg:items-end" y={28}>
+            {/* glow ring behind widget */}
+            <div className="relative">
+              <div style={{
+                position: "absolute", inset: -24,
+                borderRadius: 32,
+                background: "radial-gradient(ellipse, rgba(37,99,235,0.12) 0%, transparent 70%)",
+                animation: "glow 3s ease-in-out infinite",
+                pointerEvents: "none",
+              }} />
+              <div style={{ animation: "widgetFloat 5s ease-in-out infinite" }}>
+                <BookingWidget />
+              </div>
+            </div>
+            {/* live notification toast */}
+            <LiveNotif />
           </Reveal>
         </div>
       </div>
