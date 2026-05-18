@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useRef, useEffect } from "react";
 
@@ -144,7 +144,7 @@ function BookingWidget() {
         <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white" style={{ background: "#2563EB" }}>S</div>
         <div>
           <p className="text-sm font-semibold" style={{ color: "#111827" }}>Book a service</p>
-          <p className="text-[11px]" style={{ color: "#9CA3AF" }}>Powered by ServiceOS</p>
+          <p className="text-[11px]" style={{ color: "#9CA3AF" }}>Powered by neaterops</p>
         </div>
       </div>
 
@@ -241,7 +241,7 @@ function Nav() {
       backdropFilter: scrolled ? "blur(12px)" : "none",
     }}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="/" style={{ fontFamily: "system-ui", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#111827" }}>[ServiceOS]</a>
+        <a href="/" style={{ fontFamily: "system-ui", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#111827" }}>[neaterops]</a>
         <div className="hidden items-center gap-7 text-sm md:flex" style={{ color: "#6B7280" }}>
           {[["How it works", "#how"], ["Features", "#features"], ["Pricing", "#pricing"]].map(([l, h]) => (
             <a key={l} href={h} className="transition-colors hover:text-gray-900">{l}</a>
@@ -288,7 +288,7 @@ function Hero() {
 
             <Reveal delay={180}>
               <p className="mt-7 max-w-md text-lg leading-[1.8]" style={{ color: "#6B7280" }}>
-                ServiceOS puts a self-booking assistant on your website. Customers pick their own slot, AI answers their questions, and the booking lands in your dashboard — without a single call.
+                neaterops puts a self-booking assistant on your website. Customers pick their own slot, AI answers their questions, and the booking lands in your dashboard — without a single call.
               </p>
             </Reveal>
 
@@ -345,11 +345,11 @@ function Pain() {
     <section id="how" className="py-28" style={{ background: "#F9FAFB" }}>
       <div className="mx-auto max-w-5xl px-6">
         <Reveal className="mb-14 text-center">
-          <p className="mb-3 text-sm font-semibold" style={{ color: "#2563EB" }}>Before ServiceOS</p>
+          <p className="mb-3 text-sm font-semibold" style={{ color: "#2563EB" }}>Before neaterops</p>
           <h2 style={{ fontFamily: "system-ui", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.05, color: "#111827", fontSize: "clamp(2rem, 5vw, 3.5rem)" }}>
             Every new booking costs you time.
           </h2>
-          <p className="mx-auto mt-4 max-w-sm text-base" style={{ color: "#6B7280" }}>Here&apos;s the sequence every service business knows by heart — and how ServiceOS replaces it.</p>
+          <p className="mx-auto mt-4 max-w-sm text-base" style={{ color: "#6B7280" }}>Here&apos;s the sequence every service business knows by heart — and how neaterops replaces it.</p>
         </Reveal>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -520,7 +520,7 @@ function EarlyAccess() {
             Be one of our first customers.
           </h2>
           <p className="mx-auto mt-7 max-w-lg text-base leading-[1.8]" style={{ color: "rgba(255,255,255,0.50)" }}>
-            ServiceOS is new. We&apos;re looking for cleaning and home services businesses who are tired of booking calls — and willing to work closely with us.
+            neaterops is new. We&apos;re looking for cleaning and home services businesses who are tired of booking calls — and willing to work closely with us.
           </p>
           <p className="mx-auto mt-3 max-w-lg text-base leading-[1.8]" style={{ color: "rgba(255,255,255,0.50)" }}>
             Early customers get hands-on setup support and direct access to our team. You&apos;re not a ticket — you&apos;re a partner.
@@ -531,7 +531,7 @@ function EarlyAccess() {
             <a href="#" className="rounded-xl px-8 py-4 text-sm font-semibold text-white transition-all hover:opacity-90" style={{ background: "#2563EB" }}>
               Apply for early access →
             </a>
-            <a href="mailto:hello@serviceos.com" className="rounded-xl border px-8 py-4 text-sm font-medium transition-colors" style={{ borderColor: "rgba(255,255,255,0.14)", color: "rgba(255,255,255,0.55)" }}>
+            <a href="mailto:hello@neaterops.com" className="rounded-xl border px-8 py-4 text-sm font-medium transition-colors" style={{ borderColor: "rgba(255,255,255,0.14)", color: "rgba(255,255,255,0.55)" }}>
               Email us directly
             </a>
           </div>
@@ -546,10 +546,10 @@ function Footer() {
   return (
     <footer className="border-t py-10" style={{ background: "#FFFFFF", borderColor: "#F3F4F6" }}>
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
-        <p style={{ fontFamily: "system-ui", fontWeight: 700, fontSize: "14px", letterSpacing: "-0.01em", color: "#111827" }}>[ServiceOS]</p>
+        <p style={{ fontFamily: "system-ui", fontWeight: 700, fontSize: "14px", letterSpacing: "-0.01em", color: "#111827" }}>[neaterops]</p>
         <p className="text-xs" style={{ color: "#9CA3AF" }}>Self-booking for service businesses. Early access.</p>
         <div className="flex gap-5 text-xs" style={{ color: "#9CA3AF" }}>
-          {[["Privacy", "#"], ["Terms", "#"], ["hello@serviceos.com", "mailto:hello@serviceos.com"]].map(([l, h]) => (
+          {[["Privacy", "#"], ["Terms", "#"], ["hello@neaterops.com", "mailto:hello@neaterops.com"]].map(([l, h]) => (
             <a key={l} href={h} className="transition-colors hover:text-gray-600">{l}</a>
           ))}
         </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -163,7 +163,7 @@ function Nav() {
       backdropFilter: scrolled ? "blur(20px)" : "none",
     }}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <a href="/" style={{ fontFamily: "var(--font-dm-sans), monospace", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#ffffff" }}>[ServiceOS]</a>
+        <a href="/" style={{ fontFamily: "var(--font-dm-sans), monospace", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#ffffff" }}>[neaterops]</a>
         <div className="hidden items-center gap-8 text-sm md:flex" style={{ color: "rgba(255,255,255,0.50)" }}>
           {[["Platform", "#ai"], ["Pricing", "#pricing"], ["Docs", "#"]].map(([l, h]) => (
             <a key={l} href={h} className="hover:text-white transition-colors">{l}</a>
@@ -208,7 +208,7 @@ function Hero() {
 
           <Reveal delay={150}>
             <p className="mt-9 max-w-md text-base leading-[1.85]" style={{ color: "rgba(255,255,255,0.50)" }}>
-              ServiceOS puts a self-booking assistant on your site — so customers pick their own slot, get instant confirmation, and job details flow straight to your dashboard. No phone calls needed.
+              neaterops puts a self-booking assistant on your site — so customers pick their own slot, get instant confirmation, and job details flow straight to your dashboard. No phone calls needed.
             </p>
           </Reveal>
 
@@ -293,10 +293,10 @@ function Statement() {
           <blockquote style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(2rem, 4.8vw, 4rem)", lineHeight: 1.2, color: "#141210" }}>
             &ldquo;Most booking software is for you to manage.
             <br />
-            <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>ServiceOS is for your customers to use.&rdquo;</span>
+            <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>neaterops is for your customers to use.&rdquo;</span>
           </blockquote>
           <p className="mx-auto mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: "#787068" }}>
-            The difference isn&apos;t a feature list. It&apos;s where the work happens. ServiceOS puts the booking experience in front of your customer — so they handle it, and you just see the confirmed jobs flow in.
+            The difference isn&apos;t a feature list. It&apos;s where the work happens. neaterops puts the booking experience in front of your customer — so they handle it, and you just see the confirmed jobs flow in.
           </p>
         </Reveal>
       </div>
@@ -652,7 +652,7 @@ function CTABanner() {
             Stop managing<br />scheduling software.<br /><span style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", color: "rgba(8,8,8,0.65)", fontSize: "clamp(2.2rem, 5.5vw, 4.8rem)" }}>Start growing.</span>
           </h2>
           <p className="mx-auto mt-8 max-w-lg text-base" style={{ color: "rgba(8,8,8,0.58)" }}>
-            Join 5,000+ service businesses already using ServiceOS. No credit card required. Live in under an hour.
+            Join 5,000+ service businesses already using neaterops. No credit card required. Live in under an hour.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a href="#" className="rounded-md px-9 py-4 text-sm font-semibold transition-all hover:opacity-90 hover:shadow-lg" style={{ background: "#080808", color: "#ffffff" }}>Start your free trial →</a>
@@ -677,7 +677,7 @@ function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid grid-cols-2 gap-12 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
-            <a href="/" style={{ fontFamily: "var(--font-dm-sans), monospace", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#ffffff" }}>[ServiceOS]</a>
+            <a href="/" style={{ fontFamily: "var(--font-dm-sans), monospace", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#ffffff" }}>[neaterops]</a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.38)", lineHeight: 1.7 }}>AI-powered booking system for cleaning, maintenance & field service businesses.</p>
           </div>
           {Object.entries(cols).map(([cat, items]) => (
@@ -690,7 +690,7 @@ function Footer() {
           ))}
         </div>
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t pt-8 text-xs md:flex-row" style={{ borderColor: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.28)" }}>
-          <p>© 2026 ServiceOS. All rights reserved.</p>
+          <p>© 2026 neaterops. All rights reserved.</p>
           <div className="flex gap-6">
             {["Privacy", "Terms", "Security"].map((l) => (<a key={l} href="#" className="transition-colors hover:text-white/60">{l}</a>))}
           </div>

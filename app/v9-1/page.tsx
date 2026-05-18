@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -159,7 +159,7 @@ function Nav() {
       backdropFilter: scrolled ? "blur(20px)" : "none",
     }}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <a href="/" style={{ fontFamily: "var(--font-dm-sans), monospace", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#ffffff" }}>[ServiceOS]</a>
+        <a href="/" style={{ fontFamily: "var(--font-dm-sans), monospace", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#ffffff" }}>[neaterops]</a>
         <div className="hidden items-center gap-8 text-sm md:flex" style={{ color: "rgba(255,255,255,0.50)" }}>
           {[["Platform", "#ai"], ["Pricing", "#pricing"], ["Docs", "#"]].map(([l, h]) => (
             <a key={l} href={h} className="hover:text-white transition-colors">{l}</a>
@@ -202,7 +202,7 @@ function Hero() {
 
           <Reveal delay={150}>
             <p className="mt-9 max-w-md text-base leading-[1.85]" style={{ color: "rgba(255,255,255,0.50)" }}>
-              You shouldn&apos;t be the dispatcher, the scheduler, and the follow-up guy. ServiceOS takes every one of those jobs off your plate — automatically, all day, every day.
+              You shouldn&apos;t be the dispatcher, the scheduler, and the follow-up guy. neaterops takes every one of those jobs off your plate — automatically, all day, every day.
             </p>
           </Reveal>
 
@@ -287,7 +287,7 @@ function Statement() {
             <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>not a call centre.&rdquo;</span>
           </blockquote>
           <p className="mx-auto mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: "#787068" }}>
-            Most owners spend 2–3 hours a day fielding calls from customers who just want to book, reschedule, or ask what&apos;s included. ServiceOS puts a self-serve booking flow on your site so customers handle it themselves — and your phone goes quiet.
+            Most owners spend 2–3 hours a day fielding calls from customers who just want to book, reschedule, or ask what&apos;s included. neaterops puts a self-serve booking flow on your site so customers handle it themselves — and your phone goes quiet.
           </p>
         </Reveal>
       </div>
@@ -658,7 +658,7 @@ function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid grid-cols-2 gap-12 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
-            <a href="/" style={{ fontFamily: "var(--font-dm-sans), monospace", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#ffffff" }}>[ServiceOS]</a>
+            <a href="/" style={{ fontFamily: "var(--font-dm-sans), monospace", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#ffffff" }}>[neaterops]</a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.38)", lineHeight: 1.7 }}>AI-powered booking system for cleaning, maintenance & field service businesses.</p>
           </div>
           {Object.entries(cols).map(([cat, items]) => (
@@ -671,7 +671,7 @@ function Footer() {
           ))}
         </div>
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t pt-8 text-xs md:flex-row" style={{ borderColor: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.28)" }}>
-          <p>© 2026 ServiceOS. All rights reserved.</p>
+          <p>© 2026 neaterops. All rights reserved.</p>
           <div className="flex gap-6">
             {["Privacy", "Terms", "Security"].map((l) => (<a key={l} href="#" className="transition-colors hover:text-white/60">{l}</a>))}
           </div>
