@@ -1,6 +1,8 @@
-﻿"use client";
+"use client";
 
 import { useState, useRef, useEffect } from "react";
+
+type Theme = "light" | "dark";
 
 /* ─── Scroll reveal ──────────────────────────────────────────────────────────── */
 function Reveal({ children, delay = 0, className = "", y = 22 }: {
@@ -52,33 +54,55 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   return <span ref={ref}>{val}{suffix}</span>;
 }
 
+/* ─── Theme toggle icons ─────────────────────────────────────────────────────── */
+function SunIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="5" />
+      <line x1="12" y1="1" x2="12" y2="3" />
+      <line x1="12" y1="21" x2="12" y2="23" />
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="1" y1="12" x2="3" y2="12" />
+      <line x1="21" y1="12" x2="23" y2="12" />
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+  );
+}
+function MoonIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+  );
+}
+
 /* ─── Hero background ────────────────────────────────────────────────────────── */
-function HeroBg() {
+function HeroBg({ theme }: { theme: Theme }) {
+  const dk = theme === "dark";
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* dot grid */}
-        <div style={{
-          position: "absolute", inset: 0,
-          backgroundImage: "radial-gradient(#CBD5E1 1.5px, transparent 1.5px)",
-          backgroundSize: "28px 28px",
-          opacity: 0.55,
-          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%)",
-          maskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%)",
-        }} />
-        {/* blue blob top-right */}
-        <div style={{
-          position: "absolute", top: "-18%", right: "-10%",
-          width: 680, height: 680, borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 68%)",
-          animation: "blob1 9s ease-in-out infinite",
-        }} />
-        {/* indigo blob bottom-left */}
-        <div style={{
-          position: "absolute", bottom: "-28%", left: "-14%",
-          width: 580, height: 580, borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(99,102,241,0.10) 0%, transparent 68%)",
-          animation: "blob2 11s ease-in-out infinite",
-        }} />
+      <div style={{
+        position: "absolute", inset: 0,
+        backgroundImage: `radial-gradient(${dk ? "rgba(255,255,255,0.12)" : "#CBD5E1"} 1.5px, transparent 1.5px)`,
+        backgroundSize: "28px 28px",
+        opacity: dk ? 0.35 : 0.55,
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%)",
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%)",
+      }} />
+      <div style={{
+        position: "absolute", top: "-18%", right: "-10%",
+        width: 680, height: 680, borderRadius: "50%",
+        background: `radial-gradient(circle, ${dk ? "rgba(59,130,246,0.20)" : "rgba(37,99,235,0.15)"} 0%, transparent 68%)`,
+        animation: "blob1 9s ease-in-out infinite",
+      }} />
+      <div style={{
+        position: "absolute", bottom: "-28%", left: "-14%",
+        width: 580, height: 580, borderRadius: "50%",
+        background: `radial-gradient(circle, ${dk ? "rgba(99,102,241,0.15)" : "rgba(99,102,241,0.10)"} 0%, transparent 68%)`,
+        animation: "blob2 11s ease-in-out infinite",
+      }} />
     </div>
   );
 }
@@ -91,9 +115,10 @@ const NOTIFS = [
   { name: "Tom W.", detail: "Post-reno clean · Sat 24 May · 10:00am" },
 ];
 
-function LiveNotif() {
+function LiveNotif({ theme }: { theme: Theme }) {
   const [idx, setIdx] = useState(0);
   const [animKey, setAnimKey] = useState(0);
+  const dk = theme === "dark";
   useEffect(() => {
     const t = setInterval(() => {
       setIdx(i => (i + 1) % NOTIFS.length);
@@ -105,11 +130,13 @@ function LiveNotif() {
   return (
     <div key={animKey} style={{
       display: "flex", alignItems: "center", gap: 10,
-      background: "#FFFFFF", border: "1px solid #E5E7EB",
+      background: dk ? "#1E2433" : "#FFFFFF",
+      border: `1px solid ${dk ? "#2E3650" : "#E5E7EB"}`,
       borderRadius: 14, padding: "10px 14px",
-      boxShadow: "0 8px 32px rgba(0,0,0,0.10)",
+      boxShadow: dk ? "0 8px 32px rgba(0,0,0,0.40)" : "0 8px 32px rgba(0,0,0,0.10)",
       width: 290,
       animation: "notifIn 0.45s cubic-bezier(0.16,1,0.3,1) both",
+      transition: "background 0.3s, border-color 0.3s",
     }}>
       <div style={{
         width: 8, height: 8, borderRadius: "50%",
@@ -118,33 +145,55 @@ function LiveNotif() {
         boxShadow: "0 0 6px rgba(16,185,129,0.6)",
       }} />
       <div style={{ flex: 1, minWidth: 0 }}>
-        <p style={{ fontSize: 12, fontWeight: 600, color: "#111827", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+        <p style={{ fontSize: 12, fontWeight: 600, color: dk ? "#F1F5F9" : "#111827", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
           New booking — {n.name}
         </p>
-        <p style={{ fontSize: 11, color: "#6B7280", marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{n.detail}</p>
+        <p style={{ fontSize: 11, color: dk ? "#94A3B8" : "#6B7280", marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{n.detail}</p>
       </div>
-      <p style={{ fontSize: 10, color: "#9CA3AF", flexShrink: 0 }}>just now</p>
+      <p style={{ fontSize: 10, color: dk ? "#64748B" : "#9CA3AF", flexShrink: 0 }}>just now</p>
     </div>
   );
 }
 
 /* ─── Booking widget demo ────────────────────────────────────────────────────── */
-function BookingWidget() {
+function BookingWidget({ theme = "light" }: { theme?: Theme }) {
   const [step, setStep] = useState(0);
   const [service, setService] = useState("");
   const [date, setDate] = useState("");
+
+  const dk = theme === "dark";
+  const c = {
+    bg:             dk ? "#1E2433" : "#FFFFFF",
+    border:         dk ? "#2E3650" : "#E5E7EB",
+    headerBorder:   dk ? "#2E3650" : "#F3F4F6",
+    titleText:      dk ? "#F1F5F9" : "#111827",
+    mutedText:      dk ? "#94A3B8" : "#9CA3AF",
+    labelText:      dk ? "#64748B" : "#9CA3AF",
+    bodyText:       dk ? "#CBD5E1" : "#374151",
+    btnBg:          dk ? "#2A3347" : "#F9FAFB",
+    btnBorder:      dk ? "#3B4A6B" : "#E5E7EB",
+    selectedBg:     dk ? "rgba(59,130,246,0.18)" : "#EFF6FF",
+    selectedBorder: "#3B82F6",
+    trackBg:        dk ? "#2A3347" : "#E5E7EB",
+    fieldBg:        dk ? "#151C2E" : "#F9FAFB",
+    fieldBorder:    dk ? "#2E3650" : "#E5E7EB",
+    fieldText:      dk ? "#64748B" : "#9CA3AF",
+    successBg:      dk ? "rgba(16,185,129,0.15)" : "#D1FAE5",
+    openTagBg:      dk ? "rgba(16,185,129,0.15)" : "#D1FAE5",
+    openTagText:    "#10B981",
+  };
 
   const services = ["Deep clean (3–4 hrs)", "Regular clean (2 hrs)", "Post-reno clean (5–6 hrs)", "Move-out clean (4 hrs)"];
   const slots = ["Wed 21 May — 9:00am", "Wed 21 May — 2:00pm", "Thu 22 May — 9:00am", "Fri 23 May — 10:00am"];
 
   return (
-    <div className="overflow-hidden rounded-2xl shadow-2xl" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", width: "360px", maxWidth: "100%" }}>
+    <div className="overflow-hidden rounded-2xl shadow-2xl" style={{ background: c.bg, border: `1px solid ${c.border}`, width: "360px", maxWidth: "100%", transition: "background 0.3s, border-color 0.3s" }}>
       {/* Widget header */}
-      <div className="flex items-center gap-3 border-b px-5 py-4" style={{ borderColor: "#F3F4F6" }}>
+      <div className="flex items-center gap-3 border-b px-5 py-4" style={{ borderColor: c.headerBorder }}>
         <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white" style={{ background: "#2563EB" }}>S</div>
         <div>
-          <p className="text-sm font-semibold" style={{ color: "#111827" }}>Book a service</p>
-          <p className="text-[11px]" style={{ color: "#9CA3AF" }}>Powered by neaterops</p>
+          <p className="text-sm font-semibold" style={{ color: c.titleText }}>Book a service</p>
+          <p className="text-[11px]" style={{ color: c.mutedText }}>Powered by neaterops</p>
         </div>
       </div>
 
@@ -152,8 +201,8 @@ function BookingWidget() {
       <div className="flex items-center gap-1 px-5 pb-0 pt-3">
         {["Service", "Time", "Details", "Done"].map((s, i) => (
           <div key={s} className="flex flex-1 items-center gap-1">
-            <div className="h-1 flex-1 rounded-full transition-all duration-500" style={{ background: i <= step ? "#2563EB" : "#E5E7EB" }} />
-            <span className="text-[9px] transition-colors" style={{ color: i <= step ? "#2563EB" : "#D1D5DB" }}>{s}</span>
+            <div className="h-1 flex-1 rounded-full transition-all duration-500" style={{ background: i <= step ? "#3B82F6" : c.trackBg }} />
+            <span className="text-[9px] transition-colors" style={{ color: i <= step ? "#3B82F6" : c.labelText }}>{s}</span>
           </div>
         ))}
       </div>
@@ -162,12 +211,12 @@ function BookingWidget() {
       <div className="px-5 pb-6 pt-4">
         {step === 0 && (
           <div>
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest" style={{ color: "#9CA3AF" }}>What do you need?</p>
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest" style={{ color: c.labelText }}>What do you need?</p>
             <div className="space-y-2">
               {services.map(s => (
                 <button key={s} onClick={() => { setService(s); setStep(1); }}
                   className="w-full rounded-xl px-4 py-3 text-left text-sm transition-all"
-                  style={{ border: `1px solid ${service === s ? "#2563EB" : "#E5E7EB"}`, background: service === s ? "#EFF6FF" : "#F9FAFB", color: "#374151" }}>
+                  style={{ border: `1px solid ${service === s ? c.selectedBorder : c.btnBorder}`, background: service === s ? c.selectedBg : c.btnBg, color: c.bodyText }}>
                   {s}
                 </button>
               ))}
@@ -177,14 +226,14 @@ function BookingWidget() {
 
         {step === 1 && (
           <div>
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest" style={{ color: "#9CA3AF" }}>Pick a time</p>
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest" style={{ color: c.labelText }}>Pick a time</p>
             <div className="space-y-2">
               {slots.map(d => (
                 <button key={d} onClick={() => { setDate(d); setStep(2); }}
                   className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm transition-all"
-                  style={{ border: `1px solid ${date === d ? "#2563EB" : "#E5E7EB"}`, background: date === d ? "#EFF6FF" : "#F9FAFB" }}>
-                  <span style={{ color: "#374151" }}>{d}</span>
-                  <span className="rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ background: "#D1FAE5", color: "#059669" }}>Open</span>
+                  style={{ border: `1px solid ${date === d ? c.selectedBorder : c.btnBorder}`, background: date === d ? c.selectedBg : c.btnBg }}>
+                  <span style={{ color: c.bodyText }}>{d}</span>
+                  <span className="rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ background: c.openTagBg, color: c.openTagText }}>Open</span>
                 </button>
               ))}
             </div>
@@ -193,12 +242,12 @@ function BookingWidget() {
 
         {step === 2 && (
           <div>
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest" style={{ color: "#9CA3AF" }}>Your details</p>
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest" style={{ color: c.labelText }}>Your details</p>
             <div className="space-y-2">
               {[["Name", "Alex Johnson"], ["Email", "alex@example.com"], ["Address", "14 Maple St, Brunswick"]].map(([label, placeholder]) => (
                 <div key={label}>
-                  <p className="mb-0.5 text-[10px]" style={{ color: "#9CA3AF" }}>{label}</p>
-                  <div className="w-full rounded-lg px-3 py-2.5 text-sm" style={{ border: "1px solid #E5E7EB", background: "#F9FAFB", color: "#9CA3AF" }}>{placeholder}</div>
+                  <p className="mb-0.5 text-[10px]" style={{ color: c.labelText }}>{label}</p>
+                  <div className="w-full rounded-lg px-3 py-2.5 text-sm" style={{ border: `1px solid ${c.fieldBorder}`, background: c.fieldBg, color: c.fieldText }}>{placeholder}</div>
                 </div>
               ))}
             </div>
@@ -210,15 +259,15 @@ function BookingWidget() {
 
         {step === 3 && (
           <div className="py-4 text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full" style={{ background: "#D1FAE5" }}>
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full" style={{ background: c.successBg }}>
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </div>
-            <p className="font-semibold" style={{ color: "#111827" }}>Booking confirmed</p>
-            <p className="mt-1 text-sm" style={{ color: "#6B7280" }}>{service}</p>
-            <p className="text-sm" style={{ color: "#6B7280" }}>{date}</p>
-            <p className="mt-4 text-[11px]" style={{ color: "#9CA3AF" }}>Confirmation sent to alex@example.com</p>
+            <p className="font-semibold" style={{ color: c.titleText }}>Booking confirmed</p>
+            <p className="mt-1 text-sm" style={{ color: c.mutedText }}>{service}</p>
+            <p className="text-sm" style={{ color: c.mutedText }}>{date}</p>
+            <p className="mt-4 text-[11px]" style={{ color: c.labelText }}>Confirmation sent to alex@example.com</p>
             <button onClick={() => { setStep(0); setService(""); setDate(""); }}
-              className="mt-4 text-xs underline" style={{ color: "#9CA3AF" }}>Try again</button>
+              className="mt-4 text-xs underline" style={{ color: c.labelText }}>Try again</button>
           </div>
         )}
       </div>
@@ -227,8 +276,9 @@ function BookingWidget() {
 }
 
 /* ─── Nav ────────────────────────────────────────────────────────────────────── */
-function Nav() {
+function Nav({ theme, onToggle }: { theme: Theme; onToggle: () => void }) {
   const [scrolled, setScrolled] = useState(false);
+  const dk = theme === "dark";
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", fn, { passive: true });
@@ -236,38 +286,58 @@ function Nav() {
   }, []);
   return (
     <nav className="fixed inset-x-0 top-0 z-50 transition-all duration-300" style={{
-      background: scrolled ? "rgba(255,255,255,0.96)" : "rgba(255,255,255,0)",
-      borderBottom: scrolled ? "1px solid #E5E7EB" : "1px solid transparent",
+      background: scrolled
+        ? (dk ? "rgba(15,20,30,0.96)" : "rgba(255,255,255,0.96)")
+        : "rgba(255,255,255,0)",
+      borderBottom: scrolled
+        ? `1px solid ${dk ? "rgba(255,255,255,0.08)" : "#E5E7EB"}`
+        : "1px solid transparent",
       backdropFilter: scrolled ? "blur(12px)" : "none",
     }}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="/" style={{ fontFamily: "system-ui", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#111827" }}>[neaterops]</a>
-        <div className="hidden items-center gap-7 text-sm md:flex" style={{ color: "#6B7280" }}>
+        <a href="/" style={{ fontFamily: "system-ui", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: dk ? "#F9FAFB" : "#111827" }}>[neaterops]</a>
+        <div className="hidden items-center gap-7 text-sm md:flex" style={{ color: dk ? "rgba(255,255,255,0.60)" : "#6B7280" }}>
           {[["How it works", "#how"], ["Features", "#features"], ["Pricing", "#pricing"]].map(([l, h]) => (
-            <a key={l} href={h} className="transition-colors hover:text-gray-900">{l}</a>
+            <a key={l} href={h} className="transition-colors" style={{ color: "inherit" }}>{l}</a>
           ))}
-          <a href="#" className="transition-colors hover:text-gray-900">Log in</a>
+          <a href="#" style={{ color: "inherit" }} className="transition-colors">Log in</a>
         </div>
-        <a href="#early" className="rounded-lg px-4 py-2 text-sm font-semibold transition-all hover:opacity-90" style={{ background: "#2563EB", color: "#FFFFFF" }}>Get early access</a>
+        <div className="flex items-center gap-3">
+          {/* Light / dark toggle */}
+          <button
+            onClick={onToggle}
+            aria-label={dk ? "Switch to light mode" : "Switch to dark mode"}
+            className="flex items-center justify-center rounded-lg p-2 transition-all hover:opacity-80"
+            style={{
+              background: dk ? "rgba(255,255,255,0.10)" : "#F3F4F6",
+              color: dk ? "#CBD5E1" : "#374151",
+              border: `1px solid ${dk ? "rgba(255,255,255,0.12)" : "#E5E7EB"}`,
+            }}
+          >
+            {dk ? <SunIcon /> : <MoonIcon />}
+          </button>
+          <a href="#early" className="rounded-lg px-4 py-2 text-sm font-semibold transition-all hover:opacity-90" style={{ background: "#2563EB", color: "#FFFFFF" }}>Get early access</a>
+        </div>
       </div>
     </nav>
   );
 }
 
 /* ─── Hero ───────────────────────────────────────────────────────────────────── */
-function Hero() {
+function Hero({ theme }: { theme: Theme }) {
   const [on, setOn] = useState(false);
+  const dk = theme === "dark";
   useEffect(() => { const t = setTimeout(() => setOn(true), 60); return () => clearTimeout(t); }, []);
 
   return (
-    <section className="relative overflow-hidden pt-28 pb-24" style={{ background: "#FFFFFF" }}>
-      <HeroBg />
+    <section className="relative overflow-hidden pt-28 pb-24" style={{ background: dk ? "#0F131A" : "#FFFFFF", transition: "background 0.3s" }}>
+      <HeroBg theme={theme} />
       <div className="relative mx-auto max-w-6xl px-6">
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
           {/* Left */}
           <div>
             <div style={{ opacity: on ? 1 : 0, transform: on ? "none" : "translateY(16px)", transition: "opacity 0.5s ease, transform 0.5s ease" }}>
-              <div className="mb-8 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[11px] font-medium" style={{ borderColor: "#BFDBFE", background: "#EFF6FF", color: "#2563EB" }}>
+              <div className="mb-8 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[11px] font-medium" style={{ borderColor: dk ? "rgba(59,130,246,0.35)" : "#BFDBFE", background: dk ? "rgba(59,130,246,0.10)" : "#EFF6FF", color: "#3B82F6" }}>
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-current" /> Now open for early access
               </div>
             </div>
@@ -277,17 +347,17 @@ function Hero() {
               fontWeight: 800,
               letterSpacing: "-0.04em",
               lineHeight: 1.0,
-              color: "#111827",
+              color: dk ? "#F9FAFB" : "#111827",
               fontSize: "clamp(3rem, 7vw, 5.5rem)",
               opacity: on ? 1 : 0,
               transform: on ? "none" : "translateY(20px)",
-              transition: "opacity 0.6s cubic-bezier(0.16,1,0.3,1) 80ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) 80ms",
+              transition: "opacity 0.6s cubic-bezier(0.16,1,0.3,1) 80ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) 80ms, color 0.3s",
             }}>
               Stop answering<br />your own phone.
             </h1>
 
             <Reveal delay={180}>
-              <p className="mt-7 max-w-md text-lg leading-[1.8]" style={{ color: "#6B7280" }}>
+              <p className="mt-7 max-w-md text-lg leading-[1.8]" style={{ color: dk ? "rgba(255,255,255,0.55)" : "#6B7280" }}>
                 neaterops puts a self-booking assistant on your website. Customers pick their own slot, AI answers their questions, and the booking lands in your dashboard — without a single call.
               </p>
             </Reveal>
@@ -295,20 +365,20 @@ function Hero() {
             <Reveal delay={280}>
               <div className="mt-9 flex flex-wrap gap-3">
                 <a href="#early" className="rounded-xl px-6 py-3.5 text-sm font-semibold text-white transition-all hover:opacity-90" style={{ background: "#2563EB" }}>Get early access →</a>
-                <a href="#how" className="flex items-center gap-2 rounded-xl border px-6 py-3.5 text-sm font-medium transition-colors hover:bg-gray-50" style={{ borderColor: "#E5E7EB", color: "#374151" }}>See how it works</a>
+                <a href="#how" className="flex items-center gap-2 rounded-xl border px-6 py-3.5 text-sm font-medium transition-colors" style={{ borderColor: dk ? "rgba(255,255,255,0.15)" : "#E5E7EB", color: dk ? "rgba(255,255,255,0.70)" : "#374151", background: "transparent" }}>See how it works</a>
               </div>
             </Reveal>
 
             <Reveal delay={360}>
-              <div className="mt-12 grid grid-cols-3 gap-6 border-t pt-9" style={{ borderColor: "#F3F4F6" }}>
+              <div className="mt-12 grid grid-cols-3 gap-6 border-t pt-9" style={{ borderColor: dk ? "rgba(255,255,255,0.08)" : "#F3F4F6" }}>
                 {[
                   { n: 3, s: " min", l: "avg booking time" },
                   { n: 0, s: " calls", l: "to confirm a slot" },
                   { n: 24, s: "/7", l: "always available" },
                 ].map(({ n, s, l }) => (
                   <div key={l}>
-                    <p style={{ fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1, color: "#111827", fontSize: "clamp(1.5rem, 3vw, 2.2rem)" }}><Counter to={n} suffix={s} /></p>
-                    <p className="mt-1.5 text-xs" style={{ color: "#9CA3AF" }}>{l}</p>
+                    <p style={{ fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1, color: dk ? "#F9FAFB" : "#111827", fontSize: "clamp(1.5rem, 3vw, 2.2rem)" }}><Counter to={n} suffix={s} /></p>
+                    <p className="mt-1.5 text-xs" style={{ color: dk ? "rgba(255,255,255,0.38)" : "#9CA3AF" }}>{l}</p>
                   </div>
                 ))}
               </div>
@@ -317,7 +387,6 @@ function Hero() {
 
           {/* Right — interactive booking widget demo */}
           <Reveal delay={200} className="flex flex-col items-center gap-4 lg:items-end" y={28}>
-            {/* glow ring behind widget */}
             <div className="relative">
               <div style={{
                 position: "absolute", inset: -24,
@@ -327,11 +396,10 @@ function Hero() {
                 pointerEvents: "none",
               }} />
               <div style={{ animation: "widgetFloat 5s ease-in-out infinite" }}>
-                <BookingWidget />
+                <BookingWidget theme={theme} />
               </div>
             </div>
-            {/* live notification toast */}
-            <LiveNotif />
+            <LiveNotif theme={theme} />
           </Reveal>
         </div>
       </div>
@@ -354,26 +422,10 @@ function Pain() {
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {[
-            {
-              step: "01",
-              before: "Customer calls to ask about availability",
-              after: "Customer opens your site and books themselves",
-            },
-            {
-              step: "02",
-              before: "You stop what you're doing to check the calendar",
-              after: "AI shows live availability — no interruption to you",
-            },
-            {
-              step: "03",
-              before: "You call back. Maybe they pick up. Maybe not.",
-              after: "Slot confirmed in under 3 minutes",
-            },
-            {
-              step: "04",
-              before: "You manually add it to the schedule",
-              after: "Booking appears in your dashboard automatically",
-            },
+            { step: "01", before: "Customer calls to ask about availability", after: "Customer opens your site and books themselves" },
+            { step: "02", before: "You stop what you're doing to check the calendar", after: "AI shows live availability — no interruption to you" },
+            { step: "03", before: "You call back. Maybe they pick up. Maybe not.", after: "Slot confirmed in under 3 minutes" },
+            { step: "04", before: "You manually add it to the schedule", after: "Booking appears in your dashboard automatically" },
           ].map(({ step, before, after }, i) => (
             <Reveal key={step} delay={i * 60}>
               <div className="h-full rounded-2xl p-6" style={{ border: "1px solid #E5E7EB", background: "#FFFFFF" }}>
@@ -560,10 +612,12 @@ function Footer() {
 
 /* ─── Page ───────────────────────────────────────────────────────────────────── */
 export default function V11Page() {
+  const [theme, setTheme] = useState<Theme>("light");
+  const toggleTheme = () => setTheme(t => t === "light" ? "dark" : "light");
   return (
     <main>
-      <Nav />
-      <Hero />
+      <Nav theme={theme} onToggle={toggleTheme} />
+      <Hero theme={theme} />
       <Pain />
       <Features />
       <Pricing />
