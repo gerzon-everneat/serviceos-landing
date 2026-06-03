@@ -219,7 +219,7 @@ function HeroViz({ dark }: { dark: boolean }) {
 }
 
 /* ─── Browser frame ──────────────────────────────────────────────────────── */
-function AppFrame({ src, alt, height = 420, url = "book.everneat.co", T }: { src: string; alt: string; height?: number; url?: string; T: Tok }) {
+function AppFrame({ src, alt, height = 420, url = "book.neatr.ai", T }: { src: string; alt: string; height?: number; url?: string; T: Tok }) {
   return (
     <div style={{ border: `1px solid ${T.border}`, borderRadius: 12, overflow: "hidden", background: T.bg2, boxShadow: "0 16px 60px rgba(0,0,0,0.12)" }}>
       <div style={{ height: 32, background: T.bg3, borderBottom: `1px solid ${T.border}`, display: "flex", alignItems: "center", gap: 6, padding: "0 12px" }}>
@@ -239,9 +239,9 @@ function BookingDemo({ T }: { T: Tok }) {
     <div style={{ border: `1px solid ${T.border}`, borderRadius: 12, overflow: "hidden", boxShadow: "0 16px 50px rgba(0,0,0,0.12)" }}>
       <div style={{ height: 32, background: T.bg3, borderBottom: `1px solid ${T.border}`, display: "flex", alignItems: "center", gap: 6, padding: "0 12px" }}>
         {["#FF5F57", "#FEBC2E", "#28C840"].map(c => <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />)}
-        <span style={{ marginLeft: 8, height: 18, flex: 1, maxWidth: 240, background: T.border, borderRadius: 4, fontSize: 10, color: T.text3, display: "flex", alignItems: "center", paddingLeft: 8 }}>book.everneat.co/booking</span>
+        <span style={{ marginLeft: 8, height: 18, flex: 1, maxWidth: 240, background: T.border, borderRadius: 4, fontSize: 10, color: T.text3, display: "flex", alignItems: "center", paddingLeft: 8 }}>book.neatr.ai/booking</span>
       </div>
-      <iframe src="http://localhost:4100/booking" style={{ width: "100%", height: 520, border: "none", background: "#fff" }} title="Everneat booking flow" />
+      <iframe src="http://localhost:4100/booking" style={{ width: "100%", height: 520, border: "none", background: "#fff" }} title="neatr.ai booking flow" />
     </div>
   );
 }
@@ -266,7 +266,7 @@ export default function V8() {
         background: "rgba(6,6,6,0.85)",
         backdropFilter: "blur(12px)",
       }}>
-        <a href="/" style={{ color: "#FFFFFF", textDecoration: "none", fontWeight: 700, fontSize: 15, letterSpacing: "-0.01em" }}>[EVERNEAT]</a>
+        <a href="/" style={{ color: "#FFFFFF", textDecoration: "none", fontWeight: 700, fontSize: 15, letterSpacing: "-0.01em" }}>[NEATR.AI]</a>
         <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
           <div style={{ display: "flex", gap: 28, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
             {["Features", "How it works", "Pricing"].map(l => (
@@ -316,7 +316,7 @@ export default function V8() {
             </Reveal>
             <Reveal delay={120}>
               <p style={{ fontSize: 17, lineHeight: 1.7, color: "rgba(255,255,255,0.55)", margin: "0 0 40px", maxWidth: 440 }}>
-                From online booking to automated team dispatch — Everneat gives cleaning businesses a complete system that runs itself.
+                From online booking to automated team dispatch — neatr.ai gives cleaning businesses a complete system that runs itself.
               </p>
             </Reveal>
             <Reveal delay={180}>
@@ -422,7 +422,7 @@ export default function V8() {
       <section id="features" style={{ background: T.bg2, color: T.text, padding: "100px 80px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 80, alignItems: "center" }}>
-            <Reveal from="left" delay={80}><AppFrame src="/assets/v6-calendar.png" alt="Everneat schedule calendar" height={420} url="book.everneat.co/schedule" T={T} /></Reveal>
+            <Reveal from="left" delay={80}><AppFrame src="/assets/v6-calendar.png" alt="neatr.ai schedule calendar" height={420} url="book.neatr.ai/schedule" T={T} /></Reveal>
             <div>
               <Reveal><p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: T.text3, marginBottom: 24, textTransform: "uppercase" }}>Smart scheduling</p></Reveal>
               <Reveal delay={60}><h2 style={{ fontSize: "clamp(28px,2.8vw,44px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.035em", margin: "0 0 24px", color: T.text }}>AI scheduling<br />that actually<br />works.</h2></Reveal>
@@ -471,7 +471,7 @@ export default function V8() {
                 ))}
               </div>
             </div>
-            <Reveal from="right" delay={160}><AppFrame src="/assets/v6-overview.png" alt="Everneat overview dashboard" height={460} url="book.everneat.co/dashboard" T={T} /></Reveal>
+            <Reveal from="right" delay={160}><AppFrame src="/assets/v6-overview.png" alt="neatr.ai overview dashboard" height={460} url="book.neatr.ai/dashboard" T={T} /></Reveal>
           </div>
         </div>
       </section>
@@ -545,7 +545,7 @@ export default function V8() {
       <section style={{ background: T.bg2, color: T.text, padding: "100px 80px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
           <Reveal><div style={{ display: "flex", justifyContent: "center", gap: 4, marginBottom: 32 }}>{[...Array(5)].map((_, i) => <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>)}</div></Reveal>
-          <Reveal delay={60}><blockquote style={{ fontSize: "clamp(20px,2.5vw,28px)", fontWeight: 500, lineHeight: 1.45, letterSpacing: "-0.02em", margin: "0 0 36px", color: T.text }}>"We went from managing bookings in a Google Sheet to having 40+ recurring customers managed automatically. Everneat paid for itself in the first week."</blockquote></Reveal>
+          <Reveal delay={60}><blockquote style={{ fontSize: "clamp(20px,2.5vw,28px)", fontWeight: 500, lineHeight: 1.45, letterSpacing: "-0.02em", margin: "0 0 36px", color: T.text }}>"We went from managing bookings in a Google Sheet to having 40+ recurring customers managed automatically. neatr.ai paid for itself in the first week."</blockquote></Reveal>
           <Reveal delay={100}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, justifyContent: "center" }}>
               <div style={{ width: 40, height: 40, borderRadius: "50%", background: T.text, color: T.bg, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 15 }}>J</div>
@@ -595,7 +595,7 @@ export default function V8() {
       {/* FOOTER */}
       <footer style={{ background: T.bg3, borderTop: `1px solid ${T.border}`, padding: "40px 80px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <a href="/" style={{ color: T.text, textDecoration: "none", fontWeight: 700, fontSize: 14 }}>[EVERNEAT]</a>
+          <a href="/" style={{ color: T.text, textDecoration: "none", fontWeight: 700, fontSize: 14 }}>[NEATR.AI]</a>
           <div style={{ display: "flex", gap: 24, fontSize: 13, color: T.text3 }}>
             {["Privacy Policy", "Security", "Sub-processors"].map(l => (
               <a key={l} href="#" style={{ color: "inherit", textDecoration: "none" }}
@@ -604,7 +604,7 @@ export default function V8() {
               >{l}</a>
             ))}
           </div>
-          <span style={{ fontSize: 12, color: T.text3 }}>© 2026 Everneat. All rights reserved.</span>
+          <span style={{ fontSize: 12, color: T.text3 }}>© 2026 neatr.ai. All rights reserved.</span>
         </div>
       </footer>
     </div>

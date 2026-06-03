@@ -155,7 +155,7 @@ function HeroAppMock() {
           <div style={{ display:"flex", gap:6 }}>
             {["#FF5F57","#FEBC2E","#28C840"].map(c=><span key={c} style={{ width:9, height:9, borderRadius:"50%", background:c }} />)}
           </div>
-          <span style={{ fontSize:10, color:L.text3, fontFamily:"monospace" }}>everneat · ops matrix</span>
+          <span style={{ fontSize:10, color:L.text3, fontFamily:"monospace" }}>neatr.ai · ops matrix</span>
           <div style={{ display:"flex", alignItems:"center", gap:5 }}>
             <span style={{ width:6, height:6, borderRadius:"50%", background:phase>0?"#22C55E":"#ccc", transition:"background 0.4s" }} />
             <span style={{ fontSize:10, color:phase>0?"#22C55E":L.text3, fontFamily:"monospace", transition:"color 0.4s" }}>{statusLabel[Math.max(0,phase)]}</span>
@@ -285,7 +285,7 @@ function HeroAppMock() {
 }
 
 /* ─── Browser frame (light) ──────────────────────────────────────────────── */
-function AppFrameLight({ src, alt, height=420, url="book.everneat.co" }: { src:string; alt:string; height?:number; url?:string }) {
+function AppFrameLight({ src, alt, height=420, url="book.neatr.ai" }: { src:string; alt:string; height?:number; url?:string }) {
   return (
     <div style={{ border:`1px solid ${L.border}`, borderRadius:12, overflow:"hidden", background:"#fff", boxShadow:"0 16px 60px rgba(0,0,0,0.1)" }}>
       <div style={{ height:32, background:"#F5F5F5", borderBottom:`1px solid ${L.border}`, display:"flex", alignItems:"center", gap:6, padding:"0 12px" }}>
@@ -305,9 +305,9 @@ function BookingDemo() {
     <div style={{ border:`1px solid ${L.border}`, borderRadius:12, overflow:"hidden", boxShadow:"0 16px 50px rgba(0,0,0,0.1)" }}>
       <div style={{ height:32, background:"#F5F5F5", borderBottom:`1px solid ${L.border}`, display:"flex", alignItems:"center", gap:6, padding:"0 12px" }}>
         {["#FF5F57","#FEBC2E","#28C840"].map(c=><span key={c} style={{ width:10, height:10, borderRadius:"50%", background:c }} />)}
-        <span style={{ marginLeft:8, height:18, flex:1, maxWidth:240, background:L.border, borderRadius:4, fontSize:10, color:"#999", display:"flex", alignItems:"center", paddingLeft:8 }}>book.everneat.co/booking</span>
+        <span style={{ marginLeft:8, height:18, flex:1, maxWidth:240, background:L.border, borderRadius:4, fontSize:10, color:"#999", display:"flex", alignItems:"center", paddingLeft:8 }}>book.neatr.ai/booking</span>
       </div>
-      <iframe src="http://localhost:4100/booking" style={{ width:"100%", height:520, border:"none", background:"#fff" }} title="Everneat booking flow" />
+      <iframe src="http://localhost:4100/booking" style={{ width:"100%", height:520, border:"none", background:"#fff" }} title="neatr.ai booking flow" />
     </div>
   );
 }
@@ -328,7 +328,7 @@ export default function V7() {
         borderBottom:`1px solid ${L.border}`,
         background:"rgba(255,255,255,0.88)", backdropFilter:"blur(12px)",
       }}>
-        <a href="/" style={{ color:L.text, textDecoration:"none", fontWeight:700, fontSize:15, letterSpacing:"-0.01em" }}>[EVERNEAT]</a>
+        <a href="/" style={{ color:L.text, textDecoration:"none", fontWeight:700, fontSize:15, letterSpacing:"-0.01em" }}>[NEATR.AI]</a>
         <div style={{ display:"flex", alignItems:"center", gap:32 }}>
           <div style={{ display:"flex", gap:28, fontSize:13, color:L.text2 }}>
             {["Features","How it works","Pricing"].map(l=>(
@@ -379,7 +379,7 @@ export default function V7() {
             </Reveal>
             <Reveal delay={120}>
               <p style={{ fontSize:18, lineHeight:1.65, color:L.text2, margin:"0 0 40px", maxWidth:460 }}>
-                From online booking to automated team dispatch — Everneat gives cleaning businesses a complete system that runs itself.
+                From online booking to automated team dispatch — neatr.ai gives cleaning businesses a complete system that runs itself.
               </p>
             </Reveal>
             <Reveal delay={180}>
@@ -505,7 +505,7 @@ export default function V7() {
         <div style={{ maxWidth:1200, margin:"0 auto" }}>
           <div style={{ display:"grid", gridTemplateColumns:"1.4fr 1fr", gap:80, alignItems:"center" }}>
             <Reveal from="left" delay={80}>
-              <AppFrameLight src="/assets/v6-calendar.png" alt="Everneat schedule calendar" height={420} url="book.everneat.co/schedule" />
+              <AppFrameLight src="/assets/v6-calendar.png" alt="neatr.ai schedule calendar" height={420} url="book.neatr.ai/schedule" />
             </Reveal>
             <div>
               <Reveal><p style={{ fontSize:11, fontWeight:700, letterSpacing:"0.1em", color:L.text3, marginBottom:24, textTransform:"uppercase" }}>Smart scheduling</p></Reveal>
@@ -577,7 +577,7 @@ export default function V7() {
               </div>
             </div>
             <Reveal from="right" delay={160}>
-              <AppFrameLight src="/assets/v6-overview.png" alt="Everneat overview dashboard" height={460} url="book.everneat.co/dashboard" />
+              <AppFrameLight src="/assets/v6-overview.png" alt="neatr.ai overview dashboard" height={460} url="book.neatr.ai/dashboard" />
             </Reveal>
           </div>
         </div>
@@ -668,7 +668,7 @@ export default function V7() {
           </Reveal>
           <Reveal delay={60}>
             <blockquote style={{ fontSize:"clamp(20px,2.5vw,28px)", fontWeight:500, lineHeight:1.45, letterSpacing:"-0.02em", margin:"0 0 36px", color:L.text }}>
-              "We went from managing bookings in a Google Sheet to having 40+ recurring customers managed automatically. Everneat paid for itself in the first week."
+              "We went from managing bookings in a Google Sheet to having 40+ recurring customers managed automatically. neatr.ai paid for itself in the first week."
             </blockquote>
           </Reveal>
           <Reveal delay={100}>
@@ -730,7 +730,7 @@ export default function V7() {
       {/* FOOTER */}
       <footer style={{ background:L.bg3, borderTop:`1px solid ${L.border}`, padding:"40px 80px" }}>
         <div style={{ maxWidth:1200, margin:"0 auto", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-          <a href="/" style={{ color:L.text, textDecoration:"none", fontWeight:700, fontSize:14 }}>[EVERNEAT]</a>
+          <a href="/" style={{ color:L.text, textDecoration:"none", fontWeight:700, fontSize:14 }}>[NEATR.AI]</a>
           <div style={{ display:"flex", gap:24, fontSize:13, color:L.text3 }}>
             {["Privacy Policy","Security","Sub-processors"].map(l=>(
               <a key={l} href="#" style={{ color:"inherit", textDecoration:"none", transition:"color 0.2s" }}
@@ -739,7 +739,7 @@ export default function V7() {
               >{l}</a>
             ))}
           </div>
-          <span style={{ fontSize:12, color:L.text3 }}>© 2026 Everneat. All rights reserved.</span>
+          <span style={{ fontSize:12, color:L.text3 }}>© 2026 neatr.ai. All rights reserved.</span>
         </div>
       </footer>
     </div>

@@ -230,7 +230,7 @@ function HeroAppMock() {
           <div style={{ display: "flex", gap: 6 }}>
             {["#FF5F57","#FEBC2E","#28C840"].map(c => <span key={c} style={{ width: 9, height: 9, borderRadius: "50%", background: c }} />)}
           </div>
-          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", fontFamily: "monospace" }}>everneat · ops matrix</span>
+          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", fontFamily: "monospace" }}>neatr.ai · ops matrix</span>
           <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: phase > 0 ? "#22C55E" : "#333", boxShadow: phase > 0 ? "0 0 6px #22C55E" : "none", transition: "all 0.4s" }} />
             <span style={{ fontSize: 10, color: phase > 0 ? "#22C55E" : "#444", fontFamily: "monospace", transition: "color 0.4s" }}>{statusLabel[Math.max(0,phase)]}</span>
@@ -418,7 +418,7 @@ function AppFrame({
             paddingLeft: 8,
           }}
         >
-          book.everneat.co
+          book.neatr.ai
         </span>
       </div>
       <div style={{ height, position: "relative", overflow: "hidden" }}>
@@ -477,7 +477,7 @@ function AppFrameLight({
             paddingLeft: 8,
           }}
         >
-          book.everneat.co/dashboard
+          book.neatr.ai/dashboard
         </span>
       </div>
       <div style={{ height, position: "relative", overflow: "hidden" }}>
@@ -528,13 +528,13 @@ function BookingDemo() {
             paddingLeft: 8,
           }}
         >
-          book.everneat.co/booking
+          book.neatr.ai/booking
         </span>
       </div>
       <iframe
         src="http://localhost:4100/booking"
         style={{ width: "100%", height: 520, border: "none", background: "#fff" }}
-        title="Everneat booking flow"
+        title="neatr.ai booking flow"
       />
     </div>
   );
@@ -568,7 +568,7 @@ export default function V6() {
         }}
       >
         <a href="/" style={{ color: "#fff", textDecoration: "none", fontWeight: 600, fontSize: 15, letterSpacing: "-0.01em" }}>
-          [EVERNEAT]
+          [NEATR.AI]
         </a>
 
         <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
@@ -714,7 +714,7 @@ export default function V6() {
                   maxWidth: 460,
                 }}
               >
-                From online booking to automated team dispatch — Everneat gives cleaning
+                From online booking to automated team dispatch — neatr.ai gives cleaning
                 businesses a complete system that runs itself.
               </p>
             </Reveal>
@@ -990,7 +990,7 @@ export default function V6() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 80, alignItems: "center" }}>
             <Reveal from="left" delay={80}>
-              <AppFrameLight src="/assets/v6-calendar.png" alt="Everneat schedule calendar" height={420} />
+              <AppFrameLight src="/assets/v6-calendar.png" alt="neatr.ai schedule calendar" height={420} />
             </Reveal>
 
             <div>
@@ -1150,7 +1150,7 @@ export default function V6() {
             </div>
 
             <Reveal from="right" delay={160}>
-              <AppFrame src="/assets/v6-overview.png" alt="Everneat overview dashboard" height={460} />
+              <AppFrame src="/assets/v6-overview.png" alt="neatr.ai overview dashboard" height={460} />
             </Reveal>
           </div>
         </div>
@@ -1397,7 +1397,7 @@ export default function V6() {
               }}
             >
               "We went from managing bookings in a Google Sheet to having 40+ recurring customers
-              managed automatically. Everneat paid for itself in the first week."
+              managed automatically. neatr.ai paid for itself in the first week."
             </blockquote>
           </Reveal>
           <Reveal delay={100}>
@@ -1574,7 +1574,7 @@ export default function V6() {
           }}
         >
           <a href="/" style={{ color: "#fff", textDecoration: "none", fontWeight: 600, fontSize: 14 }}>
-            [EVERNEAT]
+            [NEATR.AI]
           </a>
           <div style={{ display: "flex", gap: 24, fontSize: 13, color: "rgba(255,255,255,0.35)" }}>
             {["Privacy Policy", "Security", "Sub-processors"].map((l) => (
@@ -1587,7 +1587,7 @@ export default function V6() {
             ))}
           </div>
           <span style={{ fontSize: 12, color: "rgba(255,255,255,0.25)" }}>
-            © 2026 Everneat. All rights reserved.
+            © 2026 neatr.ai. All rights reserved.
           </span>
         </div>
       </footer>

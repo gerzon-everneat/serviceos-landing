@@ -306,7 +306,7 @@ function Nav() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <div className="flex items-center gap-2.5">
-          <a href="/" className="font-display text-2xl font-semibold italic text-ink">neaterops</a>
+          <a href="/" className="font-display text-2xl font-semibold italic text-ink">neatr.ai</a>
           <span className="hidden items-center gap-1 rounded-full border border-gold/25 bg-gold/[0.07] px-2.5 py-1 text-[10px] text-gold sm:inline-flex">
             <Sparkle /> AI-native
           </span>
@@ -378,7 +378,7 @@ function Hero() {
           </h1>
 
           <p className="animate-rise-2 mt-7 max-w-lg text-base leading-[1.9] text-ink-2">
-            neaterops uses AI to dispatch jobs, resolve conflicts, price optimally,
+            neatr.ai uses AI to dispatch jobs, resolve conflicts, price optimally,
             and follow up with customers — <span className="text-ink font-medium">automatically</span>.
             BookingKoala and Launch27 can&apos;t do any of that.
           </p>
@@ -526,7 +526,7 @@ const AI_FEATS = [
     icon: <IconRoute />,
     img: "/assets/feat-conflict.png",
     title: "Conflict Resolution",
-    desc: "Double-booked? Unavailable? neaterops detects conflicts the instant they form and reroutes to the next best pro — silently, in seconds.",
+    desc: "Double-booked? Unavailable? neatr.ai detects conflicts the instant they form and reroutes to the next best pro — silently, in seconds.",
     stat: "0 manual reschedules",
     accent: { text: "text-blue-400", bg: "bg-blue-400/10", glow: "rgba(96,165,250,0.06)" },
   },
@@ -561,7 +561,7 @@ function AIFeatures() {
             <span className="font-semibold not-italic">BookingKoala doesn&apos;t have</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-2">
-            Every other booking tool gives you a scheduler. neaterops gives you an AI operations layer
+            Every other booking tool gives you a scheduler. neatr.ai gives you an AI operations layer
             that runs your business.
           </p>
         </Reveal>
@@ -654,7 +654,7 @@ function ComparisonTable() {
             <span className="font-semibold not-italic">BookingKoala &amp; Launch27</span>
           </h2>
           <p className="mx-auto mt-5 max-w-lg text-base text-ink-2 leading-relaxed">
-            It&apos;s not just price. It&apos;s capability. Every AI feature below is exclusive to neaterops.
+            It&apos;s not just price. It&apos;s capability. Every AI feature below is exclusive to neatr.ai.
           </p>
         </Reveal>
 
@@ -664,7 +664,7 @@ function ComparisonTable() {
             <div className="grid grid-cols-4 bg-card">
               <div className="border-b border-r border-edge px-6 py-4 text-xs text-ink-4">Feature</div>
               {[
-                { name: "neaterops", highlight: true },
+                { name: "neatr.ai", highlight: true },
                 { name: "BookingKoala", highlight: false },
                 { name: "Launch27", highlight: false },
               ].map((col, ci) => (
@@ -708,7 +708,7 @@ function ComparisonTable() {
               href="#"
               className="rounded-full bg-gold px-9 py-4 text-sm font-medium text-canvas transition-all hover:bg-gold-hi hover:shadow-xl hover:shadow-gold/25"
             >
-              Switch to neaterops — it&apos;s free to start →
+              Switch to neatr.ai — it&apos;s free to start →
             </a>
             <p className="text-sm text-ink-3">No credit card · Import your existing data in minutes</p>
           </div>
@@ -817,7 +817,7 @@ const TESTI = [
     from: "Switched from BookingKoala",
   },
   {
-    quote: "Launch27 was fine until we tried neaterops. The AI conflict resolution is a game-changer. We haven't had a double-booking since.",
+    quote: "Launch27 was fine until we tried neatr.ai. The AI conflict resolution is a game-changer. We haven't had a double-booking since.",
     name: "Priya Anand",
     role: "Operations Manager, NeatPros",
     initials: "PA",
@@ -1036,7 +1036,7 @@ function Footer() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid grid-cols-2 gap-12 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
-            <p className="font-display text-2xl font-semibold italic text-ink">neaterops</p>
+            <p className="font-display text-2xl font-semibold italic text-ink">neatr.ai</p>
             <p className="mt-1 inline-flex items-center gap-1 text-[10px] text-gold"><Sparkle size={9} /> AI-native</p>
             <p className="mt-3 text-sm leading-relaxed text-ink-3">
               The only booking & dispatch platform built with AI at its core.
@@ -1056,7 +1056,7 @@ function Footer() {
           ))}
         </div>
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-edge pt-8 text-xs text-ink-4 md:flex-row">
-          <p>© 2025 neaterops. All rights reserved.</p>
+          <p>© 2025 neatr.ai. All rights reserved.</p>
           <div className="flex gap-6">
             {["Privacy", "Terms", "Security"].map((l) => (
               <a key={l} href="#" className="transition-colors hover:text-ink-3">{l}</a>

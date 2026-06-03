@@ -182,7 +182,7 @@ export default function V4Page() {
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold"
             style={{ background: `linear-gradient(135deg, ${T.goldHi}, ${T.gold})`, color: "#FFF8EE", boxShadow: "0 2px 8px rgba(176,125,46,0.4)" }}>E</div>
-          <span className="font-semibold text-sm tracking-wide" style={{ color: T.ink }}>Everneat</span>
+          <span className="font-semibold text-sm tracking-wide" style={{ color: T.ink }}>neatr.ai</span>
         </div>
         <div className="hidden md:flex gap-8 text-sm items-center" style={{ color: T.ink2 }}>
           {["Features", "Pricing", "Roadmap"].map(l => (
@@ -261,12 +261,12 @@ export default function V4Page() {
                 <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#34D399" }} />
                 <div className="flex-1 mx-3 rounded-md px-3 py-1 text-xs text-center"
                   style={{ background: T.card, color: T.ink3, border: `1px solid ${T.border}` }}>
-                  app.everneat.co/dashboard
+                  app.neatr.ai/dashboard
                 </div>
               </div>
               <Image
                 src="/assets/v6-overview.png"
-                alt="Everneat booking dashboard"
+                alt="neatr.ai booking dashboard"
                 width={1536}
                 height={768}
                 className="w-full h-auto block"
@@ -365,7 +365,7 @@ export default function V4Page() {
           <Reveal from="right" delay={100}>
             <div className="rounded-2xl overflow-hidden"
               style={{ border: `1px solid ${T.border}`, boxShadow: "0 8px 40px rgba(26,20,16,0.1)" }}>
-              <Image src="/assets/v4-dashboard.jpg" alt="Everneat dashboard" width={1280} height={800} className="w-full h-auto block" />
+              <Image src="/assets/v4-dashboard.jpg" alt="neatr.ai dashboard" width={1280} height={800} className="w-full h-auto block" />
             </div>
           </Reveal>
         </div>
@@ -455,14 +455,14 @@ export default function V4Page() {
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold"
               style={{ background: `linear-gradient(135deg, ${T.goldHi}, ${T.gold})`, color: "#FFF8EE" }}>E</div>
-            <span className="font-semibold text-sm" style={{ color: T.ink }}>Everneat</span>
+            <span className="font-semibold text-sm" style={{ color: T.ink }}>neatr.ai</span>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm" style={{ color: T.ink3 }}>
             {["Features", "Pricing", "Roadmap", "Privacy", "Terms"].map(l => (
               <a key={l} href="#" className="hover:opacity-70 transition-opacity">{l}</a>
             ))}
           </div>
-          <p className="text-xs" style={{ color: T.ink4 }}>© {new Date().getFullYear()} Everneat. All rights reserved.</p>
+          <p className="text-xs" style={{ color: T.ink4 }}>© {new Date().getFullYear()} neatr.ai. All rights reserved.</p>
         </div>
       </footer>
 

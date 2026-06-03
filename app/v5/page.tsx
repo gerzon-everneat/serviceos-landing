@@ -346,7 +346,7 @@ export default function V5Page() {
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold"
             style={{ background: `linear-gradient(135deg, ${C.blue}, ${C.cyan})`, color: "#040810", boxShadow: `0 0 16px ${C.cyan}55` }}>E</div>
-          <span className="font-semibold text-sm tracking-wide" style={{ color: C.ink }}>Everneat</span>
+          <span className="font-semibold text-sm tracking-wide" style={{ color: C.ink }}>neatr.ai</span>
           <span className="text-xs px-1.5 py-0.5 rounded font-mono ml-1"
             style={{ background: C.cyan + "18", color: C.cyan, border: `1px solid ${C.cyan}40` }}>AI</span>
         </div>
@@ -491,7 +491,7 @@ export default function V5Page() {
           <Reveal from="right" delay={100}>
             <div className="relative rounded-2xl overflow-hidden"
               style={{ border: `1px solid ${C.border2}`, boxShadow: `0 0 60px ${C.cyan}18` }}>
-              <Image src="/assets/v5-dashboard.jpg" alt="Everneat AI dashboard" width={1280} height={800} className="w-full h-auto block" />
+              <Image src="/assets/v5-dashboard.jpg" alt="neatr.ai AI dashboard" width={1280} height={800} className="w-full h-auto block" />
               <div className="absolute inset-0 rounded-2xl" style={{ boxShadow: `inset 0 0 0 1px ${C.cyan}20` }} />
             </div>
           </Reveal>
@@ -587,7 +587,7 @@ export default function V5Page() {
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold"
               style={{ background: `linear-gradient(135deg, ${C.blue}, ${C.cyan})`, color: "#040810", boxShadow: `0 0 10px ${C.cyan}44` }}>E</div>
-            <span className="font-semibold text-sm" style={{ color: C.ink }}>Everneat</span>
+            <span className="font-semibold text-sm" style={{ color: C.ink }}>neatr.ai</span>
             <span className="text-xs px-1.5 py-0.5 rounded font-mono"
               style={{ background: C.cyan + "14", color: C.cyan, border: `1px solid ${C.cyan}30` }}>AI</span>
           </div>
@@ -596,7 +596,7 @@ export default function V5Page() {
               <a key={l} href="#" className="hover:opacity-70 transition-opacity">{l}</a>
             ))}
           </div>
-          <p className="text-xs" style={{ color: C.ink4 }}>© {new Date().getFullYear()} Everneat. All rights reserved.</p>
+          <p className="text-xs" style={{ color: C.ink4 }}>© {new Date().getFullYear()} neatr.ai. All rights reserved.</p>
         </div>
       </footer>
     </div>

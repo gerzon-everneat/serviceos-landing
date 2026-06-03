@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "ServiceOS v2 — AI-Powered Booking Platform",
+  title: "neatr.ai v2 — AI-Powered Booking Platform",
   description: "AI dispatch, conflict resolution, and pricing intelligence for service businesses.",
 };
 

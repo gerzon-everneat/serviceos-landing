@@ -191,7 +191,7 @@ export default function V3Page() {
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold"
             style={{ background: "var(--color-gold)", color: "#08060A" }}>E</div>
-          <span className="text-sm font-semibold tracking-wide" style={{ color: "var(--color-ink)" }}>Everneat</span>
+          <span className="text-sm font-semibold tracking-wide" style={{ color: "var(--color-ink)" }}>neatr.ai</span>
         </div>
         <div className="hidden md:flex items-center gap-8 text-sm" style={{ color: "var(--color-ink-2)" }}>
           {["Features", "Pricing", "Roadmap"].map(item => (
@@ -338,7 +338,7 @@ export default function V3Page() {
             <div className="relative rounded-2xl overflow-hidden shadow-2xl" style={{ border: "1px solid var(--color-edge)" }}>
               <Image
                 src="/assets/dashboard-mock.jpg"
-                alt="Everneat dashboard"
+                alt="neatr.ai dashboard"
                 width={1280} height={800}
                 className="w-full h-auto"
                 style={{ display: "block" }}
@@ -404,7 +404,7 @@ export default function V3Page() {
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold"
               style={{ background: "var(--color-gold)", color: "#08060A" }}>E</div>
-            <span className="text-sm font-semibold" style={{ color: "var(--color-ink)" }}>Everneat</span>
+            <span className="text-sm font-semibold" style={{ color: "var(--color-ink)" }}>neatr.ai</span>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm" style={{ color: "var(--color-ink-3)" }}>
             {["Features", "Pricing", "Roadmap", "Privacy", "Terms"].map(item => (
@@ -412,7 +412,7 @@ export default function V3Page() {
             ))}
           </div>
           <p className="text-xs" style={{ color: "var(--color-ink-4)" }}>
-            © {new Date().getFullYear()} Everneat. All rights reserved.
+            © {new Date().getFullYear()} neatr.ai. All rights reserved.
           </p>
         </div>
       </footer>

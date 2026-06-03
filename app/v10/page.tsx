@@ -162,7 +162,7 @@ function Nav() {
       backdropFilter: scrolled ? "blur(20px)" : "none",
     }}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <a href="/" style={{ fontFamily: "var(--font-dm-sans), monospace", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#ffffff" }}>[neaterops]</a>
+        <a href="/" style={{ fontFamily: "var(--font-dm-sans), monospace", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#ffffff" }}>[neatr.ai]</a>
         <div className="hidden items-center gap-8 text-sm md:flex" style={{ color: "rgba(255,255,255,0.50)" }}>
           {[["Platform", "#ai"], ["Pricing", "#pricing"], ["Why us", "#why"]].map(([l, h]) => (
             <a key={l} href={h} className="hover:text-white transition-colors">{l}</a>
@@ -295,10 +295,10 @@ function Statement() {
           <blockquote style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(2rem, 4.8vw, 4rem)", lineHeight: 1.2, color: "#141210" }}>
             &ldquo;Most booking software gives you a calendar.
             <br />
-            <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>neaterops gives you an operations engine.&rdquo;</span>
+            <span style={{ fontWeight: 600, fontStyle: "normal", color: "#141210" }}>neatr.ai gives you an operations engine.&rdquo;</span>
           </blockquote>
           <p className="mx-auto mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: "#787068" }}>
-            The difference isn&apos;t a feature list. It&apos;s that neaterops will do the actual work — dispatching, rerouting, repricing, following up — so you stop managing software and start running a business.
+            The difference isn&apos;t a feature list. It&apos;s that neatr.ai will do the actual work — dispatching, rerouting, repricing, following up — so you stop managing software and start running a business.
           </p>
         </Reveal>
       </div>
@@ -319,7 +319,7 @@ const AI_CARDS = [
     icon: <IconRoute />,
     title: "Conflict Resolution",
     stat: "0", statLabel: "double-bookings by design",
-    desc: "Double-booked? neaterops detects it the instant it forms, reroutes silently. Your customer never finds out.",
+    desc: "Double-booked? neatr.ai detects it the instant it forms, reroutes silently. Your customer never finds out.",
     color: "#3B82F6", bg: "rgba(59,130,246,0.07)", border: "rgba(59,130,246,0.18)",
   },
   {
@@ -349,7 +349,7 @@ function AIEngine() {
             AI that runs<br /><span style={{ color: "#B8922A" }}>your operations.</span>
           </h2>
           <p className="mt-6 text-base" style={{ color: "rgba(255,255,255,0.48)" }}>
-            While you&apos;re running the business, neaterops is running the software. Here&apos;s exactly how.
+            While you&apos;re running the business, neatr.ai is running the software. Here&apos;s exactly how.
           </p>
         </Reveal>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -377,7 +377,7 @@ function AIEngine() {
 }
 
 /* ─── Dashboard (LIGHT) ──────────────────────────────────────────────────────── */
-function AppFrame({ src, alt, url = "book.everneat.co" }: { src: string; alt: string; url?: string }) {
+function AppFrame({ src, alt, url = "book.neatr.ai" }: { src: string; alt: string; url?: string }) {
   return (
     <div className="overflow-hidden rounded-2xl shadow-2xl shadow-black/15" style={{ border: "1px solid #E5E0D8" }}>
       <div className="flex items-center gap-2 px-4 py-2.5" style={{ background: "#F2EFEA", borderBottom: "1px solid #E5E0D8" }}>
@@ -409,7 +409,7 @@ function Dashboard() {
         </Reveal>
         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
           <Reveal delay={60}>
-            <AppFrame src="/assets/v6-overview.png" alt="neaterops operations overview dashboard" url="book.everneat.co/dashboard" />
+            <AppFrame src="/assets/v6-overview.png" alt="neatr.ai operations overview dashboard" url="book.neatr.ai/dashboard" />
           </Reveal>
           <Reveal delay={120}>
             <div className="space-y-6">
@@ -466,7 +466,7 @@ function Dashboard() {
             </div>
           </Reveal>
           <Reveal delay={120} className="order-1 lg:order-2">
-            <AppFrame src="/assets/v6-calendar.png" alt="neaterops AI scheduling calendar" url="book.everneat.co/schedule" />
+            <AppFrame src="/assets/v6-calendar.png" alt="neatr.ai AI scheduling calendar" url="book.neatr.ai/schedule" />
           </Reveal>
         </div>
       </div>
@@ -700,7 +700,7 @@ function WaitlistCTA() {
         <Reveal>
           <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.3em]" style={{ color: "rgba(8,8,8,0.50)" }}>Founding members</p>
           <h2 style={{ fontFamily: "var(--font-dm-sans), system-ui", fontWeight: 700, letterSpacing: "-0.045em", lineHeight: 1.0, color: "#080808", fontSize: "clamp(2.8rem, 7vw, 6rem)" }}>
-            Be one of the first<br />100 businesses<br /><span style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", color: "rgba(8,8,8,0.65)", fontSize: "clamp(2.2rem, 5.5vw, 4.8rem)" }}>to shape neaterops.</span>
+            Be one of the first<br />100 businesses<br /><span style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontWeight: 300, fontStyle: "italic", color: "rgba(8,8,8,0.65)", fontSize: "clamp(2.2rem, 5.5vw, 4.8rem)" }}>to shape neatr.ai.</span>
           </h2>
           <p className="mx-auto mt-8 max-w-lg text-base" style={{ color: "rgba(8,8,8,0.60)" }}>
             Founding members get permanent rate lock, direct input on what we build next, and priority onboarding when we launch.
@@ -748,7 +748,7 @@ function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid grid-cols-2 gap-12 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
-            <a href="/" style={{ fontFamily: "var(--font-dm-sans), monospace", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#ffffff" }}>[neaterops]</a>
+            <a href="/" style={{ fontFamily: "var(--font-dm-sans), monospace", fontWeight: 700, fontSize: "15px", letterSpacing: "-0.02em", color: "#ffffff" }}>[neatr.ai]</a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.38)", lineHeight: 1.7 }}>AI-powered booking system for cleaning, maintenance & field service businesses. Building in public.</p>
           </div>
           {Object.entries(cols).map(([cat, items]) => (
@@ -761,7 +761,7 @@ function Footer() {
           ))}
         </div>
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t pt-8 text-xs md:flex-row" style={{ borderColor: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.28)" }}>
-          <p>© 2026 neaterops. All rights reserved.</p>
+          <p>© 2026 neatr.ai. All rights reserved.</p>
           <div className="flex gap-6">
             {["Privacy", "Terms", "Security"].map((l) => (<a key={l} href="#" className="transition-colors hover:text-white/60">{l}</a>))}
           </div>

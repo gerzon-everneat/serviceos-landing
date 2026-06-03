@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Everneat — AI-Powered Booking Platform",
+  title: "neatr.ai — AI-Powered Booking Platform",
   description: "Intelligent dispatch, scheduling, and revenue intelligence for modern service businesses.",
 };
 
