@@ -302,7 +302,13 @@ function AppFrameLight({ src, alt, height=420, url="book.neatr.ai" }: { src:stri
 /* ─── Booking demo ───────────────────────────────────────────────────────── */
 function BookingDemo() {
   return (
-    <AppFrameLight src="/assets/v6-booking-flow.png" alt="neatr.ai booking flow" height={520} url="book.neatr.ai/booking" />
+    <div style={{ border:`1px solid ${L.border}`, borderRadius:12, overflow:"hidden", boxShadow:"0 16px 50px rgba(0,0,0,0.10)" }}>
+      <div style={{ height:32, background:"#F5F5F5", borderBottom:`1px solid ${L.border}`, display:"flex", alignItems:"center", gap:6, padding:"0 12px" }}>
+        {["#FF5F57","#FEBC2E","#28C840"].map(c=><span key={c} style={{ width:10, height:10, borderRadius:"50%", background:c }} />)}
+        <span style={{ marginLeft:8, height:18, flex:1, maxWidth:240, background:L.border, borderRadius:4, fontSize:10, color:"#999", display:"flex", alignItems:"center", paddingLeft:8 }}>neatr.ai/booking</span>
+      </div>
+      <iframe src="/booking" style={{ width:"100%", height:520, border:"none", background:"#fff" }} title="neatr.ai booking flow" />
+    </div>
   );
 }
 
