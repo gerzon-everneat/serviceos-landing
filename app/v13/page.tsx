@@ -251,7 +251,7 @@ export default function V13() {
         borderBottom: `1px solid ${W.border}`,
       }}>
         <a href="/" style={{ color: W.text, textDecoration: "none", fontWeight: 800, fontSize: 16, letterSpacing: "-0.03em", display: "flex", alignItems: "center", gap: 6 }}>
-          <span style={{ display: "inline-block", width: 22, height: 22, borderRadius: 6, background: W.green, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ width: 22, height: 22, borderRadius: 6, background: W.green, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           </span>
           neatr.ai
