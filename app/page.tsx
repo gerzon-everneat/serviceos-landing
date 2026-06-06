@@ -260,7 +260,7 @@ function HeroAppMock() {
             <div style={{ padding:"10px 12px", borderTop:`1px solid ${L.border}`, marginTop:"auto" }}>
               <div style={{ fontSize:9, color:L.text3, textTransform:"uppercase", letterSpacing:"0.06em", marginBottom:8 }}>Pipeline</div>
               <div style={{ display:"flex", gap:3 }}>
-                {["Received","Paid","Scheduled","Matched","Sent"].map((s,i)=>(
+                {["Received","Scheduled","Matched","Confirmed","Invoiced"].map((s,i)=>(
                   <div key={s} style={{ flex:1 }}>
                     <div style={{ height:3, borderRadius:2, background:phase>i?statusColor[i+1]:"rgba(0,0,0,0.1)", transition:"background 0.5s" }} />
                     <div style={{ fontSize:8, color:phase>i?L.text2:L.text3, marginTop:4, textAlign:"center" }}>{s}</div>

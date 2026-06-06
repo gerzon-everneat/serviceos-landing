@@ -1,0 +1,461 @@
+"use client";
+import { useState, useEffect, useRef } from "react";
+
+// ─── Design Tokens ─────────────────────────────────────────────────────────────
+const D = {
+  bg: "#FFFFFF",
+  text: "#111111",
+  muted: "#555555",
+  border: "#E8E8E8",
+  lime: "#C8FF00",
+  limeText: "#3A5000",
+  dark: "#0F0F0F",
+  serif: "var(--font-cormorant), Georgia, serif",
+  sans: "var(--font-sans), system-ui, sans-serif",
+} as const;
+
+// ─── Reveal ─────────────────────────────────────────────────────────────────────
+function Reveal({
+  children,
+  delay = 0,
+  y = 24,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  y?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <div
+      ref={ref}
+      style={{
+        transition: `opacity 0.7s ${delay}ms, transform 0.7s ${delay}ms`,
+        opacity: visible ? 1 : 0,
+        transform: visible ? "none" : `translateY(${y}px)`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+// ─── Waitlist Form ──────────────────────────────────────────────────────────────
+function WaitlistForm({ dark = false }: { dark?: boolean }) {
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState<"idle" | "loading" | "done">("idle");
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setState("loading");
+    setTimeout(() => setState("done"), 1400);
+  };
+  if (state === "done")
+    return (
+      <p style={{ fontFamily: D.sans, fontSize: 15, color: dark ? "#aaa" : D.muted, marginTop: 8 }}>
+        You&apos;re on the list — we&apos;ll be in touch soon.
+      </p>
+    );
+  return (
+    <form onSubmit={submit} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="your@email.com"
+        required
+        style={{
+          flex: 1,
+          minWidth: 200,
+          padding: "12px 16px",
+          borderRadius: 8,
+          border: `1.5px solid ${dark ? "#333" : D.border}`,
+          fontFamily: D.sans,
+          fontSize: 15,
+          background: dark ? "#1A1A1A" : "#fff",
+          color: dark ? "#fff" : D.text,
+          outline: "none",
+        }}
+      />
+      <button
+        type="submit"
+        disabled={state === "loading"}
+        style={{
+          padding: "12px 24px",
+          borderRadius: 8,
+          background: D.lime,
+          color: D.limeText,
+          fontFamily: D.sans,
+          fontWeight: 700,
+          fontSize: 15,
+          border: "none",
+          cursor: "pointer",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {state === "loading" ? "Joining…" : "Get Early Access"}
+      </button>
+    </form>
+  );
+}
+
+// ─── Page ───────────────────────────────────────────────────────────────────────
+export default function V15Page() {
+  return (
+    <div style={{ fontFamily: D.sans, background: D.bg, color: D.text, minHeight: "100vh" }}>
+      <style>{`
+        @keyframes v15-fade {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: none; }
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+      `}</style>
+
+      {/* Nav */}
+      <nav
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 50,
+          background: "rgba(255,255,255,0.95)",
+          backdropFilter: "blur(12px)",
+          borderBottom: `1px solid ${D.border}`,
+          padding: "0 24px",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 1100,
+            margin: "0 auto",
+            height: 64,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <span style={{ fontFamily: D.serif, fontSize: 22, fontWeight: 700, letterSpacing: "-0.5px" }}>
+            neatr.ai
+          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
+            <div style={{ display: "flex", gap: 28, fontSize: 14, fontWeight: 500, color: D.muted }}>
+              {["Features", "How it works", "Demo"].map((l) => (
+                <a
+                  key={l}
+                  href={`#${l.toLowerCase().replace(/ /g, "-")}`}
+                  style={{ color: "inherit", textDecoration: "none" }}
+                >
+                  {l}
+                </a>
+              ))}
+            </div>
+            <a
+              href="#waitlist"
+              style={{
+                padding: "9px 18px",
+                background: D.lime,
+                color: D.limeText,
+                borderRadius: 8,
+                fontWeight: 700,
+                fontSize: 13,
+                textDecoration: "none",
+              }}
+            >
+              Join Waitlist
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero — maximum clarity, single scan path */}
+      <section
+        style={{
+          maxWidth: 800,
+          margin: "0 auto",
+          padding: "128px 24px 100px",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ animation: "v15-fade 0.8s ease both" }}>
+          <h1
+            style={{
+              fontFamily: D.serif,
+              fontSize: "clamp(56px, 9vw, 104px)",
+              fontWeight: 600,
+              lineHeight: 1.04,
+              letterSpacing: "-1.5px",
+              marginBottom: 32,
+            }}
+          >
+            Bookings in.
+            <br />
+            Jobs dispatched.
+            <br />
+            <em style={{ fontStyle: "italic", color: D.muted }}>Without the chaos.</em>
+          </h1>
+        </div>
+        <div style={{ animation: "v15-fade 0.8s 150ms ease both" }}>
+          <p
+            style={{
+              fontSize: 19,
+              color: D.muted,
+              lineHeight: 1.7,
+              maxWidth: 520,
+              margin: "0 auto 48px",
+            }}
+          >
+            neatr.ai is the operating layer for service businesses — bookings, dispatch, and invoicing
+            handled automatically.
+          </p>
+        </div>
+        <div style={{ animation: "v15-fade 0.8s 280ms ease both", maxWidth: 480, margin: "0 auto" }}>
+          <WaitlistForm />
+          <p style={{ fontSize: 13, color: "#999", marginTop: 14 }}>No credit card required · Free during beta</p>
+        </div>
+      </section>
+
+      {/* Three Pillars */}
+      <section id="features" style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 24px" }}>
+        <Reveal>
+          <h2
+            style={{
+              fontFamily: D.serif,
+              fontSize: "clamp(32px, 4vw, 54px)",
+              fontWeight: 600,
+              textAlign: "center",
+              marginBottom: 72,
+              letterSpacing: "-0.5px",
+            }}
+          >
+            Three things it does well.
+          </h2>
+        </Reveal>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 0 }}>
+          {[
+            {
+              num: "01",
+              title: "Online booking, 24/7",
+              body: "Your customers pick a service, choose a slot, and confirm — without calling, texting, or waiting for a reply.",
+            },
+            {
+              num: "02",
+              title: "Automatic dispatch",
+              body: "The right person gets assigned the moment a booking lands. No manual coordination, no missed jobs.",
+            },
+            {
+              num: "03",
+              title: "Invoicing after the job",
+              body: "When the job is done, the invoice goes out automatically. You get paid without chasing anyone.",
+            },
+          ].map((item, i) => (
+            <Reveal key={i} delay={i * 120}>
+              <div
+                style={{
+                  padding: "56px 40px",
+                  borderTop: `2px solid ${D.text}`,
+                  borderRight: i < 2 ? `1px solid ${D.border}` : "none",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: D.serif,
+                    fontSize: 64,
+                    fontWeight: 700,
+                    color: D.border,
+                    display: "block",
+                    marginBottom: 20,
+                    lineHeight: 1,
+                  }}
+                >
+                  {item.num}
+                </span>
+                <h3
+                  style={{
+                    fontFamily: D.serif,
+                    fontSize: 28,
+                    fontWeight: 600,
+                    marginBottom: 14,
+                    letterSpacing: "-0.3px",
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <p style={{ color: D.muted, lineHeight: 1.75, fontSize: 15 }}>{item.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section id="how-it-works" style={{ background: D.dark, padding: "100px 24px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <Reveal>
+            <h2
+              style={{
+                fontFamily: D.serif,
+                fontSize: "clamp(32px, 4vw, 54px)",
+                fontWeight: 600,
+                color: "#fff",
+                textAlign: "center",
+                marginBottom: 80,
+                letterSpacing: "-0.5px",
+              }}
+            >
+              From request to invoiced in four steps.
+            </h2>
+          </Reveal>
+          <div
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 0 }}
+          >
+            {[
+              { step: "1", title: "Customer books", body: "Any device. Any time. Your booking page handles everything." },
+              { step: "2", title: "Slot confirmed", body: "Calendar updated instantly. No double-bookings, ever." },
+              { step: "3", title: "Team dispatched", body: "The right person is assigned and notified automatically." },
+              { step: "4", title: "Invoice sent", body: "Job done — invoice out. You collect, we handle the rest." },
+            ].map((item, i) => (
+              <Reveal key={i} delay={i * 100}>
+                <div
+                  style={{
+                    padding: "40px 32px",
+                    borderLeft: `1px solid #222`,
+                    borderRight: i === 3 ? `1px solid #222` : "none",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 44,
+                      height: 44,
+                      background: D.lime,
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginBottom: 24,
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: D.serif,
+                        fontWeight: 700,
+                        fontSize: 20,
+                        color: D.limeText,
+                      }}
+                    >
+                      {item.step}
+                    </span>
+                  </div>
+                  <h3
+                    style={{
+                      fontFamily: D.serif,
+                      fontSize: 22,
+                      fontWeight: 600,
+                      color: "#fff",
+                      marginBottom: 10,
+                    }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p style={{ fontSize: 14, color: "#777", lineHeight: 1.7 }}>{item.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Demo */}
+      <section id="demo" style={{ maxWidth: 1100, margin: "0 auto", padding: "100px 24px" }}>
+        <Reveal>
+          <h2
+            style={{
+              fontFamily: D.serif,
+              fontSize: "clamp(32px, 4vw, 54px)",
+              fontWeight: 600,
+              textAlign: "center",
+              marginBottom: 16,
+              letterSpacing: "-0.5px",
+            }}
+          >
+            See it in action.
+          </h2>
+          <p style={{ textAlign: "center", color: D.muted, fontSize: 16, marginBottom: 52 }}>
+            This is the actual booking flow your customers would use.
+          </p>
+        </Reveal>
+        <Reveal delay={100}>
+          <div
+            style={{
+              borderRadius: 16,
+              overflow: "hidden",
+              border: `1px solid ${D.border}`,
+              boxShadow: "0 24px 80px rgba(0,0,0,0.08)",
+            }}
+          >
+            <iframe
+              src="/booking"
+              style={{ width: "100%", height: 640, border: "none", display: "block" }}
+              title="Live booking demo"
+            />
+          </div>
+        </Reveal>
+      </section>
+
+      {/* CTA */}
+      <section id="waitlist" style={{ background: D.dark, padding: "128px 24px" }}>
+        <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
+          <Reveal>
+            <h2
+              style={{
+                fontFamily: D.serif,
+                fontSize: "clamp(36px, 5vw, 68px)",
+                fontWeight: 600,
+                color: "#fff",
+                marginBottom: 20,
+                letterSpacing: "-0.5px",
+              }}
+            >
+              Ready to simplify your bookings?
+            </h2>
+            <p style={{ color: "#777", fontSize: 17, marginBottom: 44, lineHeight: 1.7 }}>
+              Join the waitlist. We&apos;re onboarding service businesses one at a time to get the setup
+              right.
+            </p>
+          </Reveal>
+          <Reveal delay={100}>
+            <WaitlistForm dark />
+            <p style={{ fontSize: 13, color: "#555", marginTop: 14 }}>No credit card required · Free during beta</p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer
+        style={{
+          borderTop: `1px solid ${D.border}`,
+          padding: "32px 24px",
+          textAlign: "center",
+        }}
+      >
+        <span style={{ fontFamily: D.serif, fontSize: 18, fontWeight: 700 }}>neatr.ai</span>
+        <p style={{ color: "#999", fontSize: 13, marginTop: 8 }}>
+          © 2026 neatr.ai · Built for service businesses
+        </p>
+      </footer>
+    </div>
+  );
+}
