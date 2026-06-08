@@ -125,6 +125,35 @@ const CATEGORIES = [
   { icon: "🏢", name: "Commercial Cleaning", tag: "Offices & facilities" },
 ];
 
+function CategoryCard({ icon, name, tag }: { icon: string; name: string; tag: string }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        background: hovered ? "#fff" : "#FEFEFE",
+        border: `1.5px solid ${hovered ? D.lime : D.border}`,
+        borderRadius: 12,
+        padding: "18px 20px",
+        display: "flex",
+        alignItems: "flex-start",
+        gap: 12,
+        cursor: "default",
+        transition: "border-color 0.2s, box-shadow 0.2s, transform 0.2s",
+        boxShadow: hovered ? "0 6px 24px rgba(200,255,0,0.1)" : "none",
+        transform: hovered ? "translateY(-2px)" : "none",
+      }}
+    >
+      <span style={{ fontSize: 22, lineHeight: 1, flexShrink: 0 }}>{icon}</span>
+      <div>
+        <div style={{ fontFamily: D.serif, fontSize: 16, fontWeight: 600, lineHeight: 1.2 }}>{name}</div>
+        <div style={{ fontSize: 12, color: D.muted, marginTop: 3 }}>{tag}</div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Page ───────────────────────────────────────────────────────────────────────
 export default function V16Page() {
   return (
@@ -136,6 +165,9 @@ export default function V16Page() {
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
       `}</style>
+
+      {/* Brand top stripe */}
+      <div style={{ height: 4, background: D.lime }} />
 
       {/* Category bar */}
       <div
@@ -297,26 +329,7 @@ export default function V16Page() {
             }}
           >
             {CATEGORIES.map((c, i) => (
-              <div
-                key={i}
-                style={{
-                  background: "#fff",
-                  border: `1px solid ${D.border}`,
-                  borderRadius: 12,
-                  padding: "18px 20px",
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: 12,
-                }}
-              >
-                <span style={{ fontSize: 22, lineHeight: 1, flexShrink: 0 }}>{c.icon}</span>
-                <div>
-                  <div style={{ fontFamily: D.serif, fontSize: 16, fontWeight: 600, lineHeight: 1.2 }}>
-                    {c.name}
-                  </div>
-                  <div style={{ fontSize: 12, color: D.muted, marginTop: 3 }}>{c.tag}</div>
-                </div>
-              </div>
+              <CategoryCard key={i} icon={c.icon} name={c.name} tag={c.tag} />
             ))}
           </div>
           <p

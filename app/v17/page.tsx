@@ -253,7 +253,15 @@ export default function V17Page() {
       </nav>
 
       {/* Hero */}
-      <section style={{ maxWidth: 900, margin: "0 auto", padding: "100px 24px 80px", textAlign: "center" }}>
+      <section
+        style={{
+          maxWidth: 900,
+          margin: "0 auto",
+          padding: "100px 24px 80px",
+          textAlign: "center",
+          background: "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(245,158,11,0.07) 0%, transparent 70%)",
+        }}
+      >
         <div style={{ animation: "v17-fade 0.8s ease both" }}>
           <div
             style={{
@@ -288,34 +296,63 @@ export default function V17Page() {
         </div>
 
         <div style={{ animation: "v17-fade 0.8s 150ms ease both" }}>
-          <p style={{ fontSize: 18, color: D.muted, lineHeight: 1.7, maxWidth: 540, margin: "0 auto 44px" }}>
+          <p style={{ fontSize: 18, color: D.muted, lineHeight: 1.7, maxWidth: 540, margin: "0 auto 24px" }}>
             We&apos;re building neatr.ai for service businesses — bookings, dispatch, and invoicing on
             autopilot. Early teams get personal onboarding and locked rates before public launch.
           </p>
+          {/* Business type clarity pills */}
+          <div
+            style={{
+              display: "flex",
+              gap: 8,
+              justifyContent: "center",
+              flexWrap: "wrap",
+              marginBottom: 40,
+            }}
+          >
+            {["Cleaning", "Maintenance", "Landscaping", "HVAC", "Window Cleaning", "Field Service"].map(
+              (cat) => (
+                <span
+                  key={cat}
+                  style={{
+                    fontSize: 12,
+                    padding: "4px 12px",
+                    borderRadius: 100,
+                    background: "#F5F5F0",
+                    color: D.muted,
+                    border: `1px solid ${D.border}`,
+                  }}
+                >
+                  {cat}
+                </span>
+              )
+            )}
+          </div>
         </div>
 
-        {/* Progress bar */}
-        <div style={{ animation: "v17-fade 0.8s 260ms ease both", maxWidth: 480, margin: "0 auto 36px" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
+        {/* Progress bar — taller, with glow */}
+        <div style={{ animation: "v17-fade 0.8s 260ms ease both", maxWidth: 520, margin: "0 auto 36px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
             <span style={{ fontSize: 14, fontWeight: 600, color: D.text }}>
               <AnimCounter target={WAITLIST_COUNT} /> / {MAX_SPOTS} early spots claimed
             </span>
             <span style={{ fontSize: 14, color: D.amber, fontWeight: 700 }}>{PCT}% full</span>
           </div>
           <div
-            style={{ height: 10, background: "#F0F0F0", borderRadius: 100, overflow: "hidden" }}
+            style={{ height: 14, background: "#F0F0F0", borderRadius: 100, overflow: "hidden" }}
           >
             <div
               style={{
                 height: "100%",
-                background: D.amber,
+                background: `linear-gradient(90deg, ${D.amber}, #FBBF24)`,
                 borderRadius: 100,
+                boxShadow: `0 0 16px rgba(245,158,11,0.5)`,
                 animation: "v17-progress 1.8s cubic-bezier(0.2, 0, 0, 1) both",
                 animationDelay: "600ms",
               }}
             />
           </div>
-          <p style={{ fontSize: 12, color: "#999", marginTop: 8 }}>
+          <p style={{ fontSize: 12, color: "#999", marginTop: 10 }}>
             When we hit 500, we close early access and go fully self-serve.
           </p>
         </div>

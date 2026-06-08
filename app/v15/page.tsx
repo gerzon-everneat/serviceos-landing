@@ -114,6 +114,119 @@ function WaitlistForm({ dark = false }: { dark?: boolean }) {
   );
 }
 
+// ─── Booking Feed (right-side hero visual) ─────────────────────────────────────
+const FEED = [
+  { icon: "📥", msg: "New booking — Deep clean · $185",          tag: "RECEIVED",  color: "#22C55E" },
+  { icon: "🗓️", msg: "Calendar slot confirmed — Thu Jun 12",     tag: "SCHEDULED", color: "#3B82F6" },
+  { icon: "🤖", msg: "AI dispatch — crew matched by location",   tag: "DISPATCH",  color: "#F59E0B" },
+  { icon: "👤", msg: "Maria L. assigned · 0.8 mi · 4.9★",       tag: "ASSIGNED",  color: "#8B5CF6" },
+  { icon: "✉️", msg: "Confirmation sent to customer",             tag: "NOTIFIED",  color: "#EC4899" },
+  { icon: "💳", msg: "Job complete · Invoice sent automatically", tag: "INVOICED",  color: D.lime },
+];
+
+function BookingFeed() {
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setActive((a) => (a + 1) % FEED.length), 2200);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <div
+      style={{
+        background: D.dark,
+        borderRadius: 20,
+        padding: 28,
+        width: "100%",
+        maxWidth: 420,
+        boxShadow: "0 32px 80px rgba(0,0,0,0.14)",
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: "#555", fontFamily: D.sans }}>
+          BOOKING PIPELINE
+        </span>
+        <span style={{ fontSize: 12, color: "#22C55E", fontWeight: 600, display: "flex", alignItems: "center", gap: 5 }}>
+          <span
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: "50%",
+              background: "#22C55E",
+              display: "inline-block",
+              animation: "v15-pulse 2s infinite",
+            }}
+          />
+          LIVE
+        </span>
+      </div>
+      {FEED.map((item, i) => {
+        const isActive = i === active;
+        const isPast = i < active;
+        return (
+          <div
+            key={i}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              padding: "10px 12px",
+              borderRadius: 10,
+              marginBottom: 6,
+              background: isActive ? "rgba(255,255,255,0.06)" : "transparent",
+              border: `1.5px solid ${isActive ? item.color : "transparent"}`,
+              transition: "all 0.4s ease",
+              opacity: isPast ? 0.3 : 1,
+            }}
+          >
+            <div
+              style={{
+                width: 32,
+                height: 32,
+                borderRadius: "50%",
+                background: isActive ? item.color : "#1E1E1E",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "background 0.4s ease",
+                fontSize: 14,
+                flexShrink: 0,
+              }}
+            >
+              {isPast ? "✓" : item.icon}
+            </div>
+            <div style={{ flex: 1, overflow: "hidden" }}>
+              <div
+                style={{
+                  fontSize: 12,
+                  color: isActive ? "#fff" : "#555",
+                  transition: "color 0.3s ease",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item.msg}
+              </div>
+            </div>
+            <span
+              style={{
+                fontSize: 10,
+                fontWeight: 700,
+                color: item.color,
+                letterSpacing: "0.06em",
+                opacity: isActive ? 1 : 0.2,
+                flexShrink: 0,
+              }}
+            >
+              {item.tag}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 // ─── Page ───────────────────────────────────────────────────────────────────────
 export default function V15Page() {
   return (
@@ -123,8 +236,15 @@ export default function V15Page() {
           from { opacity: 0; transform: translateY(20px); }
           to   { opacity: 1; transform: none; }
         }
+        @keyframes v15-pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.35; }
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; }
       `}</style>
+
+      {/* Brand top stripe */}
+      <div style={{ height: 4, background: D.lime }} />
 
       {/* Nav */}
       <nav
@@ -181,24 +301,27 @@ export default function V15Page() {
         </div>
       </nav>
 
-      {/* Hero — maximum clarity, single scan path */}
+      {/* Hero — split: headline + form left, live pipeline feed right */}
       <section
         style={{
-          maxWidth: 800,
+          maxWidth: 1100,
           margin: "0 auto",
-          padding: "128px 24px 100px",
-          textAlign: "center",
+          padding: "100px 24px 80px",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 80,
+          alignItems: "center",
         }}
       >
         <div style={{ animation: "v15-fade 0.8s ease both" }}>
           <h1
             style={{
               fontFamily: D.serif,
-              fontSize: "clamp(56px, 9vw, 104px)",
+              fontSize: "clamp(48px, 6vw, 84px)",
               fontWeight: 600,
-              lineHeight: 1.04,
+              lineHeight: 1.06,
               letterSpacing: "-1.5px",
-              marginBottom: 32,
+              marginBottom: 28,
             }}
           >
             Bookings in.
@@ -207,24 +330,23 @@ export default function V15Page() {
             <br />
             <em style={{ fontStyle: "italic", color: D.muted }}>Without the chaos.</em>
           </h1>
-        </div>
-        <div style={{ animation: "v15-fade 0.8s 150ms ease both" }}>
           <p
             style={{
-              fontSize: 19,
+              fontSize: 18,
               color: D.muted,
               lineHeight: 1.7,
-              maxWidth: 520,
-              margin: "0 auto 48px",
+              marginBottom: 40,
+              maxWidth: 440,
             }}
           >
             neatr.ai is the operating layer for service businesses — bookings, dispatch, and invoicing
             handled automatically.
           </p>
-        </div>
-        <div style={{ animation: "v15-fade 0.8s 280ms ease both", maxWidth: 480, margin: "0 auto" }}>
           <WaitlistForm />
           <p style={{ fontSize: 13, color: "#999", marginTop: 14 }}>No credit card required · Free during beta</p>
+        </div>
+        <div style={{ animation: "v15-fade 0.8s 200ms ease both", display: "flex", justifyContent: "center" }}>
+          <BookingFeed />
         </div>
       </section>
 
@@ -250,24 +372,28 @@ export default function V15Page() {
               num: "01",
               title: "Online booking, 24/7",
               body: "Your customers pick a service, choose a slot, and confirm — without calling, texting, or waiting for a reply.",
+              accent: false,
             },
             {
               num: "02",
               title: "Automatic dispatch",
               body: "The right person gets assigned the moment a booking lands. No manual coordination, no missed jobs.",
+              accent: false,
             },
             {
               num: "03",
               title: "Invoicing after the job",
               body: "When the job is done, the invoice goes out automatically. You get paid without chasing anyone.",
+              accent: true,
             },
           ].map((item, i) => (
             <Reveal key={i} delay={i * 120}>
               <div
                 style={{
                   padding: "56px 40px",
-                  borderTop: `2px solid ${D.text}`,
+                  borderTop: `2px solid ${item.accent ? D.lime : D.text}`,
                   borderRight: i < 2 ? `1px solid ${D.border}` : "none",
+                  background: item.accent ? "#FAFFF0" : "transparent",
                 }}
               >
                 <span
@@ -275,7 +401,7 @@ export default function V15Page() {
                     fontFamily: D.serif,
                     fontSize: 64,
                     fontWeight: 700,
-                    color: D.border,
+                    color: item.accent ? D.lime : D.border,
                     display: "block",
                     marginBottom: 20,
                     lineHeight: 1,
