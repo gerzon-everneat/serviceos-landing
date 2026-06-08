@@ -2,6 +2,29 @@
 
 import { useState } from "react";
 
+const GRID_KF = `@keyframes grid-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.25;transform:scale(0.65)}}`;
+function MarkGrid({ animated = true }: { animated?: boolean }) {
+  const LIME = "#C8FF00";
+  const pts = [
+    { cx: 10, cy: 10 }, { cx: 24, cy: 10 }, { cx: 38, cy: 10 },
+    { cx: 10, cy: 24 }, { cx: 24, cy: 24 }, { cx: 38, cy: 24 },
+    { cx: 10, cy: 38 }, { cx: 24, cy: 38 }, { cx: 38, cy: 38 },
+  ];
+  return (
+    <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
+      {pts.map(({ cx, cy }, i) => (
+        <circle key={i} cx={cx} cy={cy} r={i === 4 ? 5 : 3.2}
+          fill={i === 4 ? LIME : "#0A0A0A"}
+          style={animated ? {
+            animation: `grid-dot ${1.2 + (i % 3) * 0.2}s ease-in-out ${(i * 0.13).toFixed(2)}s infinite`,
+            transformBox: "fill-box" as const,
+            transformOrigin: "center",
+          } : { opacity: i === 4 ? 1 : 0.6 }} />
+      ))}
+    </svg>
+  );
+}
+
 /* ─── Design tokens (matches v7) ─────────────────────────────────────────── */
 const L = {
   bg:      "#FFFFFF",
@@ -78,11 +101,15 @@ export default function BookingPage() {
 
   return (
     <div style={{ minHeight:"100vh", background:L.bg, fontFamily:"var(--font-dm-sans), system-ui, sans-serif" }}>
+      <style>{GRID_KF}</style>
 
       {/* ── Nav ── */}
       <nav style={{ borderBottom:`1px solid ${L.border}`, padding:"0 24px" }}>
         <div style={{ maxWidth:720, margin:"0 auto", height:56, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-          <a href="/" style={{ fontWeight:700, fontSize:15, letterSpacing:"-0.01em", color:L.text, textDecoration:"none" }}>[NEATR.AI]</a>
+          <a href="/" style={{ display:"flex", alignItems:"center", gap:8, textDecoration:"none" }}>
+            <MarkGrid animated />
+            <span style={{ fontWeight:700, fontSize:15, letterSpacing:"-0.02em", color:L.text }}>neatr<span style={{ color:"#22C55E" }}>.ai</span></span>
+          </a>
           <span style={{ fontSize:13, color:L.text3 }}>Book a service</span>
         </div>
       </nav>

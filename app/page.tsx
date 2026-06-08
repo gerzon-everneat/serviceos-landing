@@ -3,6 +3,30 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
+/* ─── Grid mark (logo #15) ───────────────────────────────────────────────── */
+const GRID_KF = `@keyframes grid-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.25;transform:scale(0.65)}}`;
+function MarkGrid({ animated = true }: { animated?: boolean }) {
+  const LIME = "#C8FF00";
+  const pts = [
+    { cx: 10, cy: 10 }, { cx: 24, cy: 10 }, { cx: 38, cy: 10 },
+    { cx: 10, cy: 24 }, { cx: 24, cy: 24 }, { cx: 38, cy: 24 },
+    { cx: 10, cy: 38 }, { cx: 24, cy: 38 }, { cx: 38, cy: 38 },
+  ];
+  return (
+    <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+      {pts.map(({ cx, cy }, i) => (
+        <circle key={i} cx={cx} cy={cy} r={i === 4 ? 5 : 3.2}
+          fill={i === 4 ? LIME : "#0A0A0A"}
+          style={animated ? {
+            animation: `grid-dot ${1.2 + (i % 3) * 0.2}s ease-in-out ${(i * 0.13).toFixed(2)}s infinite`,
+            transformBox: "fill-box" as const,
+            transformOrigin: "center",
+          } : { opacity: i === 4 ? 1 : 0.6 }} />
+      ))}
+    </svg>
+  );
+}
+
 /* ─── tokens ─────────────────────────────────────────────────────────────── */
 const L = {
   bg:      "#FFFFFF",
@@ -319,6 +343,7 @@ export default function Home() {
 
   return (
     <div style={{ fontFamily:"'DM Sans',sans-serif", background:L.bg, color:L.text, overflowX:"hidden" }}>
+      <style>{GRID_KF}</style>
 
       {/* NAV */}
       <nav style={{
@@ -328,7 +353,10 @@ export default function Home() {
         borderBottom:`1px solid ${L.border}`,
         background:"rgba(255,255,255,0.88)", backdropFilter:"blur(12px)",
       }}>
-        <a href="/" style={{ color:L.text, textDecoration:"none", fontWeight:700, fontSize:15, letterSpacing:"-0.01em" }}>[NEATR.AI]</a>
+        <a href="/" style={{ display:"flex", alignItems:"center", gap:9, textDecoration:"none" }}>
+            <MarkGrid animated />
+            <span style={{ fontWeight:700, fontSize:15, letterSpacing:"-0.02em", color:L.text }}>neatr<span style={{ color:L.green }}>.ai</span></span>
+          </a>
         <div style={{ display:"flex", alignItems:"center", gap:32 }}>
           <div style={{ display:"flex", gap:28, fontSize:13, color:L.text2 }}>
             {["Features","How it works","Pricing"].map(l=>(
@@ -730,7 +758,10 @@ export default function Home() {
       {/* FOOTER */}
       <footer style={{ background:L.bg3, borderTop:`1px solid ${L.border}`, padding:"40px 80px" }}>
         <div style={{ maxWidth:1200, margin:"0 auto", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-          <a href="/" style={{ color:L.text, textDecoration:"none", fontWeight:700, fontSize:14 }}>[NEATR.AI]</a>
+          <a href="/" style={{ display:"flex", alignItems:"center", gap:8, textDecoration:"none" }}>
+            <MarkGrid animated={false} />
+            <span style={{ fontWeight:700, fontSize:14, letterSpacing:"-0.02em", color:L.text }}>neatr<span style={{ color:L.green }}>.ai</span></span>
+          </a>
           <div style={{ display:"flex", gap:24, fontSize:13, color:L.text3 }}>
             {["Privacy Policy","Security","Sub-processors"].map(l=>(
               <a key={l} href="#" style={{ color:"inherit", textDecoration:"none", transition:"color 0.2s" }}
