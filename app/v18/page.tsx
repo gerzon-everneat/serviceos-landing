@@ -431,6 +431,9 @@ export default function V18Page() {
         * { box-sizing: border-box; margin: 0; padding: 0; }
       `}</style>
 
+      {/* Brand top stripe */}
+      <div style={{ height: 4, background: D.lime }} />
+
       {/* Nav */}
       <nav
         style={{
@@ -498,6 +501,7 @@ export default function V18Page() {
           gridTemplateColumns: "1fr 1fr",
           gap: 80,
           alignItems: "center",
+          background: "radial-gradient(ellipse 60% 50% at 30% 50%, rgba(200,255,0,0.05) 0%, transparent 70%)",
         }}
       >
         <div style={{ animation: "v18-fade 0.8s ease both" }}>

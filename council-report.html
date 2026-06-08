@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Decision Council Report — neatr.ai v24–v28</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1C1A1D;
+    --surface: #2A2830;
+    --border: #3A3840;
+    --lime: #E2F075;
+    --lime-dim: rgba(226,240,117,0.12);
+    --lime-text: #1C2200;
+    --text: #FFFFFF;
+    --muted: #9A97A4;
+    --danger: #FF5C5C;
+    --danger-dim: rgba(255,92,92,0.1);
+    --amber: #F59E0B;
+    --green: #22C55E;
+    --green-dim: rgba(34,197,94,0.12);
+    --amber-dim: rgba(245,158,11,0.12);
+  }
+  html { font-family: 'Inter', system-ui, sans-serif; background: var(--ink); color: var(--text); line-height: 1.6; }
+  body { max-width: 1200px; margin: 0 auto; padding: 48px 24px 96px; }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 72px; }
+  .header-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--lime-dim); border: 1px solid rgba(226,240,117,0.3); border-radius: 20px; padding: 5px 16px; margin-bottom: 24px; }
+  .header-badge span { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--lime); }
+  .header h1 { font-size: clamp(24px, 4vw, 42px); font-weight: 800; line-height: 1.15; color: var(--text); margin-bottom: 12px; }
+  .header h1 em { color: var(--lime); font-style: normal; }
+  .header .meta { font-size: 13px; color: var(--muted); }
+
+  /* Section labels */
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 20px; text-transform: uppercase; }
+
+  /* Council grid */
+  .council-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; margin-bottom: 72px; }
+  .council-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; cursor: default; }
+  .council-card:hover { border-color: rgba(226,240,117,0.4); transform: translateY(-2px); }
+  .council-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--lime); }
+  .council-member-name { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .council-member-name .emoji { font-size: 20px; }
+  .council-member-name .name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .council-member-name .role { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .verdict { background: var(--lime-dim); border-left: 3px solid var(--lime); border-radius: 0 8px 8px 0; padding: 12px 14px; margin-bottom: 16px; font-size: 13px; color: var(--lime); font-weight: 600; line-height: 1.5; }
+  .keypoints { margin-bottom: 16px; }
+  .keypoints li { font-size: 12px; color: #C8C5D0; line-height: 1.6; margin-bottom: 8px; padding-left: 16px; position: relative; list-style: none; }
+  .keypoints li::before { content: '—'; position: absolute; left: 0; color: var(--muted); }
+  .confidence-badge { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 10px; }
+  .confidence-badge.high { background: var(--green-dim); color: var(--green); }
+  .confidence-badge.medium { background: var(--amber-dim); color: var(--amber); }
+  .confidence-badge.low { background: var(--danger-dim); color: var(--danger); }
+  .bias { font-size: 11px; color: var(--muted); font-style: italic; line-height: 1.5; }
+
+  /* Peer review */
+  .peer-section { margin-bottom: 72px; }
+  .peer-grid { display: flex; flex-direction: column; gap: 12px; }
+  .peer-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .peer-item summary { padding: 14px 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 600; user-select: none; list-style: none; }
+  .peer-item summary::-webkit-details-marker { display: none; }
+  .peer-item summary .peer-label { display: flex; align-items: center; gap: 12px; }
+  .peer-item summary .peer-id { width: 28px; height: 28px; border-radius: 8px; background: var(--lime-dim); color: var(--lime); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex-shrink: 0; }
+  .peer-item summary .chevron { color: var(--muted); font-size: 12px; transition: transform 0.2s; }
+  details[open] .chevron { transform: rotate(180deg); }
+  .peer-body { padding: 0 20px 20px; font-size: 13px; color: #C8C5D0; line-height: 1.7; }
+  .peer-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 10px; }
+  .peer-col h4 { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; }
+  .peer-col p { font-size: 12px; color: #C8C5D0; line-height: 1.6; }
+  .peer-agrees { display: flex; gap: 12px; margin-top: 10px; font-size: 12px; }
+  .peer-agrees span { padding: 3px 10px; border-radius: 20px; font-weight: 600; }
+  .agrees { background: var(--green-dim); color: var(--green); }
+  .conflicts { background: var(--danger-dim); color: var(--danger); }
+
+  /* Chairman synthesis */
+  .synthesis { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--lime); border-radius: 16px; padding: 36px; margin-bottom: 72px; }
+  .synthesis h2 { font-size: 22px; font-weight: 800; color: var(--lime); margin-bottom: 8px; }
+  .synthesis .subtitle { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
+  .tension-box { background: rgba(226,240,117,0.05); border: 1px solid rgba(226,240,117,0.2); border-radius: 12px; padding: 20px; margin-bottom: 28px; }
+  .tension-box h3 { font-size: 13px; font-weight: 700; color: var(--lime); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+  .tension-box p { font-size: 14px; color: #C8C5D0; line-height: 1.7; }
+  .options-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-bottom: 28px; }
+  .option-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .option-card .option-num { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--lime); margin-bottom: 8px; }
+  .option-card h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .option-card p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .recommendation-box { background: var(--lime); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+  .recommendation-box h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: rgba(28,34,0,0.7); text-transform: uppercase; margin-bottom: 12px; }
+  .recommendation-box p { font-size: 15px; font-weight: 600; color: var(--lime-text); line-height: 1.6; }
+  .recommendation-box .variants-list { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .recommendation-box .variant-row { display: flex; gap: 12px; align-items: flex-start; }
+  .recommendation-box .variant-tag { font-size: 11px; font-weight: 800; background: rgba(28,34,0,0.15); color: var(--lime-text); padding: 3px 8px; border-radius: 6px; flex-shrink: 0; margin-top: 2px; }
+  .recommendation-box .variant-desc { font-size: 13px; color: rgba(28,34,0,0.8); line-height: 1.5; }
+  .dealbreakers { background: var(--danger-dim); border: 1px solid rgba(255,92,92,0.3); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+  .dealbreakers h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: var(--danger); text-transform: uppercase; margin-bottom: 12px; }
+  .dealbreakers ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .dealbreakers li { font-size: 13px; color: #FFB3B3; line-height: 1.6; padding-left: 16px; position: relative; }
+  .dealbreakers li::before { content: '⚠'; position: absolute; left: 0; font-size: 11px; }
+  .dissent-box { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .dissent-box h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; margin-bottom: 10px; }
+  .dissent-box p { font-size: 13px; color: var(--muted); line-height: 1.7; font-style: italic; }
+
+  /* v24–v28 blueprint */
+  .blueprint { margin-bottom: 72px; }
+  .blueprint-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .blueprint-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+  .blueprint-card .v-tag { display: inline-block; font-size: 11px; font-weight: 800; background: var(--lime-dim); color: var(--lime); padding: 3px 10px; border-radius: 6px; margin-bottom: 12px; }
+  .blueprint-card h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .blueprint-card .concept-tag { font-size: 11px; color: var(--lime); font-weight: 600; letter-spacing: 0.06em; margin-bottom: 12px; }
+  .blueprint-card .copy-angle { font-size: 14px; font-style: italic; color: #DDD; margin-bottom: 12px; padding: 10px 14px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 2px solid var(--lime); }
+  .blueprint-card .details { font-size: 12px; color: var(--muted); line-height: 1.65; }
+  .blueprint-card .theme-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 11px; font-weight: 600; color: var(--muted); }
+  .theme-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* Footer */
+  .footer { text-align: center; padding-top: 48px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
+  .footer strong { color: var(--lime); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--ink); } ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 640px) {
+    body { padding: 24px 16px 64px; }
+    .peer-row { grid-template-columns: 1fr; }
+    .council-grid, .options-grid, .blueprint-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-badge"><span>DECISION COUNCIL REPORT</span></div>
+  <h1>What should<br /><em>v24–v28 look like?</em></h1>
+  <p class="meta">neatr.ai landing page strategy · 5-member council · June 8, 2026</p>
+</header>
+
+<!-- COUNCIL CARDS -->
+<p class="section-label">The Council</p>
+<div class="council-grid">
+
+  <div class="council-card">
+    <div class="council-member-name"><span class="emoji">🔬</span><div><div class="name">The Researcher</div><div class="role">Evidence-first analysis</div></div></div>
+    <div class="verdict">No conversion data exists for v15–v23 — "highest-converting" is hypothesis, not finding; apply CRO evidence from B2B SaaS to five untested angles: outcome specificity, risk-reversal copy, waitlist social proof, objection-handling, category domination.</div>
+    <ul class="keypoints">
+      <li>Zero A/B data, heatmaps, or session recordings exist for any existing variant — all recommendations are pattern-matching from analogous markets.</li>
+      <li>Specificity of outcome beats category description in SMB/trades SaaS (Jobber, Housecall Pro). "Recover 8 hrs/week" > "automate your business."</li>
+      <li>Critical missing data: device split of target audience, primary acquisition channel, and which specific pain point (dispatch chaos vs. late invoicing) triggers action.</li>
+    </ul>
+    <div class="confidence-badge low">● LOW — No measured behaviour on actual pages</div>
+    <div class="bias">Favours concrete, outcome-anchored copy over visual innovation; may underweight brand differentiation value of premium dark variants.</div>
+  </div>
+
+  <div class="council-card">
+    <div class="council-member-name"><span class="emoji">🧪</span><div><div class="name">The Sceptic</div><div class="role">Stress-tester</div></div></div>
+    <div class="verdict">You are optimising for visual novelty when the actual conversion bottleneck is trust and credibility — and you've already stripped out the single highest-converting element (real testimonials) without a replacement strategy.</div>
+    <ul class="keypoints">
+      <li>Nine variants already cover every major landing page pattern; the constraint is not the page — a solo HVAC owner converts because someone they trust vouched, not because the hero section changed.</li>
+      <li>"No fake testimonials" is correctly honoured but its implication isn't faced: you've removed the #1 converting element in the category and are compensating with aesthetics — that's a substitution problem, not a creative brief.</li>
+      <li>Lime on #060606 reads "design agency / crypto startup" to a 47-year-old HVAC owner on a Samsung mid-range. The dark premium aesthetic may be quietly filtering out the actual ICP.</li>
+    </ul>
+    <div class="confidence-badge medium">● MEDIUM — Directionally strong; no funnel data to quantify</div>
+    <div class="bias">Favours audience-fit and trust-signal density over visual sophistication; may underweight brand perception and aspirational segment.</div>
+  </div>
+
+  <div class="council-card">
+    <div class="council-member-name"><span class="emoji">♟️</span><div><div class="name">The Strategist</div><div class="role">Long-horizon systems thinking</div></div></div>
+    <div class="verdict">Stop testing aesthetics and start testing conviction — each variant should embody a single falsifiable belief about what makes a field service owner say "this was built for me."</div>
+    <ul class="keypoints">
+      <li>v15–v23 tests presentation style, not belief systems. Lock the visual language; vary the psychological contract offered: autonomy, status, survival, growth, or belonging.</li>
+      <li>The identity archetype that wins your first real customers defines brand positioning for 3 years — this is the highest-optionality decision available right now.</li>
+      <li>Without a conversion thesis per variant, adding more pages creates beautiful portfolio + weak feedback loop. Whichever identity angle wins dictates the product's entire go-to-market narrative.</li>
+    </ul>
+    <div class="confidence-badge high">● HIGH — Assumes measurement infrastructure is in place</div>
+    <div class="bias">Weights "who does this attract in year 3" more than "which headline gets more clicks this week." May underweight 90-day traction urgency.</div>
+  </div>
+
+  <div class="council-card">
+    <div class="council-member-name"><span class="emoji">⚙️</span><div><div class="name">The Operator</div><div class="role">Execution reality</div></div></div>
+    <div class="verdict">Build in a single focused sprint using five proven high-converting structures: ROI outcome specificity, credibility metrics wall, interactive workflow demo, niche-specific micro-page, and anti-software simplicity.</div>
+    <ul class="keypoints">
+      <li>Clone best existing variant, swap hero angle, layer one new conversion mechanic per page — cuts build time to 2–4 hours each vs. starting from scratch.</li>
+      <li>No-testimonial constraint is solvable: outcome metrics ("Jobs dispatched in beta: 847"), named-use-case vignettes, industry logo strips (QuickBooks, Google Maps) signal legitimacy without fabricating customers.</li>
+      <li>Niche-specific variant (separate copy for cleaning vs. HVAC vs. landscaping) is highest-ROI but highest-effort — budget 1–2 hours of dedicated copy work per niche angle.</li>
+    </ul>
+    <div class="confidence-badge high">● HIGH — Structurally well-understood patterns; no exotic dependencies</div>
+    <div class="bias">Defaults to what ships fastest over what looks most impressive. Will trade a polished animation for a working interactive element every time.</div>
+  </div>
+
+  <div class="council-card">
+    <div class="council-member-name"><span class="emoji">🎨</span><div><div class="name">The Creative</div><div class="role">Lateral reframer</div></div></div>
+    <div class="verdict">Stop selling software features and start selling identity transformation — these owners don't want "automation," they want to finally feel like they built a real business instead of just owning a job.</div>
+    <ul class="keypoints">
+      <li>"The Hired CEO" concept: show what a Tuesday looks like after neatr — morning coffee, 3 jobs dispatched, 2 invoices sent, crew assigned, all without the owner being involved. Copy: "You built this business. Now let it run."</li>
+      <li>"The Competitor's Secret" angle: reframe neatr as the invisible infrastructure organised operators already use — FOMO through social proof by inference, not fake scarcity. No testimonials needed.</li>
+      <li>"Anti-Software arc" (v26–v28): lean into owner skepticism — "We know you've tried this before," "No contract. No upfront. Just results." as the hero, and "Built for people who hate software" as radical-simplicity variant.</li>
+    </ul>
+    <div class="confidence-badge high">● HIGH — All existing v15–v23 variants still sell AT the owner; none sell WITH their identity and skepticism</div>
+    <div class="bias">Defaults to reframing audience self-concept over product features; weights emotional identity over rational value propositions; may underweight executional specificity.</div>
+  </div>
+
+</div>
+
+<!-- PEER REVIEW -->
+<p class="section-label">Peer Review</p>
+<div class="peer-section">
+  <div class="peer-grid">
+
+    <details class="peer-item">
+      <summary><span class="peer-label"><span class="peer-id">A</span><span>The Researcher — What the others said</span></span><span class="chevron">▼</span></summary>
+      <div class="peer-body">
+        <div class="peer-row">
+          <div class="peer-col"><h4>Gets Right</h4><p>The single most load-bearing insight in the set: there is zero empirical conversion data, so any "highest-converting" recommendation is hypothesis. This epistemic honesty no one else states plainly.</p></div>
+          <div class="peer-col"><h4>Misses</h4><p>"Social proof via waitlist momentum" and "category domination" are generic CRO placeholders, not sharpened hypotheses tuned to a 47-year-old cleaning business owner.</p></div>
+        </div>
+        <div class="peer-agrees">
+          <span class="agrees">Agrees with C — both demand falsifiable testing before visual execution</span>
+          <span class="conflicts">Conflicts with D — D treats speed as a substitute for strategic prioritisation</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="peer-item">
+      <summary><span class="peer-label"><span class="peer-id">B</span><span>The Sceptic — What the others said</span></span><span class="chevron">▼</span></summary>
+      <div class="peer-body">
+        <div class="peer-row">
+          <div class="peer-col"><h4>Gets Right</h4><p>The single most dangerous structural problem: aesthetic iteration ≠ trust-building. The dark premium palette criticism is particularly sharp. The point about removing testimonials creating a hole that visual strategy can't fill is underweighted by everyone else.</p></div>
+          <div class="peer-col"><h4>Misses</h4><p>Diagnoses the problem without prescribing a tractable solution. "Trust comes from referrals, not landing pages" is true but unhelpful if the channel mix cannot be changed right now.</p></div>
+        </div>
+        <div class="peer-agrees">
+          <span class="agrees">Agrees with E — both centre ICP psychology over visual mechanics</span>
+          <span class="conflicts">Conflicts with D — D proposes faster execution of the exact pattern B argues is already saturated</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="peer-item">
+      <summary><span class="peer-label"><span class="peer-id">C</span><span>The Strategist — What the others said</span></span><span class="chevron">▼</span></summary>
+      <div class="peer-body">
+        <div class="peer-row">
+          <div class="peer-col"><h4>Gets Right</h4><p>The correct experimental design: lock visual language, isolate psychological positioning. The five identity archetypes (operator, scaler, pro, exhausted founder, category winner) are the sharpest, most actionable taxonomy in the entire set — directly falsifiable.</p></div>
+          <div class="peer-col"><h4>Misses</h4><p>The distribution problem: even a perfectly calibrated identity variant converts zero people if it can't be trafficked to the right archetype. Says nothing about matching variant to acquisition channel or device context.</p></div>
+        </div>
+        <div class="peer-agrees">
+          <span class="agrees">Agrees with E — both argue identity transformation over feature marketing</span>
+          <span class="conflicts">Conflicts with D — D proposes cloning existing variants and swapping mechanics rather than rebuilding around conviction</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="peer-item">
+      <summary><span class="peer-label"><span class="peer-id">D</span><span>The Operator — What the others said</span></span><span class="chevron">▼</span></summary>
+      <div class="peer-body">
+        <div class="peer-row">
+          <div class="peer-col"><h4>Gets Right</h4><p>Operational reality: clone the best existing structure, layer one new mechanic per variant. The no-testimonial workaround (outcome metrics, named vignettes, tool logo strips) is the most practically useful suggestion in the entire set.</p></div>
+          <div class="peer-col"><h4>Misses</h4><p>"Fastest path" optimizes for output, not learning. Building five variants without a clear falsifiable hypothesis per variant produces a portfolio of pages with no feedback mechanism — the exact failure mode C identifies.</p></div>
+        </div>
+        <div class="peer-agrees">
+          <span class="agrees">Agrees with A — both are framework-first and enumerate concrete options</span>
+          <span class="conflicts">Conflicts with B and E — both argue the entire mechanical/visual optimisation frame is the wrong level of intervention</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="peer-item">
+      <summary><span class="peer-label"><span class="peer-id">E</span><span>The Creative — What the others said</span></span><span class="chevron">▼</span></summary>
+      <div class="peer-body">
+        <div class="peer-row">
+          <div class="peer-col"><h4>Gets Right</h4><p>The deepest insight: owners don't want software features, they want to stop feeling like they own a job. "Built for people who hate software" stops a scroll precisely because it names the objection rather than dodging it. The most differentiated concepts in the set.</p></div>
+          <div class="peer-col"><h4>Misses</h4><p>Executional specificity: copy concepts are vivid but visual and structural decisions (layout, CTA placement, above-fold density) are entirely open. Those decisions are where identity-transformation copy either lands or collapses.</p></div>
+        </div>
+        <div class="peer-agrees">
+          <span class="agrees">Agrees with C — both argue the transformation identity is the strategic variable</span>
+          <span class="conflicts">Conflicts with D — D treats conversion mechanic as primary lever; E argues copy is the load-bearing element</span>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</div>
+
+<!-- CHAIRMAN'S SYNTHESIS -->
+<p class="section-label">Chairman's Synthesis</p>
+<div class="synthesis">
+  <h2>The Verdict</h2>
+  <p class="subtitle">Synthesised from 5 council perspectives + peer review cross-examination</p>
+
+  <div class="tension-box">
+    <h3>Core Tension</h3>
+    <p>The council split along a clean fault line: D argues for faster execution of proven visual mechanics (ship more, test faster), while B, C, and E argue the landing page itself is not the constraining variable — trust deficit and identity misalignment are. Beneath that is a second tension A names correctly: there's zero empirical data on any existing variant, which means both camps are arguing from pattern-matching, not measurement. The real question isn't "which visual concept converts best?" — it's "which psychological contract does a field service owner say yes to?" Nobody has tested that yet.</p>
+  </div>
+
+  <p class="section-label" style="margin-bottom:16px">Top Options</p>
+  <div class="options-grid">
+    <div class="option-card">
+      <div class="option-num">OPTION 1 — RECOMMENDED</div>
+      <h4>Identity-First Variants</h4>
+      <p>Each of v24–v28 targets a distinct owner self-concept (C + E convergence). Same visual quality, different psychological contract. Lock the lime/dark design system; vary the conviction. Generates strategic signal, not just visual signal.</p>
+    </div>
+    <div class="option-card">
+      <div class="option-num">OPTION 2</div>
+      <h4>Outcome-Specificity Variants</h4>
+      <p>Lead every hero with a single concrete, measurable claim: "Recover 8 hours a week," "Get paid the day the job's done." Each variant pins one outcome, adds one new credibility mechanic (A + D convergence). Fastest to build and test.</p>
+    </div>
+    <div class="option-card">
+      <div class="option-num">OPTION 3</div>
+      <h4>Niche Micro-Pages</h4>
+      <p>One page per audience segment: cleaning, HVAC, landscaping, maintenance, window cleaning. Same structure, entirely specific copy and outcome claims per trade. Highest-effort but most directly testable via paid channel targeting.</p>
+    </div>
+  </div>
+
+  <div class="recommendation-box">
+    <h3>Recommendation — Build These 5 Variants</h3>
+    <p>Build identity-first variants that sell the transformation, not the software. Each page locks the visual system and varies only the psychological contract offered to the owner.</p>
+    <div class="variants-list">
+      <div class="variant-row"><span class="variant-tag">v24</span><span class="variant-desc">"The Hired CEO" — A day in the life after neatr. Morning coffee. 3 jobs dispatched. 2 invoices sent. Zero calls made. Copy: "You built this business. Now let it run." Dark theme, timeline visual, no dashboard.</span></div>
+      <div class="variant-row"><span class="variant-tag">v25</span><span class="variant-desc">"We know you've tried this before" — Leads with honesty and skepticism. Addresses the "burned by SaaS" objection head-on. Minimal white layout, almost editorial. The anti-hype page.</span></div>
+      <div class="variant-row"><span class="variant-tag">v26</span><span class="variant-desc">"No contract. No upfront. Just results." — Risk-reversal as the hero, not a footnote. The invoiced-after-completion model front and center. White theme, ultra-minimal, single CTA. Eliminates the biggest objection before it forms.</span></div>
+      <div class="variant-row"><span class="variant-tag">v27</span><span class="variant-desc">"The Competitor's Secret" — Reframes neatr as the invisible infrastructure the organised operators in your market already use. FOMO by inference, not fake scarcity. Copy: "The cleaners who are booking while you're quoting."</span></div>
+      <div class="variant-row"><span class="variant-tag">v28</span><span class="variant-desc">Niche-specific: Cleaning-only page — concrete outcome numbers, cleaning-specific pain copy, before/after for a cleaning business specifically. Tests whether audience specificity outperforms generic field-service framing.</span></div>
+    </div>
+  </div>
+
+  <div class="dealbreakers">
+    <h3>Deal-Breakers — Cannot Be Ignored</h3>
+    <ul>
+      <li><strong>Aesthetic mismatch risk (B):</strong> Lime on #060606 reads "design agency / crypto startup" to a 45+ trades owner on a mid-range Android. v25 and v26 (skepticism-first, risk-reversal) must be white-theme with maximum legibility — not cinematic dark.</li>
+      <li><strong>Measurement gap (A):</strong> Without form conversion tracking on each variant, v24–v28 generate zero usable signal. Confirm Vercel Analytics or equivalent captures which variant's CTA receives submissions before building anything.</li>
+      <li><strong>No testimonials = trust vacuum (B):</strong> Every identity variant must include a credibility substitute: outcome metrics, use-case vignettes, or tool logos (QuickBooks, Google Maps) — the page can't just make promises with nothing to anchor them.</li>
+    </ul>
+  </div>
+
+  <div class="dissent-box">
+    <h3>Strongest Dissenting View</h3>
+    <p>D's position deserves acknowledgment: all of this strategy is worthless if the pages don't ship. The fastest path to actual conversion data is to build something — even a mediocre page with good tracking beats a perfect page still being designed. The council's risk is analysis paralysis dressed as strategic rigour. If 90-day traction matters more than 3-year positioning, ignore Option 1, run Option 2 (outcome specificity), and start measuring immediately.</p>
+  </div>
+</div>
+
+<!-- v24–v28 BLUEPRINT -->
+<p class="section-label">Implementation Blueprint — v24 to v28</p>
+<div class="blueprint">
+  <div class="blueprint-grid">
+
+    <div class="blueprint-card">
+      <span class="v-tag">v24</span>
+      <h3>The Hired CEO</h3>
+      <div class="concept-tag">IDENTITY TRANSFORMATION · DAY-IN-THE-LIFE</div>
+      <div class="copy-angle">"You built this business. Now let it run."</div>
+      <div class="details">Hero shows a timeline of a Tuesday after neatr — 7:42am: booking received automatically, 7:43am: crew assigned by AI, 12:40pm: job done + invoice sent, 5:00pm: owner never touched their phone. No dashboard, no feature list. Just a calm day. Single lime CTA below.</div>
+      <div class="theme-badge"><div class="theme-dot" style="background:#060606; border:1px solid #444"></div>Dark theme</div>
+    </div>
+
+    <div class="blueprint-card">
+      <span class="v-tag">v25</span>
+      <h3>We Know You've Tried This</h3>
+      <div class="concept-tag">ANTI-HYPE · SKEPTICISM-FIRST · HONEST</div>
+      <div class="copy-angle">"Most software promises a lot. We'd rather show you 30 seconds of what actually happens."</div>
+      <div class="details">Opens by acknowledging the audience has been burned before. Single column, editorial layout, almost no UI chrome. Names the specific failures (Jobber too complex, spreadsheets break, WhatsApp chaos) then pivots: "Here's what we do differently." Minimal animations, maximum credibility.</div>
+      <div class="theme-badge"><div class="theme-dot" style="background:#FFFFFF; border:1px solid #ccc"></div>White theme — high legibility</div>
+    </div>
+
+    <div class="blueprint-card">
+      <span class="v-tag">v26</span>
+      <h3>No Contract. No Upfront.</h3>
+      <div class="concept-tag">RISK-REVERSAL AS HERO · OBJECTION-FIRST</div>
+      <div class="copy-angle">"You pay nothing until a job completes. That's it."</div>
+      <div class="details">The invoiced-after-completion model as the entire hero — not buried in small print. Ultra-minimal layout: 3 lines of copy, one CTA, no screenshots. Below fold: quick "how it works" and the 3 credibility mechanics (outcome metrics, use-case vignettes, tool logos). Eliminates the biggest objection before it forms.</div>
+      <div class="theme-badge"><div class="theme-dot" style="background:#FFFFFF; border:1px solid #ccc"></div>White — minimal, focused</div>
+    </div>
+
+    <div class="blueprint-card">
+      <span class="v-tag">v27</span>
+      <h3>The Competitor's Secret</h3>
+      <div class="concept-tag">INFERENCE FOMO · SOCIAL PROOF BY IMPLICATION</div>
+      <div class="copy-angle">"The cleaners who are booking while you're quoting. The landscapers who invoice before they leave the driveway."</div>
+      <div class="details">No fake testimonials — uses inference instead. Positions neatr as the tool the organised, successful operators in your market already run on. No scarcity countdown, no fake urgency. Just the uncomfortable implication that someone in your area is already a step ahead. Dark theme, lime accents on the "them vs. you" contrast moments.</div>
+      <div class="theme-badge"><div class="theme-dot" style="background:#060606; border:1px solid #444"></div>Dark theme — premium contrast</div>
+    </div>
+
+    <div class="blueprint-card">
+      <span class="v-tag">v28</span>
+      <h3>Built for Cleaning Businesses</h3>
+      <div class="concept-tag">NICHE-SPECIFIC · CLEANING-FIRST · OUTCOME METRICS</div>
+      <div class="copy-angle">"From booking call to invoice sent — without a single spreadsheet."</div>
+      <div class="details">Cleaning-only copy: residential deep cleans, recurring clients, crew scheduling by neighbourhood, invoicing after each visit. Concrete numbers (avg invoice sent in 4 min, avg dispatch time 90s). No generic "field service" framing. Tests whether audience specificity outperforms broad positioning — highest signal experiment in the batch if cleaning traffic can be isolated.</div>
+      <div class="theme-badge"><div class="theme-dot" style="background:#FFFFFF; border:1px solid #ccc"></div>White — approachable, practical</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>Council convened by <strong>Neatr</strong> · Powered by <strong>Claude</strong> · 5 perspectives · 1 synthesis</p>
+</footer>
+
+<script>
+  // Add open/close animation to peer review details
+  document.querySelectorAll('details.peer-item').forEach(d => {
+    d.addEventListener('toggle', () => {
+      const body = d.querySelector('.peer-body');
+      if (d.open) { body.style.animation = 'none'; }
+    });
+  });
+</script>
+
+</body>
+</html>
