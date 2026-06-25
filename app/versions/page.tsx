@@ -38,6 +38,7 @@ const VERSIONS = [
   { route: "v26", label: "Risk-Reversal", theme: "dark", desc: "Pricing-first hero, risk-reversal positioning, no upfront cost" },
   { route: "v27", label: "vs Competitors", theme: "dark", desc: "Competitive urgency — side-by-side Monday comparison" },
   { route: "v28", label: "Vertical", theme: "dark", desc: "Residential cleaning vertical — live job board demo" },
+  { route: "v29", label: "Editorial 3D", theme: "light", desc: "bureau.cool homage — oversized type, momentum scroll, 3D point-cloud background + live booking animation" },
 ];
 
 const THEME_BADGE: Record<string, { label: string; color: string; bg: string }> = {
