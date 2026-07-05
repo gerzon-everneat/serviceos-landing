@@ -1,6 +1,6 @@
 import Bg3D from "./components/Bg3D";
 import HeroPlayer from "./components/HeroPlayer";
-import StepVideos from "./components/StepVideos";
+import ShowcaseVideos from "./components/ShowcaseVideos";
 import { FAQ } from "./content";
 
 /* v33 — the conversion landing. Server-rendered for SEO; the only client
@@ -158,9 +158,9 @@ export default function V33Page() {
             <em style={{ fontFamily: SERIF, fontWeight: 600 }}>start to finish.</em>
           </h2>
           <p className="mb-10 mt-4 max-w-[58ch] text-[15.5px] leading-relaxed text-[#0A0A0A]/60">
-            Three screen recordings of the live product — no mockups, no cuts. This is exactly what you and your customers get.
+            Four screen recordings of the live product — no mockups, no cuts. This is exactly what you and your customers get.
           </p>
-          <StepVideos />
+          <ShowcaseVideos />
         </section>
 
         {/* ─── Features ─── */}
