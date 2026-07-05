@@ -38,6 +38,17 @@ export default function Bg3D() {
       H = canvas.height = Math.max(1, Math.floor(canvas.offsetHeight * dpr));
     };
 
+    // Cursor joins the constellation: nearby points link to it and lean in.
+    const mouse = { x: -1e5, y: -1e5 };
+    const onMove = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse") return; // touch devices keep the calm version
+      mouse.x = e.clientX * dpr;
+      mouse.y = e.clientY * dpr;
+    };
+    const onLeave = () => { mouse.x = -1e5; mouse.y = -1e5; };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("pointerout", onLeave, { passive: true });
+
     const draw = () => {
       const docScroll = document.documentElement.scrollHeight - window.innerHeight;
       const prog = docScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / docScroll)) : 0;
@@ -80,6 +91,37 @@ export default function Bg3D() {
           }
         }
       }
+      // Cursor link-up: points inside the radius connect to the pointer and
+      // are drawn slightly pulled toward it, so the field reacts without physics.
+      const R = 190 * dpr;
+      let linked = 0;
+      for (const p of proj) {
+        const dx = mouse.x - p.sx, dy = mouse.y - p.sy;
+        const dist = Math.hypot(dx, dy);
+        if (dist < R) {
+          const k = 1 - dist / R;
+          p.sx += dx * k * 0.14;
+          p.sy += dy * k * 0.14;
+          const al = k * 0.32 * p.d;
+          ctx.strokeStyle = `rgba(${ac[0]},${ac[1]},${ac[2]},${al})`;
+          ctx.lineWidth = dpr * 0.7;
+          ctx.beginPath();
+          ctx.moveTo(mouse.x, mouse.y);
+          ctx.lineTo(p.sx, p.sy);
+          ctx.stroke();
+          linked++;
+        }
+      }
+      if (linked > 0) {
+        ctx.fillStyle = "rgba(200,255,0,0.9)";
+        ctx.strokeStyle = "rgba(10,10,10,0.55)";
+        ctx.lineWidth = dpr;
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, 2.4 * dpr, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      }
+
       for (const p of proj) {
         const r = Math.max(0.6, p.d * 1.9 * dpr);
         const al = Math.min(0.5, 0.2 * p.d + (p.z > 0 ? 0.14 : 0));
@@ -95,7 +137,12 @@ export default function Bg3D() {
     const ro = new ResizeObserver(() => { resize(); if (reduce) draw(); });
     ro.observe(canvas);
     draw();
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerout", onLeave);
+    };
   }, []);
 
   return (
