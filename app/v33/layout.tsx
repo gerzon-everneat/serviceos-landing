@@ -48,11 +48,11 @@ export default function V33Layout({ children }: { children: React.ReactNode }) {
       "@context": "https://schema.org",
       "@type": "HowTo",
       name: "How to start taking online bookings with neatr",
-      totalTime: "PT4M",
+      totalTime: "PT5M",
       step: VIDEOS.map((v, i) => ({
         "@type": "HowToStep",
         position: i + 1,
-        name: ["Sign up", "Set up your operations", "Share your booking page"][i],
+        name: ["Sign up", "Set up your operations", "Share your booking page", "Customize your booking form"][i],
         text: v.description,
         video: {
           "@type": "VideoObject",
