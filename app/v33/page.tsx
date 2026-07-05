@@ -119,24 +119,32 @@ export default function V33Page() {
         </section>
 
         {/* ─── Timing strip — the numbers are the recordings' real durations ─── */}
-        <section aria-label="How fast it is" className="border-y border-[#E7E6E1] bg-white">
-          <div className="mx-auto grid w-full max-w-[1200px] gap-8 px-5 py-10 sm:grid-cols-3 md:px-8">
-            {[
-              ["0:22", "sign-up to live dashboard"],
-              ["1:45", "empty account to configured business"],
-              ["1:07", "customer visit to confirmed booking"],
-            ].map(([n, l]) => (
-              <div key={l} className="text-center sm:text-left">
-                <p className="m-0 text-[34px] font-bold tracking-tight" style={{ fontFamily: SANS }}>
-                  {n}
-                </p>
-                <p className="m-0 mt-1 text-[13.5px] text-[#0A0A0A]/55">{l}</p>
-              </div>
-            ))}
+        <section aria-label="How fast neatr is, timed on the demo recordings" className="border-y border-[#E7E6E1] bg-white">
+          <div className="mx-auto w-full max-w-[1200px] px-5 py-12 md:px-8">
+            <div className="mb-8 flex flex-wrap items-baseline justify-between gap-2">
+              <h2 className="m-0 text-[15px] font-semibold">
+                This is how fast it actually is <span className="font-normal text-[#0A0A0A]/45">— stopwatch on the recordings, not marketing math.</span>
+              </h2>
+              <a href="#how" className="text-[13px] font-medium text-[#3A5000] no-underline hover:underline">
+                Watch the recordings ↓
+              </a>
+            </div>
+            <div className="grid gap-8 sm:grid-cols-3">
+              {[
+                ["22", "seconds", "to sign up and land in a live dashboard"],
+                ["1:45", "minutes", "to set up services, pricing, and branding"],
+                ["1:07", "minutes", "for a customer to book and pay"],
+              ].map(([n, unit, l]) => (
+                <a key={l} href="#how" className="group no-underline">
+                  <p className="m-0 flex items-baseline gap-2 text-[#0A0A0A]">
+                    <span className="text-[38px] font-bold tracking-tight">{n}</span>
+                    <span className="text-[13px] font-medium text-[#0A0A0A]/45">{unit}</span>
+                  </p>
+                  <p className="m-0 mt-1.5 max-w-[30ch] text-[14px] leading-snug text-[#0A0A0A]/60 group-hover:text-[#0A0A0A]/85">{l}</p>
+                </a>
+              ))}
+            </div>
           </div>
-          <p className="mx-auto -mt-4 max-w-[1200px] px-5 pb-6 text-[12px] text-[#0A0A0A]/40 md:px-8">
-            Timed on the unedited recordings below — not marketing math.
-          </p>
         </section>
 
         {/* ─── How it works ─── */}
