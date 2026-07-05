@@ -249,7 +249,7 @@ export default function V30() {
           <span>neatr<span style={{ color: C.ink3 }}>.ai</span></span>
         </a>
         <div className="navlinks">
-          {[["The agent", "work"], ["Setup", "setup"], ["Index", "index"], ["Studio", "studio"]].map(([l, id]) => (
+          {[["The agent", "work"], ["Demos", "setup"], ["Index", "index"], ["Studio", "studio"]].map(([l, id]) => (
             <a key={id} href={`#${id}`} onClick={(e) => { e.preventDefault(); goTo(id); }}>{l}</a>
           ))}
           <a className="navcta" href="#access" onClick={(e) => { e.preventDefault(); goTo("access"); }}>
@@ -303,9 +303,9 @@ export default function V30() {
           </Reveal>
         </Section>
 
-        {/* SETUP IN MINUTES — real admin screens, auto-cycling on their own timer */}
+        {/* WATCH IT RUN — unedited recordings of the live product, one per tab */}
         <Section id="setup">
-          <Reveal><div className="lbl"><span>Setup in minutes</span><span>{String(SETUP_STEPS.length).padStart(2, "0")}</span></div></Reveal>
+          <Reveal><div className="lbl"><span>Watch it run</span><span>{String(SETUP_STEPS.length).padStart(2, "0")}</span></div></Reveal>
           <Reveal delay={60}><SetupFlow /></Reveal>
         </Section>
 
@@ -488,32 +488,47 @@ function BookingFlow() {
   );
 }
 
+/* Real screen recordings of the live product — each tab is one unedited clip. */
 const SETUP_STEPS = [
-  { key: "categories", label: "Categories", copy: "Start broad. Map every category you serve to the types, services, and spaces underneath it.", src: "/setup/categories.png" },
-  { key: "types", label: "Types", copy: "Break each category into what's actually being booked — a house, a room, an office.", src: "/setup/types.png" },
-  { key: "services", label: "Services", copy: "Attach the work itself, mapped to the categories and extras it applies to.", src: "/setup/services.png" },
-  { key: "extras", label: "Extras", copy: "Add the upsells — priced and tied to the services they belong on.", src: "/setup/extras.png" },
-  { key: "spaces", label: "Spaces", copy: "Define what gets cleaned, room by room, with quantity controls where it scales.", src: "/setup/spaces.png" },
-  { key: "frequency", label: "Frequency", copy: "Set the cadence. Recurring bookings schedule themselves from here on out.", src: "/setup/frequencies.png" },
+  { key: "signup", label: "Sign up", time: "0:22", secs: 22, copy: "An email and one code — a new business lands in its own live dashboard. Twenty-two seconds, unedited.", src: "/videos/01-tenant-signup.mp4", poster: "/videos/poster-01.jpg" },
+  { key: "setup", label: "Set up", time: "1:45", secs: 105, copy: "Categories, spaces, services, pricing tiers, and branding — the whole catalog configured live, saving as you type.", src: "/videos/02-operations-setup.mp4", poster: "/videos/poster-02.jpg" },
+  { key: "booking", label: "Customer books", time: "1:07", secs: 67, copy: "A guest checks their ZIP, picks an arrival window, pays — and walks away with a confirmed booking. No account needed.", src: "/videos/03-customer-booking.mp4", poster: "/videos/poster-03.jpg" },
 ];
 
 function SetupFlow() {
   const [active, setActive] = useState(0);
+  const [reduce, setReduce] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(() => setActive((a) => (a + 1) % SETUP_STEPS.length), 4200);
-    return () => clearInterval(id);
+    setReduce(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
+  useEffect(() => {
+    // React doesn't reflect `muted` at mount, which blocks autoplay — kick it manually.
+    if (!reduce) videoRef.current?.play().catch(() => {});
+  }, [active, reduce]);
   const step = SETUP_STEPS[active];
   return (
     <div className="setupwrap">
       <div className="setupcard">
         <div className="setuphead">
           <span className="bdots"><i /><i /><i /></span>
-          <span className="bmono">Services / {step.label}</span>
+          <span className="bmono">book.neatr.ai — {step.label} · {step.time}</span>
         </div>
         <div className="setupimgwrap">
-          <img key={step.key} src={step.src} alt={`${step.label} setup screen`} className="setupimg" />
+          <video
+            key={step.key}
+            ref={videoRef}
+            src={step.src}
+            poster={step.poster}
+            muted
+            playsInline
+            autoPlay={!reduce}
+            controls={reduce}
+            preload="metadata"
+            aria-label={`${step.label} — unedited screen recording, ${step.time}`}
+            onEnded={() => setActive((a) => (a + 1) % SETUP_STEPS.length)}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
+          />
         </div>
       </div>
       <div className="setuptabs">
@@ -521,7 +536,7 @@ function SetupFlow() {
           <button key={s.key} className={`setuptab${i === active ? " on" : ""}`} onClick={() => setActive(i)}>
             <span className="setuptabnum">{String(i + 1).padStart(2, "0")}</span>
             <span className="setuptablabel">{s.label}</span>
-            <span className="setuptabbar">{i === active && <span className="setuptabfill" key={active} />}</span>
+            <span className="setuptabbar">{i === active && <span className="setuptabfill" key={active} style={{ animationDuration: `${s.secs}s` }} />}</span>
           </button>
         ))}
       </div>

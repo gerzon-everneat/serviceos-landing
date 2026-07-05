@@ -1,3 +1,4 @@
+import Bg3D from "./components/Bg3D";
 import HeroPlayer from "./components/HeroPlayer";
 import StepVideos from "./components/StepVideos";
 import { FAQ } from "./content";
@@ -52,6 +53,7 @@ const PLANS = [
 export default function V33Page() {
   return (
     <div style={{ fontFamily: SANS, background: "#FBFBF9", color: "#0A0A0A" }} className="min-h-screen">
+      <Bg3D />
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm">
         Skip to content
       </a>
@@ -79,14 +81,14 @@ export default function V33Page() {
         </nav>
       </header>
 
-      <main id="main">
+      <main id="main" className="relative z-[1]">
         {/* ─── Hero ─── */}
-        <section aria-labelledby="hero-h" className="mx-auto grid w-full max-w-[1200px] items-center gap-12 px-5 pb-20 pt-28 md:grid-cols-[1fr_1.05fr] md:gap-14 md:px-8 md:pb-28 md:pt-40">
+        <section aria-labelledby="hero-h" className="mx-auto grid w-full max-w-[1240px] items-center gap-12 px-5 pb-20 pt-28 md:grid-cols-[1.15fr_1fr] md:gap-12 md:px-8 md:pb-28 md:pt-40">
           <div>
             <p className="mb-5 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0A0A0A]/45">
               Online booking software for home-service businesses
             </p>
-            <h1 id="hero-h" className="m-0 text-[clamp(38px,7vw,64px)] font-bold leading-[1.02] tracking-[-0.02em]">
+            <h1 id="hero-h" className="m-0 text-[clamp(42px,7.5vw,70px)] font-bold leading-[1.0] tracking-[-0.025em]">
               Bookings in.
               <br />
               Jobs dispatched.
@@ -260,7 +262,7 @@ export default function V33Page() {
       </main>
 
       {/* ─── Footer ─── */}
-      <footer className="border-t border-[#E7E6E1] bg-[#FBFBF9]">
+      <footer className="relative z-[1] border-t border-[#E7E6E1] bg-[#FBFBF9]">
         <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center justify-between gap-4 px-5 py-8 text-[13px] text-[#0A0A0A]/50 sm:flex-row md:px-8">
           <p className="m-0 flex items-center gap-2">
             <MarkGrid /> <span className="font-semibold text-[#0A0A0A]">neatr</span> · © 2026
