@@ -24,7 +24,7 @@ export default function StepVideos() {
   }
 
   return (
-    <ol className="grid list-none gap-6 p-0 md:grid-cols-3 md:gap-5">
+    <ol className="grid list-none gap-6 p-0 md:grid-cols-2 md:gap-5 xl:grid-cols-4">
       {VIDEOS.map((v, i) => (
         <li key={v.key} className="flex flex-col">
           <button
@@ -63,7 +63,7 @@ export default function StepVideos() {
           <div className="mt-4 flex items-baseline gap-3 px-1">
             <span className="font-sans text-xs font-semibold text-[#3A5000]" aria-hidden>{String(i + 1).padStart(2, "0")}</span>
             <div>
-              <h3 className="font-sans text-[15px] font-semibold text-[#0A0A0A]">{["Sign up", "Set up your operations", "Customers book themselves"][i]}</h3>
+              <h3 className="font-sans text-[15px] font-semibold text-[#0A0A0A]">{["Sign up", "Set up your operations", "Customers book themselves", "Make the form yours"][i]}</h3>
               <p className="mt-1.5 font-sans text-sm leading-relaxed text-[#0A0A0A]/60">{v.description.replace("Unedited screen recording: ", "").replace(/^./, (c) => c.toUpperCase())}</p>
             </div>
           </div>

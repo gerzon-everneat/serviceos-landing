@@ -60,4 +60,14 @@ export const VIDEOS = [
     poster: "/videos/poster-03.jpg",
     duration: "PT1M7S",
   },
+  {
+    key: "form-builder",
+    label: "Customize your form",
+    time: "0:57",
+    name: "Customize your booking form on neatr in 57 seconds",
+    description: "Unedited screen recording: an owner adds a custom question to the booking form, drags it into place, and publishes — then a customer answers it on the live form and the quote updates.",
+    src: "/videos/04-form-builder.mp4",
+    poster: "/videos/poster-04.jpg",
+    duration: "PT57S",
+  },
 ];

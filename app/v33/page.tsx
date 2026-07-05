@@ -131,11 +131,12 @@ export default function V33Page() {
                 Watch the recordings ↓
               </a>
             </div>
-            <div className="grid gap-8 sm:grid-cols-3">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 ["22", "seconds", "to sign up and land in a live dashboard"],
                 ["1:45", "minutes", "to set up services, pricing, and branding"],
                 ["1:07", "minutes", "for a customer to book and pay"],
+                ["57", "seconds", "to add a custom question and publish your form"],
               ].map(([n, unit, l]) => (
                 <a key={l} href="#how" className="group no-underline">
                   <p className="m-0 flex items-baseline gap-2 text-[#0A0A0A]">
