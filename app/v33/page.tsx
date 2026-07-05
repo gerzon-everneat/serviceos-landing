@@ -33,20 +33,22 @@ const FEATURES = [
 
 const PLANS = [
   {
-    name: "Free",
-    price: "$0",
-    per: "to start",
+    name: "Early access",
+    price: "Free",
+    per: "while we finalize plans",
     tag: null as string | null,
-    items: ["Your booking page, live today", "Catalog + pricing setup", "Guest checkout for customers", "One provider"],
+    items: ["Your booking page, live today", "Catalog + pricing setup", "Guest checkout for customers", "Dispatch, notifications & payments"],
     cta: "Start free",
+    href: SIGNUP,
   },
   {
-    name: "Business",
-    price: "$149",
-    per: "per month",
-    tag: "Most popular",
+    name: "Enterprise",
+    price: "Custom",
+    per: "tailored to your operation",
+    tag: "Talk to us",
     items: ["Unlimited providers", "Dispatch board + auto-assign", "Automated email & SMS notifications", "Payments with card on file", "Your branding on everything"],
-    cta: "Start with Business",
+    cta: "Contact us",
+    href: "mailto:hello@neatr.ai",
   },
 ];
 
@@ -214,7 +216,7 @@ export default function V33Page() {
                   ))}
                 </ul>
                 <a
-                  href={SIGNUP}
+                  href={p.href}
                   className={`mt-8 rounded-full px-6 py-3 text-center text-[14px] font-semibold no-underline transition-opacity hover:opacity-85 ${
                     p.tag ? "bg-[#C8FF00] text-[#0A0A0A]" : "bg-[#0A0A0A] text-white"
                   }`}

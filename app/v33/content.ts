@@ -25,7 +25,7 @@ export const FAQ = [
   },
   {
     q: "How much does neatr cost?",
-    a: "You can start free and put a booking page live today. The Business plan is $149 per month and includes unlimited providers, dispatch, notifications, and payments.",
+    a: "neatr is free while we finalize plans — you can put a booking page live today at no cost. Paid plans are coming soon, and for larger teams we offer custom enterprise pricing. Get in touch at hello@neatr.ai for a quote.",
   },
 ];
 

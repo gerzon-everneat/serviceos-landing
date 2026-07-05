@@ -39,11 +39,9 @@ export default function V33Layout({ children }: { children: React.ReactNode }) {
       description:
         "Online booking software for cleaning and home-service businesses: booking page, dispatch, notifications, and payments.",
       offers: {
-        "@type": "AggregateOffer",
+        "@type": "Offer",
+        price: "0",
         priceCurrency: "USD",
-        lowPrice: "0",
-        highPrice: "149",
-        offerCount: "2",
       },
     },
     {
