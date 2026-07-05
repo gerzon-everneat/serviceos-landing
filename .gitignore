@@ -46,5 +46,6 @@ next-env.d.ts
 *.png
 !public/assets/*.png
 !public/assets/*.jpg
+!public/setup/*.png
 
 .vercel
