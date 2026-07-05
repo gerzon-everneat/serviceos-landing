@@ -158,7 +158,7 @@ export default function Bg3D() {
         }}
       />
       <canvas ref={ref} aria-hidden className="pointer-events-none fixed inset-0 z-0 h-full w-full" />
-      <style>{`@keyframes v33glow{0%{transform:translate3d(-3%,-2%,0) scale(1.05)}100%{transform:translate3d(4%,3%,0) scale(1.16)}}@media (prefers-reduced-motion: reduce){.animate-\\[v33glow_24s_ease-in-out_infinite_alternate\\]{animation:none}}`}</style>
+      <style>{`@keyframes v33glow{0%{transform:translate3d(-3%,-2%,0)}100%{transform:translate3d(4%,3%,0)}}@media (prefers-reduced-motion: reduce){.animate-\\[v33glow_24s_ease-in-out_infinite_alternate\\]{animation:none}}`}</style>
     </>
   );
 }
