@@ -51,8 +51,8 @@ export default function ShowcaseVideos() {
               onClick={() => { setActive(i); setProgress(0); }}
               className={`relative cursor-pointer px-7 py-6 text-left font-sans transition-all ${
                 isActive
-                  ? "z-[1] bg-white shadow-[0_12px_28px_-10px_rgba(10,10,10,0.28)]"
-                  : "bg-[#FBFBF9] hover:bg-white hover:shadow-[0_8px_20px_-12px_rgba(10,10,10,0.2)]"
+                  ? "bg-white shadow-[0_8px_20px_-12px_rgba(10,10,10,0.2)] hover:shadow-[0_12px_28px_-10px_rgba(10,10,10,0.28)]"
+                  : "z-[1] bg-white shadow-[0_12px_28px_-10px_rgba(10,10,10,0.28)]"
               }`}
             >
               <span className={`block text-[14px] transition-colors ${isActive ? "font-bold text-[#0A0A0A]" : "font-semibold text-[#0A0A0A]/50"}`}>
