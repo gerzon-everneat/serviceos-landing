@@ -48,7 +48,7 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
 - **Copy:** H1 keyword-first; brand line as subhead; one primary CTA + one demo CTA.
   - **H1:** `Online booking software for cleaning businesses`
   - **Subhead:** *Bookings in. Jobs dispatched. You just grow.* Take bookings online, dispatch your team, and get paid — with a booking page customers finish in about a minute.
-  - **CTAs:** `Start your free trial` · `Watch a customer book (1:04)`
+  - **CTAs:** `Start your free trial` → `/signup?plan=Starter-27&type=starter` (defaults to Starter if the visitor hasn't picked a plan yet) · `Watch a customer book (1:04)`
 - **SEO role:** primary keyword in H1; page-level `SoftwareApplication` JSON-LD; the LCP section.
 - **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Sunlit, freshly cleaned modern living room with a booking tablet on the counter."
@@ -126,12 +126,13 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
   > A calm minimalist still life split left-to-right: left side a few loosely scattered paper notes on light oak, right side the same surface neatly ordered with a single phone and a sage sprig; tasteful, muted, low contrast; the composition reads as "chaos → order"; wide clean space for a comparison table overlay; no people. [STYLE BLOCK]
 
 ### §8 — Pricing *(subtle / very clean)*
-- **Tells the visitor:** "Try it with a free trial, then we'll tailor a plan to your team." There is **no self-serve free tier** — pricing is custom/enterprise, so this section's job is to start a *trial* or a *conversation*, not to display a price.
-- **Copy H2:** `Start with a free trial — then a plan that fits your team`
-  - A free trial to launch your booking page and run real jobs — no charge to start.
-  - Plans are tailored to team size, volume and portals — **custom / enterprise pricing, by quote**.
-  - CTAs: `Start your free trial` · `Talk to us for a quote` (`hello@neatr.ai`).
-- **SEO / Schema:** target *"…pricing"*, *"book a demo"*, *"free trial"* intent — **not** "free software". **Do not hardcode a `price: 0` Offer** (misleading + risks a price/merchant mismatch) — either omit `offers` or use an `Offer` whose `url` points to the contact/quote page with no false zero. Being upfront that pricing is custom still reads as trust.
+- **Tells the visitor:** "See a real starting price, sign up in minutes — or talk to us if you need something bigger." **Update:** a genuine self-serve **Starter** plan with a visible price now exists (real signup at `/signup?plan=Starter-27&type=starter&email=…`, real Stripe subscription) — this resolves the contradiction both adversarial reviews flagged (self-serve SMB copy vs. hidden custom-only pricing). Larger/multi-location teams still go custom-by-quote.
+- **Copy H2:** `Simple pricing to start — a custom plan when you grow`
+  - **Starter — $27/mo**, self-serve: sign up in minutes, cancel anytime, includes [confirm limits: seats/bookings/locations]. Primary CTA goes straight to `/signup?plan=Starter-27&type=starter` — no sales call needed.
+  - **Custom / Enterprise — by quote**: multi-location teams, higher volume, or portals beyond Starter's limits. CTA: `Talk to us for a quote` (`hello@neatr.ai`).
+  - CTAs: `Start on Starter — $27/mo` (primary) · `Talk to us for a quote` (secondary, demoted to a text link — per the earlier "split CTA = decision paralysis" finding, one dominant action).
+  - *(Open question — need from you: is Starter the only self-serve tier, or are there more named plans/prices beyond it? What's actually included at $27/mo — seat count, booking volume, portal access? Fill in before shipping copy.)*
+- **SEO / Schema:** now that a real price exists, **this is where a `SoftwareApplication`/`Offer` with a genuine non-zero `price: 27` becomes viable and correct** (the earlier "don't hardcode price:0" guidance was about faking a free tier — a real $27 Starter price is exactly what that schema wants). Keep `Offer` pointed at the quote page only for the custom/enterprise tier. Target *"…pricing"*, *"starter plan"*, *"book a demo"* intent.
 - **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Very bright, near-empty ivory scene with a single soft sage element."
 - **Prompt:**
@@ -139,7 +140,7 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
 
 ### §9 — FAQ + final CTA *(full photo)*
 - **Tells the visitor:** answers the last objections, then asks for the click. Warm, forward-looking close.
-- **Copy H2 (FAQ):** `Questions home-service owners ask` — reuse your 6 FAQs (what is neatr, setup time, guest booking, arrival windows, charging customers, cost). **H2 (CTA):** `Start your free trial` + `Talk to us for a quote` + `hello@neatr.ai`.
+- **Copy H2 (FAQ):** `Questions cleaning business owners ask` — reuse your 6 FAQs (what is neatr, setup time, guest booking, arrival windows, charging customers, cost — the cost answer now names the real Starter price, not just "custom pricing"). **H2 (CTA):** `Start on Starter — $27/mo` → `/signup?plan=Starter-27&type=starter` (primary) + `Talk to us for a quote` (`hello@neatr.ai`, secondary/text link).
 - **SEO / AEO role:** question-shaped H3s with self-contained answers = prime AI-answer citation fodder (FAQ rich results are gone, but the *text* wins in AI Overviews/Perplexity). Footer carries `Organization` JSON-LD (`sameAs` to all profiles) + internal links.
 - **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Sunlit front porch of a welcoming home at golden hour, calm and forward-looking."
@@ -159,7 +160,7 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
 | 5 | Live proof | H2 | real product demo / recordings | VideoObject ×3 |
 | 6 | Industries | H2+H3 | maid service / commercial cleaning / move-out cleaning | — |
 | 7 | Comparison | H2 | booking software alternative / best for cleaning | — |
-| 8 | Pricing | H2 | booking software pricing / free trial / book a demo | Offer (no price=0) or omit |
+| 8 | Pricing | H2 | booking software pricing / starter plan $27 / book a demo | Offer (real price=27 for Starter; quote-page URL for Enterprise) |
 | 9 | FAQ + CTA | H2+H3 | long-tail questions (AEO) | Organization; FAQ text |
 
 **Reminder:** all of this is on-page (rung 7). It only pays off once the page is indexed, on a real slug at `/`, linked, and in a sitemap — see the SEO audit and the `/seo` skill.
