@@ -1,6 +1,5 @@
 import Bg3D from "./components/Bg3D";
-import HeroPlayer from "./components/HeroPlayer";
-import StepVideos from "./components/StepVideos";
+import ShowcaseVideos from "./components/ShowcaseVideos";
 import { FAQ } from "./content";
 
 /* v33 — the conversion landing. Server-rendered for SEO; the only client
@@ -84,24 +83,24 @@ export default function V33Page() {
       </header>
 
       <main id="main" className="relative z-[1]">
-        {/* ─── Hero ─── */}
-        <section aria-labelledby="hero-h" className="mx-auto grid w-full max-w-[1240px] items-center gap-12 px-5 pb-20 pt-28 md:grid-cols-[1.15fr_1fr] md:gap-12 md:px-8 md:pb-28 md:pt-40">
-          <div>
+        {/* ─── Hero — Attio-style: centered copy, then the product stage ─── */}
+        <section aria-labelledby="hero-h" className="w-full px-5 pb-16 pt-24 md:px-8 md:pb-24 md:pt-32">
+          <div className="mx-auto w-full max-w-[880px] text-center">
             <p className="mb-5 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0A0A0A]/45">
               Online booking software for home-service businesses
             </p>
-            <h1 id="hero-h" className="m-0 text-[clamp(42px,7.5vw,70px)] font-bold leading-[1.0] tracking-[-0.025em]">
+            <h1 id="hero-h" className="m-0 text-[clamp(42px,7vw,68px)] font-bold leading-[1.02] tracking-[-0.025em]">
               Bookings in.
               <br />
               Jobs dispatched.
               <br />
               <em style={{ fontFamily: SERIF, fontWeight: 600 }}>You just grow.</em>
             </h1>
-            <p className="mt-6 max-w-[46ch] text-[16.5px] leading-relaxed text-[#0A0A0A]/62">
+            <p className="mx-auto mt-6 max-w-[52ch] text-[16.5px] leading-relaxed text-[#0A0A0A]/62">
               neatr gives your cleaning or home-service business a booking page customers finish in about a minute — and runs the
               dispatch, notifications, and payments behind it.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3.5">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3.5">
               <a
                 href={SIGNUP}
                 className="rounded-full bg-[#0A0A0A] px-6 py-3.5 text-[14.5px] font-semibold text-white no-underline transition-opacity hover:opacity-85"
@@ -117,50 +116,10 @@ export default function V33Page() {
             </div>
             <p className="mt-5 text-[13px] text-[#0A0A0A]/45">Free to start · No credit card · Your customers never need an account</p>
           </div>
-          <HeroPlayer />
-        </section>
-
-        {/* ─── Timing strip — the numbers are the recordings' real durations ─── */}
-        <section aria-label="How fast neatr is, timed on the demo recordings" className="border-y border-[#E7E6E1] bg-white">
-          <div className="mx-auto w-full max-w-[1200px] px-5 py-12 md:px-8">
-            <div className="mb-8 flex flex-wrap items-baseline justify-between gap-2">
-              <h2 className="m-0 text-[15px] font-semibold">
-                This is how fast it actually is <span className="font-normal text-[#0A0A0A]/45">— stopwatch on the recordings, not marketing math.</span>
-              </h2>
-              <a href="#how" className="text-[13px] font-medium text-[#3A5000] no-underline hover:underline">
-                Watch the recordings ↓
-              </a>
-            </div>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                ["22", "seconds", "to sign up and land in a live dashboard"],
-                ["1:45", "minutes", "to set up services, pricing, and branding"],
-                ["1:07", "minutes", "for a customer to book and pay"],
-                ["57", "seconds", "to add a custom question and publish your form"],
-              ].map(([n, unit, l]) => (
-                <a key={l} href="#how" className="group no-underline">
-                  <p className="m-0 flex items-baseline gap-2 text-[#0A0A0A]">
-                    <span className="text-[38px] font-bold tracking-tight">{n}</span>
-                    <span className="text-[13px] font-medium text-[#0A0A0A]/45">{unit}</span>
-                  </p>
-                  <p className="m-0 mt-1.5 max-w-[30ch] text-[14px] leading-snug text-[#0A0A0A]/60 group-hover:text-[#0A0A0A]/85">{l}</p>
-                </a>
-              ))}
-            </div>
+          {/* The product IS the hero — recordings on one big stage, Attio-style */}
+          <div id="how" className="mx-auto mt-14 w-full max-w-[1400px] scroll-mt-24 md:mt-16">
+            <ShowcaseVideos />
           </div>
-        </section>
-
-        {/* ─── How it works ─── */}
-        <section id="how" aria-labelledby="how-h" className="mx-auto w-full max-w-[1200px] scroll-mt-20 px-5 py-20 md:px-8 md:py-28">
-          <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0A0A0A]/45">How it works</p>
-          <h2 id="how-h" className="m-0 max-w-[24ch] text-[clamp(28px,4.5vw,44px)] font-bold leading-tight tracking-[-0.015em]">
-            Watch the whole thing,{" "}
-            <em style={{ fontFamily: SERIF, fontWeight: 600 }}>start to finish.</em>
-          </h2>
-          <p className="mb-10 mt-4 max-w-[58ch] text-[15.5px] leading-relaxed text-[#0A0A0A]/60">
-            Three screen recordings of the live product — no mockups, no cuts. This is exactly what you and your customers get.
-          </p>
-          <StepVideos />
         </section>
 
         {/* ─── Features ─── */}
