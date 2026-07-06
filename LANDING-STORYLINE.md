@@ -201,3 +201,37 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
 ### The one argument that kills it
 
 **The page can't decide who it's for.** §1–§6 are a textbook *self-serve SMB* StoryBrand ("start free today," "finish in about a minute," maid/lawn/handyman verticals), while §8 is *enterprise sales* ("custom/enterprise pricing, by quote," "talk to us"). Those are two different funnels with different buyers, different proof, and different CTAs. Until pricing strategy and ICP are reconciled, every section is optimized for a visitor the pricing section then turns away — no amount of copy or imagery polish fixes a page fighting its own business model.
+
+---
+
+## Adversarial review (Codex)
+
+> Second red-team pass, run through the Codex CLI runtime. Ranked Critical → Low. Each finding quotes the claim, states the flaw, gives the fix.
+
+1. **Critical — Free-trial CTA conflicts with the actual pricing motion.** *"I can start free today"* / *"There is **no self-serve free tier** — pricing is custom/enterprise."* The page promises self-serve immediacy, then admits quote-led custom pricing. **Fix:** pick one motion — self-serve trial with clear trial terms, or "Book a demo / request trial access" with custom pricing.
+
+2. **High — ICP expands beyond the proof and product story.** *"Made for cleaning and every home-service trade"* / house cleaning · carpet · lawn · handyman · pool · pest control · and more. "Every home-service trade" is too broad for a cleaning-led product and dilutes relevance. **Fix:** make the homepage cleaning-first; link to dedicated vertical pages only where neatr has specific workflow proof.
+
+3. **High — No-show pain isn't solved by the stated payment model.** *"no-shows with no deposit"* names the missing protection, then *"card-on-file with no upfront charge" / "No payment due today"* sells the absence of that same protection. **Fix:** state the actual protection — deposit, preauth, cancellation fee, no-show fee — or say plainly "secure a card before dispatch."
+
+4. **High — Operational claims are specific but unsupported.** *"2-hour windows based on travel buffers and existing jobs,"* *"auto-assign and route the day's jobs,"* *"customers finish in about a minute"* are measurable product claims with no evidence inside the doc. **Fix:** back them with demo captions, screenshots, or customer numbers, or soften the language.
+
+5. **High — SoftwareApplication/Offer schema guidance is riskier than stated.** Google's SoftwareApplication rich result requires `offers.price` and rating/review data; the doc's *"Offer (no price=0) or omit"* is valid generic schema but not rich-result eligible. **Fix:** use `Organization` + `WebSite` + `WebPage` as the safe baseline; only add SoftwareApplication rich-result markup once real price and rating data exist.
+
+6. **High — Hero imagery undersells the SaaS.** *"Sunlit, freshly cleaned modern living room with a booking tablet on the counter"* reads as a cleaning-service ad, not booking/dispatch software, at the exact moment a software buyer needs to see the product. **Fix:** put the actual workflow in the hero — booking page, dispatch board, schedule, payment status.
+
+7. **Medium — VideoObject guidance overstates eligibility.** Google requires `name`, `thumbnailUrl`, `uploadDate` and recommends `contentUrl`/`embedUrl`; valid markup still doesn't guarantee display. **Fix:** add unique thumbnails, `contentUrl`/`embedUrl`, visible embeds, transcript text, and drop the implied guarantee.
+
+8. **Medium — AEO claim is unsupported and too deterministic.** *"question-shaped H3s with self-contained answers = prime AI-answer citation fodder"* can't be verified as a formula; Google frames AI visibility as normal SEO plus genuinely useful content. **Fix:** reframe as "helps answer clarity" and add real objections/pricing transparency/product-specific proof, not just heading shape.
+
+9. **Medium — Keyword-density instruction risks spammy headings.** *"put the target keyword in each H3"* optimizes headings for crawlers over buyer comprehension. **Fix:** use natural feature headings; reserve exact-match vertical terms for pages that fully satisfy that intent.
+
+10. **Medium — Trim order cuts the emotional diagnosis too early.** Cutting §2 (problem) in the minimal build contradicts the doc's own claim that naming the pain builds trust. **Fix:** keep a compact problem band even in the 7-section build; cut image weight or collapse the comparison table instead.
+
+11. **Low — Decorative background images don't need descriptive alt text.** *"Every image needs alt text... it's an SEO + a11y requirement"* — these are ambience backgrounds; a11y guidance says decorative images should use empty `alt=""`, not description. **Fix:** reserve descriptive alt text for meaningful product screenshots/video thumbnails only.
+
+12. **Low — 18-image asset plan is heavy for a conversion page.** Nine desktop + nine mobile generated backgrounds add production/perf cost without adding proof. **Fix:** one strong hero/product visual, real product screenshots elsewhere, minimal decorative surfaces.
+
+### Strongest objection
+
+The plan hasn't chosen a coherent sales motion: it sells "start free today" to price-sensitive small home-service owners while also saying pricing is "custom/enterprise" and "by quote." Shipped as-is, that mismatch damages trust at the exact moment the page asks for conversion — the same root issue the first review's "one argument that kills it" identified, now confirmed independently.
