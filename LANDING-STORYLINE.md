@@ -50,15 +50,18 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
   - **Subhead:** *Bookings in. Jobs dispatched. You just grow.* Take bookings online, dispatch your team, and get paid — with a booking page customers finish in about a minute.
   - **CTAs:** `Start your free trial` · `Watch a customer book (1:04)`
 - **SEO role:** primary keyword in H1; page-level `SoftwareApplication` JSON-LD; the LCP section.
+- **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Sunlit, freshly cleaned modern living room with a booking tablet on the counter."
 - **Prompt:**
   > A bright, freshly cleaned modern living room bathed in soft morning light; warm off-white walls, light oak floor, a few eucalyptus stems in a ceramic vase, subtle sage-green accents; a tablet resting on a clean counter slightly out of focus; airy, calm, in-control atmosphere; large empty negative space in the upper-left for a headline; no people. [STYLE BLOCK]
+- **Video-background option (recommended):** replace the static photo with a short, silent, looping clip of the real product — e.g. a softly blurred/desaturated crop of the customer-booking recording (§5's 1:04 clip) behind a scrim, so the hero shows actual product motion instead of a lifestyle stand-in. Requirements: muted, `autoplay loop playsInline`, ≤8s loop, ≤2 MB compressed (H.264 MP4 + WebM), a static poster frame as the real LCP element (the video itself must not block LCP), and a `prefers-reduced-motion` fallback to the static photo prompt above. Keep the photo prompt as the no-video fallback either way.
 
 ### §2 — The problem *(full photo)*
 - **Tells the visitor:** "You're losing jobs to phone tag, double-bookings and no-shows. Manual scheduling doesn't scale." Name the pain so they feel understood.
 - **Copy H2:** `Missed calls and double-bookings are costing you jobs`
   - 3 short pain bullets: phone/text tag after hours · double-booked or forgotten jobs · no-shows with no deposit.
 - **SEO role:** captures pain long-tail ("stop missing booking calls", "double-booking scheduling"). H2 + supporting text.
+- **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Smartphone on a desk lit with missed calls and messages beside scattered sticky notes."
 - **Prompt:**
   > Overhead view of a warm light-oak desk in early-morning light; a smartphone glowing with many missed-call and message notifications; a few handwritten paper sticky notes and a coffee cup scattered nearby; a quietly tense, overwhelmed morning mood, still tasteful and muted; clean negative space on the right; no people. [STYLE BLOCK]
@@ -70,6 +73,7 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
   - **2. Share your booking page** (a link customers can use immediately)
   - **3. Customers book — your team gets dispatched** (arrival windows, auto-assigned)
 - **SEO role:** step keywords; keep `VideoObject` on the clips (HowTo rich results are dead — don't rely on HowTo schema, plain steps are fine).
+- **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Light oak desk from above with a laptop and phone showing a soft, blurred booking calendar."
 - **Prompt:**
   > Minimal top-down flat-lay on a light oak surface, mostly empty; a laptop and a phone at the edges showing soft, heavily out-of-focus booking-calendar UI (unreadable, just color and shape); a single eucalyptus sprig; very low contrast, high-key, lots of clean empty space across the center for three text columns; no people. [STYLE BLOCK]
@@ -84,6 +88,7 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
   - **Automated SMS & email reminders** — cut no-shows.
   - **Payments with card on file** — verified at booking, charged after the job ("No payment due today").
 - **SEO role:** this is where you rank for feature terms — put the target keyword in each H3, one supporting sentence each. Densest keyword real estate on the page.
+- **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Soft ivory and sage color-blocked surface, mostly empty, for feature cards."
 - **Prompt:**
   > Almost-abstract, very soft-focus background: gently blurred ivory and sage-green color blocking with a hint of light-oak texture in one corner; extremely low contrast, calm, high-key, mostly empty; no discernible objects; designed to sit behind white feature cards; no people. [STYLE BLOCK]
@@ -93,6 +98,7 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
 - **Copy H2:** `See the real product — unedited recordings`
   - Three players: setup **1:42** · form builder **0:49** · a customer books **1:04**. Caption each with what it proves.
 - **SEO / E-E-A-T role:** first-hand "Experience" signal (Helpful Content); `VideoObject` JSON-LD per clip (name, description, duration, thumbnail, uploadDate) — real video-search eligibility.
+- **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Softly lit desk with a glowing screen in a calm, dim room, ready for video thumbnails."
 - **Prompt:**
   > A calm, dimly lit workspace at dusk; a single softly glowing monitor slightly out of focus casting warm light on a light-oak desk; moody but clean and premium; darker warm-neutral tones so bright video thumbnails pop against it; open negative space in the center; no readable UI, no people. [STYLE BLOCK] (allow a slightly darker, lower-key grade here)
@@ -102,6 +108,7 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
 - **Copy H2:** `Made for cleaning and every home-service trade` → keyword-rich list / chips:
   - house cleaning & maid services · carpet & window cleaning · lawn care & landscaping · handyman · pool service · pest control · and more.
 - **SEO role:** vertical long-tail ("booking software for maid service", "scheduling for lawn care"). Each vertical is an H3 or a linked chip → future dedicated pages.
+- **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Bright, tidy modern home exterior and interior in warm daylight suggesting spotless service."
 - **Prompt:**
   > A beautiful, bright modern home in warm midday light, part exterior and part glimpsed interior through open glass doors: spotless clean windows, a tidy trimmed lawn edge, an immaculate kitchen just visible inside; aspirational, calm, cared-for; wide clean sky/wall negative space at the top for a headline; no people. [STYLE BLOCK]
@@ -110,6 +117,7 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
 - **Tells the visitor:** "Why neatr beats spreadsheets, phone-and-text, or clunky legacy tools." Differentiation for buyers comparing options.
 - **Copy H2:** `Why home-service owners switch to neatr` → a simple 3-column table: **Phone & spreadsheets / Legacy tools / neatr**, rows = guest booking, arrival windows on real availability, card-on-file with no upfront charge, owner+team+customer portals.
 - **SEO role:** comparison / "alternative" and "best booking software for cleaning" intent. Keep the table as real HTML text (crawlable + AEO-quotable).
+- **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Two tasteful still-life halves — scattered vs. neatly ordered — suggesting order restored."
 - **Prompt:**
   > A calm minimalist still life split left-to-right: left side a few loosely scattered paper notes on light oak, right side the same surface neatly ordered with a single phone and a sage sprig; tasteful, muted, low contrast; the composition reads as "chaos → order"; wide clean space for a comparison table overlay; no people. [STYLE BLOCK]
@@ -121,6 +129,7 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
   - Plans are tailored to team size, volume and portals — **custom / enterprise pricing, by quote**.
   - CTAs: `Start your free trial` · `Talk to us for a quote` (`hello@neatr.ai`).
 - **SEO / Schema:** target *"…pricing"*, *"book a demo"*, *"free trial"* intent — **not** "free software". **Do not hardcode a `price: 0` Offer** (misleading + risks a price/merchant mismatch) — either omit `offers` or use an `Offer` whose `url` points to the contact/quote page with no false zero. Being upfront that pricing is custom still reads as trust.
+- **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Very bright, near-empty ivory scene with a single soft sage element."
 - **Prompt:**
   > An extremely clean, bright, near-empty scene: a smooth warm-ivory surface and wall in soft even light, a single small sage-green plant sprig in one corner as the only object; maximum calm negative space for pricing cards; high-key, minimal, premium; no people. [STYLE BLOCK]
@@ -129,6 +138,7 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
 - **Tells the visitor:** answers the last objections, then asks for the click. Warm, forward-looking close.
 - **Copy H2 (FAQ):** `Questions home-service owners ask` — reuse your 6 FAQs (what is neatr, setup time, guest booking, arrival windows, charging customers, cost). **H2 (CTA):** `Start your free trial` + `Talk to us for a quote` + `hello@neatr.ai`.
 - **SEO / AEO role:** question-shaped H3s with self-contained answers = prime AI-answer citation fodder (FAQ rich results are gone, but the *text* wins in AI Overviews/Perplexity). Footer carries `Organization` JSON-LD (`sameAs` to all profiles) + internal links.
+- **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Sunlit front porch of a welcoming home at golden hour, calm and forward-looking."
 - **Prompt:**
   > The sunlit front doorway and porch of a warm, welcoming modern home at golden hour; soft long light, a clean swept step, a potted eucalyptus by the door; optimistic, calm, "new beginning" mood; open negative space in the center for a closing headline and button; no people. [STYLE BLOCK]
