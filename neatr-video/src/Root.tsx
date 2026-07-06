@@ -13,6 +13,18 @@ import {
   Logo09LineReveal,
   Logo10SpringBounce,
 } from "./LogoCompositions";
+import {
+  Logo11Scramble,
+  Logo12NeonFlicker,
+  Logo13CinematicReveal,
+  Logo14SliceReveal,
+  Logo15GlitchIn,
+  Logo16MorphBloom,
+  Logo17WaveUp,
+  Logo18Rotate3D,
+  Logo19BlurZoom,
+  Logo20Terminal,
+} from "./LogoCompositions2";
 
 // Pipeline video: 50 intro + 6 steps × 70 + 30 hold + 90 end card ≈ 20s
 const PIPELINE_DURATION = 590;
@@ -117,6 +129,17 @@ export const RemotionRoot: React.FC = () => {
         width={LOGO_W}
         height={LOGO_H}
       />
+      {/* ── Logo animations: batch 2 ── */}
+      <Composition id="Logo11_Scramble" component={Logo11Scramble} durationInFrames={LOGO_FRAMES} fps={LOGO_FPS} width={LOGO_W} height={LOGO_H} />
+      <Composition id="Logo12_NeonFlicker" component={Logo12NeonFlicker} durationInFrames={LOGO_FRAMES} fps={LOGO_FPS} width={LOGO_W} height={LOGO_H} />
+      <Composition id="Logo13_CinematicReveal" component={Logo13CinematicReveal} durationInFrames={LOGO_FRAMES} fps={LOGO_FPS} width={LOGO_W} height={LOGO_H} />
+      <Composition id="Logo14_SliceReveal" component={Logo14SliceReveal} durationInFrames={LOGO_FRAMES} fps={LOGO_FPS} width={LOGO_W} height={LOGO_H} />
+      <Composition id="Logo15_GlitchIn" component={Logo15GlitchIn} durationInFrames={LOGO_FRAMES} fps={LOGO_FPS} width={LOGO_W} height={LOGO_H} />
+      <Composition id="Logo16_MorphBloom" component={Logo16MorphBloom} durationInFrames={LOGO_FRAMES} fps={LOGO_FPS} width={LOGO_W} height={LOGO_H} />
+      <Composition id="Logo17_WaveUp" component={Logo17WaveUp} durationInFrames={LOGO_FRAMES} fps={LOGO_FPS} width={LOGO_W} height={LOGO_H} />
+      <Composition id="Logo18_Rotate3D" component={Logo18Rotate3D} durationInFrames={LOGO_FRAMES} fps={LOGO_FPS} width={LOGO_W} height={LOGO_H} />
+      <Composition id="Logo19_BlurZoom" component={Logo19BlurZoom} durationInFrames={LOGO_FRAMES} fps={LOGO_FPS} width={LOGO_W} height={LOGO_H} />
+      <Composition id="Logo20_Terminal" component={Logo20Terminal} durationInFrames={LOGO_FRAMES} fps={LOGO_FPS} width={LOGO_W} height={LOGO_H} />
     </>
   );
 };

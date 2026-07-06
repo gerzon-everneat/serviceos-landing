@@ -5,6 +5,23 @@ import Image from "next/image";
 
 /* ─── Grid mark (logo #15) ───────────────────────────────────────────────── */
 const GRID_KF = `@keyframes grid-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.25;transform:scale(0.65)}}`;
+
+/* ─── Mobile overrides — inline styles can't hold media queries, so !important wins ─ */
+const MOBILE_CSS = `
+@media (max-width:900px){
+  nav{padding-left:20px!important;padding-right:20px!important}
+  .nav-links{display:none!important}
+  section{padding-left:20px!important;padding-right:20px!important;padding-top:64px!important;padding-bottom:64px!important}
+  .hero{padding-top:96px!important;min-height:auto!important}
+  .rgrid{grid-template-columns:1fr!important;gap:40px!important}
+  .cta-form{flex-direction:column!important}
+  .footer-row{flex-direction:column!important;gap:16px!important;text-align:center!important}
+  .heromock{height:auto!important}
+  .heromock-card{position:static!important}
+  .heromock-grid{grid-template-columns:1fr!important}
+  .appframe-shot{height:220px!important}
+  .appframe-img{object-position:top left!important}
+}`;
 function MarkGrid({ animated = true }: { animated?: boolean }) {
   const LIME = "#C8FF00";
   const pts = [
@@ -166,8 +183,8 @@ function HeroAppMock() {
   const statusLabel = ["Idle","Booking in","Payment","Calendar","Dispatch","Confirmed"];
 
   return (
-    <div style={{ position:"relative", height:490, userSelect:"none" }}>
-      <div style={{
+    <div className="heromock" style={{ position:"relative", height:490, userSelect:"none" }}>
+      <div className="heromock-card" style={{
         position:"absolute", inset:0, right:16,
         background:"#fff", borderRadius:14,
         border:`1px solid ${L.border}`,
@@ -186,7 +203,7 @@ function HeroAppMock() {
           </div>
         </div>
 
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", flex:1, overflow:"hidden" }}>
+        <div className="heromock-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", flex:1, overflow:"hidden" }}>
 
           {/* LEFT */}
           <div style={{ borderRight:`1px solid ${L.border}`, display:"flex", flexDirection:"column" }}>
@@ -316,8 +333,8 @@ function AppFrameLight({ src, alt, height=420, url="book.neatr.ai" }: { src:stri
         {["#FF5F57","#FEBC2E","#28C840"].map(c=><span key={c} style={{ width:10, height:10, borderRadius:"50%", background:c }} />)}
         <span style={{ marginLeft:8, height:18, flex:1, maxWidth:240, background:L.border, borderRadius:4, fontSize:10, color:"#999", display:"flex", alignItems:"center", paddingLeft:8 }}>{url}</span>
       </div>
-      <div style={{ height, position:"relative", overflow:"hidden" }}>
-        <Image src={src} alt={alt} fill style={{ objectFit:"cover", objectPosition:"top" }} />
+      <div className="appframe-shot" style={{ height, position:"relative", overflow:"hidden" }}>
+        <Image className="appframe-img" src={src} alt={alt} fill style={{ objectFit:"cover", objectPosition:"top" }} />
       </div>
     </div>
   );
@@ -343,7 +360,7 @@ export default function Home() {
 
   return (
     <div style={{ fontFamily:"'DM Sans',sans-serif", background:L.bg, color:L.text, overflowX:"hidden" }}>
-      <style>{GRID_KF}</style>
+      <style>{GRID_KF + MOBILE_CSS}</style>
 
       {/* NAV */}
       <nav style={{
@@ -358,7 +375,7 @@ export default function Home() {
             <span style={{ fontWeight:700, fontSize:15, letterSpacing:"-0.02em", color:L.text }}>neatr<span style={{ color:L.green }}>.ai</span></span>
           </a>
         <div style={{ display:"flex", alignItems:"center", gap:32 }}>
-          <div style={{ display:"flex", gap:28, fontSize:13, color:L.text2 }}>
+          <div className="nav-links" style={{ display:"flex", gap:28, fontSize:13, color:L.text2 }}>
             {["Features","How it works","Pricing"].map(l=>(
               <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`}
                 style={{ color:"inherit", textDecoration:"none", transition:"color 0.2s" }}
@@ -368,13 +385,6 @@ export default function Home() {
             ))}
           </div>
           <div style={{ display:"flex", gap:8 }}>
-            <a href="http://localhost:4100/auth/login" target="_blank" rel="noreferrer" style={{
-              padding:"6px 14px", border:`1px solid ${L.border2}`, borderRadius:6,
-              fontSize:13, color:L.text2, textDecoration:"none", transition:"border-color 0.2s,color 0.2s",
-            }}
-              onMouseEnter={e=>{ (e.currentTarget as HTMLElement).style.borderColor="#9CA3AF"; (e.currentTarget as HTMLElement).style.color=L.text; }}
-              onMouseLeave={e=>{ (e.currentTarget as HTMLElement).style.borderColor=L.border2; (e.currentTarget as HTMLElement).style.color=L.text2; }}
-            >Sign in</a>
             <a href="#waitlist" style={{
               padding:"6px 14px", background:L.text, color:"#fff", borderRadius:6,
               fontSize:13, fontWeight:600, textDecoration:"none", transition:"opacity 0.2s",
@@ -387,12 +397,12 @@ export default function Home() {
       </nav>
 
       {/* HERO */}
-      <section style={{ position:"relative", minHeight:"100vh", display:"flex", flexDirection:"column", justifyContent:"center", padding:"120px 80px 80px", overflow:"hidden", background:L.bg }}>
+      <section className="hero" style={{ position:"relative", minHeight:"100vh", display:"flex", flexDirection:"column", justifyContent:"center", padding:"120px 80px 80px", overflow:"hidden", background:L.bg }}>
         <HeroCanvas />
         <GridBg opacity={0.04} />
         <div aria-hidden style={{ position:"absolute", top:"30%", right:"10%", width:600, height:600, background:"radial-gradient(circle,rgba(34,197,94,0.08) 0%,transparent 70%)", pointerEvents:"none" }} />
 
-        <div style={{ maxWidth:1200, margin:"0 auto", width:"100%", display:"grid", gridTemplateColumns:"1fr 1fr", gap:80, alignItems:"center" }}>
+        <div className="rgrid" style={{ maxWidth:1200, margin:"0 auto", width:"100%", display:"grid", gridTemplateColumns:"1fr 1fr", gap:80, alignItems:"center" }}>
           <div>
             <Reveal>
               <div style={{ display:"inline-flex", alignItems:"center", gap:8, border:"1px solid rgba(34,197,94,0.35)", background:"rgba(34,197,94,0.07)", borderRadius:20, padding:"4px 12px", fontSize:12, color:L.green, marginBottom:32, letterSpacing:"0.04em" }}>
@@ -447,7 +457,7 @@ export default function Home() {
       <section style={{ background:L.bg2, color:L.text, padding:"100px 80px" }}>
         <div style={{ maxWidth:1200, margin:"0 auto" }}>
           <Reveal><p style={{ fontSize:11, fontWeight:700, letterSpacing:"0.1em", color:L.text3, marginBottom:24, textTransform:"uppercase" }}>The problem</p></Reveal>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:80, alignItems:"start" }}>
+          <div className="rgrid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:80, alignItems:"start" }}>
             <Reveal delay={60}>
               <h2 style={{ fontSize:"clamp(32px,3.5vw,52px)", fontWeight:700, lineHeight:1.1, letterSpacing:"-0.035em", margin:0 }}>
                 The booking<br />feedback loop<br />is broken.
@@ -486,7 +496,7 @@ export default function Home() {
         <GridBg opacity={0.035} />
         <div aria-hidden style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:700, height:700, background:"radial-gradient(circle,rgba(34,197,94,0.05) 0%,transparent 65%)", pointerEvents:"none" }} />
         <div style={{ maxWidth:1200, margin:"0 auto" }}>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1.4fr", gap:80, alignItems:"center" }}>
+          <div className="rgrid" style={{ display:"grid", gridTemplateColumns:"1fr 1.4fr", gap:80, alignItems:"center" }}>
             <div>
               <Reveal><p style={{ fontSize:11, fontWeight:700, letterSpacing:"0.1em", color:L.green, marginBottom:24, textTransform:"uppercase" }}>Fix the loop</p></Reveal>
               <Reveal delay={60}>
@@ -531,7 +541,7 @@ export default function Home() {
       {/* CALENDAR */}
       <section id="features" style={{ background:L.bg2, color:L.text, padding:"100px 80px" }}>
         <div style={{ maxWidth:1200, margin:"0 auto" }}>
-          <div style={{ display:"grid", gridTemplateColumns:"1.4fr 1fr", gap:80, alignItems:"center" }}>
+          <div className="rgrid" style={{ display:"grid", gridTemplateColumns:"1.4fr 1fr", gap:80, alignItems:"center" }}>
             <Reveal from="left" delay={80}>
               <AppFrameLight src="/assets/v6-calendar.png" alt="neatr.ai schedule calendar" height={420} url="book.neatr.ai/schedule" />
             </Reveal>
@@ -574,7 +584,7 @@ export default function Home() {
         <GridBg opacity={0.035} />
         <div aria-hidden style={{ position:"absolute", bottom:0, left:"20%", width:600, height:400, background:"radial-gradient(ellipse at bottom,rgba(34,197,94,0.06) 0%,transparent 70%)", pointerEvents:"none" }} />
         <div style={{ maxWidth:1200, margin:"0 auto" }}>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1.5fr", gap:80, alignItems:"center" }}>
+          <div className="rgrid" style={{ display:"grid", gridTemplateColumns:"1fr 1.5fr", gap:80, alignItems:"center" }}>
             <div>
               <Reveal><p style={{ fontSize:11, fontWeight:700, letterSpacing:"0.1em", color:L.green, marginBottom:24, textTransform:"uppercase" }}>Full visibility</p></Reveal>
               <Reveal delay={60}>
@@ -620,7 +630,7 @@ export default function Home() {
               Free, open, and<br />scalable — running<br />in minutes.
             </h2>
           </Reveal>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:40 }}>
+          <div className="rgrid" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:40 }}>
             {[
               { n:"01", title:"Set up your booking page",      body:"Create your service menu, pricing, and availability. Your booking page is live and shareable instantly.",            tag:"5 min setup"    },
               { n:"02", title:"Customers book themselves",      body:"Share a link or embed the widget. Customers pick their service, date, and time — zero friction.",            tag:"24/7 bookings"   },
@@ -650,7 +660,7 @@ export default function Home() {
           <Reveal><p style={{ fontSize:11, fontWeight:700, letterSpacing:"0.1em", color:L.green, marginBottom:16, textTransform:"uppercase" }}>Pricing</p></Reveal>
           <Reveal delay={40}><h2 style={{ fontSize:"clamp(28px,3vw,48px)", fontWeight:700, letterSpacing:"-0.035em", margin:"0 0 16px", color:L.text }}>Simple, honest pricing.</h2></Reveal>
           <Reveal delay={80}><p style={{ fontSize:17, color:L.text2, margin:"0 0 64px" }}>Lock in early access pricing before we launch.</p></Reveal>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:24, maxWidth:700 }}>
+          <div className="rgrid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:24, maxWidth:700 }}>
             {[
               { name:"Starter",  price:"Free", sub:"For new businesses",    features:["Up to 20 bookings/month","Online booking page","Customer portal","Basic analytics"],                                              highlight:false },
               { name:"Business", price:"$49",  sub:"/mo · most popular",    features:["Unlimited bookings","Smart team dispatch","Automated scheduling","Custom branding","Priority support","Advanced analytics"],    highlight:true  },
@@ -732,7 +742,7 @@ export default function Home() {
                 ✓ You&apos;re on the list! We&apos;ll be in touch soon.
               </div>
             ) : (
-              <form onSubmit={e=>{ e.preventDefault(); if(email) setSubmitted(true); }} style={{ display:"flex", gap:8 }}>
+              <form className="cta-form" onSubmit={e=>{ e.preventDefault(); if(email) setSubmitted(true); }} style={{ display:"flex", gap:8 }}>
                 <input type="email" required placeholder="Enter your work email" value={email} onChange={e=>setEmail(e.target.value)}
                   style={{ flex:1, padding:"14px 18px", borderRadius:8, border:"none", fontSize:15, outline:"none", background:"rgba(255,255,255,0.55)", color:"#000" }} />
                 <button type="submit" style={{ padding:"14px 24px", background:"#000", color:"#fff", borderRadius:8, border:"none", fontSize:15, fontWeight:700, cursor:"pointer", whiteSpace:"nowrap", transition:"opacity 0.2s" }}
@@ -757,7 +767,7 @@ export default function Home() {
 
       {/* FOOTER */}
       <footer style={{ background:L.bg3, borderTop:`1px solid ${L.border}`, padding:"40px 80px" }}>
-        <div style={{ maxWidth:1200, margin:"0 auto", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+        <div className="footer-row" style={{ maxWidth:1200, margin:"0 auto", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
           <a href="/" style={{ display:"flex", alignItems:"center", gap:8, textDecoration:"none" }}>
             <MarkGrid animated={false} />
             <span style={{ fontWeight:700, fontSize:14, letterSpacing:"-0.02em", color:L.text }}>neatr<span style={{ color:L.green }}>.ai</span></span>
