@@ -44,7 +44,7 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
 ## The 9 sections
 
 ### §1 — Hero *(full photo)*
-- **Tells the visitor:** "This is booking + dispatch + payment for my home-service business, and I can start free today." The whole value prop in 5 seconds.
+- **Tells the visitor:** "This is booking + dispatch + payment for my home-service business, and I can start a free trial today." The whole value prop in 5 seconds.
 - **Copy:** H1 keyword-first; brand line as subhead; one primary CTA + one demo CTA.
   - **H1:** `Online booking software for cleaning & home-service businesses`
   - **Subhead:** *Bookings in. Jobs dispatched. You just grow.* Take bookings online, dispatch your team, and get paid — with a booking page customers finish in about a minute.
@@ -115,7 +115,7 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
   > A calm minimalist still life split left-to-right: left side a few loosely scattered paper notes on light oak, right side the same surface neatly ordered with a single phone and a sage sprig; tasteful, muted, low contrast; the composition reads as "chaos → order"; wide clean space for a comparison table overlay; no people. [STYLE BLOCK]
 
 ### §8 — Pricing *(subtle / very clean)*
-- **Tells the visitor:** "Try it free, then we'll tailor a plan to your team." There is **no self-serve free tier** — pricing is custom/enterprise, so this section's job is to start a *trial* or a *conversation*, not to display a price.
+- **Tells the visitor:** "Try it with a free trial, then we'll tailor a plan to your team." There is **no self-serve free tier** — pricing is custom/enterprise, so this section's job is to start a *trial* or a *conversation*, not to display a price.
 - **Copy H2:** `Start with a free trial — then a plan that fits your team`
   - A free trial to launch your booking page and run real jobs — no charge to start.
   - Plans are tailored to team size, volume and portals — **custom / enterprise pricing, by quote**.
