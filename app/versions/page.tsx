@@ -38,6 +38,10 @@ const VERSIONS = [
   { route: "v26", label: "Risk-Reversal", theme: "dark", desc: "Pricing-first hero, risk-reversal positioning, no upfront cost" },
   { route: "v27", label: "vs Competitors", theme: "dark", desc: "Competitive urgency — side-by-side Monday comparison" },
   { route: "v28", label: "Vertical", theme: "dark", desc: "Residential cleaning vertical — live job board demo" },
+  { route: "v29", label: "Editorial 3D", theme: "light", desc: "bureau.cool homage — oversized type, momentum scroll, 3D point-cloud background + live booking animation" },
+  { route: "v30", label: "Ops Agent", theme: "light", desc: "v29 repositioned — AI ops agent that runs a service business end-to-end: 24/7 voice agent, supplies, logistics tracking, auto-payments" },
+  { route: "v31", label: "Live Demo", theme: "light", desc: "Attio-style tabbed product demo — Ask / Records / Workflows / Reporting panels rebuilt as real DOM, auto-cycling with progress bars" },
+  { route: "v32", label: "Full-Stack Showcase", theme: "light", desc: "R3F hero, GSAP-pinned scrollytelling, Lenis smooth scroll, Framer Motion — real setup flow + interactive booking widget" },
 ];
 
 const THEME_BADGE: Record<string, { label: string; color: string; bg: string }> = {
