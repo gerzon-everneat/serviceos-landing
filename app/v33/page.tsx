@@ -22,12 +22,12 @@ function MarkGrid() {
 }
 
 const FEATURES = [
-  { t: "Arrival windows", c: "Customers pick a two-hour window — and only windows your team can actually make are offered, based on real availability and travel buffers." },
-  { t: "Pricing matrix", c: "Production rates, size tiers, and dynamic rules compute the quote while the customer books. No callbacks to “get you a price.”" },
-  { t: "Dispatch & assignment", c: "Every booking lands on a board. Assign providers with availability already checked, and reassignments handled cleanly." },
-  { t: "Card on file", c: "Cards are verified at booking and charged after the job. “No payment due today” for them, no no-show losses for you." },
-  { t: "Three portals", c: "Owner admin, provider app, customer portal. Everyone sees exactly their slice of the same booking." },
-  { t: "Automated notifications", c: "Confirmations, reminders, and on-my-way messages go out by themselves, over email and SMS." },
+  { t: "Online booking page for your customers", c: "A booking page customers finish in about a minute — from your website, Google profile, or social links. Guest checkout, no accounts, works on any phone." },
+  { t: "Service scheduling with arrival windows", c: "Customers pick a two-hour arrival window — and only windows your team can actually make are offered, based on real availability and travel buffers." },
+  { t: "Instant quotes & upfront pricing", c: "Production rates, size tiers, and pricing rules compute the quote while the customer books. No callbacks to “get you a price.”" },
+  { t: "Dispatch software for field teams", c: "Every booking lands on a dispatch board. Assign cleaners and technicians with availability already checked, and reassignments handled cleanly." },
+  { t: "Automated SMS & email reminders", c: "Booking confirmations, appointment reminders, and on-my-way messages send themselves — over email and SMS." },
+  { t: "Payments with card on file", c: "Cards are verified at booking and charged after the job. “No payment due today” for them, no no-show losses for you." },
 ];
 
 const PLANS = [
@@ -126,20 +126,24 @@ export default function V33Page() {
         <section id="product" aria-labelledby="product-h" className="scroll-mt-20 border-t border-[#E7E6E1] bg-white">
           <div className="mx-auto w-full max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
             <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0A0A0A]/45">Product</p>
-            <h2 id="product-h" className="m-0 max-w-[26ch] text-[clamp(28px,4.5vw,44px)] font-bold leading-tight tracking-[-0.015em]">
-              Everything between {"“"}booking request{"”"} and <em style={{ fontFamily: SERIF, fontWeight: 600 }}>paid.</em>
+            <h2 id="product-h" className="m-0 max-w-[34ch] text-[clamp(28px,4.5vw,44px)] font-bold leading-tight tracking-[-0.015em]">
+              Booking, scheduling & dispatch software for <em style={{ fontFamily: SERIF, fontWeight: 600 }}>cleaning and home-service businesses.</em>
             </h2>
-            <dl className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            <p className="m-0 mt-5 max-w-[62ch] text-[15.5px] leading-relaxed text-[#0A0A0A]/60">
+              neatr is cleaning business software and a home-service booking system in one: an online booking form for your
+              customers, service scheduling and dispatch for your team, and automated notifications and payments behind it all.
+            </p>
+            <div className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
               {FEATURES.map((f) => (
                 <div key={f.t}>
-                  <dt className="flex items-center gap-2.5 text-[15.5px] font-semibold">
+                  <h3 className="m-0 flex items-center gap-2.5 text-[15.5px] font-semibold">
                     <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#C8FF00] ring-1 ring-[#3A5000]/30" aria-hidden />
                     {f.t}
-                  </dt>
-                  <dd className="m-0 mt-2.5 text-[14.5px] leading-relaxed text-[#0A0A0A]/60">{f.c}</dd>
+                  </h3>
+                  <p className="m-0 mt-2.5 text-[14.5px] leading-relaxed text-[#0A0A0A]/60">{f.c}</p>
                 </div>
               ))}
-            </dl>
+            </div>
           </div>
         </section>
 
