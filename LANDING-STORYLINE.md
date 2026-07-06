@@ -1,7 +1,7 @@
 # neatr — Landing Page Storyline, SEO Map & Background-Image Prompts
 
 **Date:** 2026-07-06 · For: the new primary landing page (winner of the v29–v34 bake-off, shipped to `/`).
-**Product in one line:** online booking software for cleaning & home-service businesses — customers book themselves, jobs get dispatched, you get paid.
+**Product in one line:** online booking software for cleaning businesses — customers book themselves, jobs get suggested to your team, you get paid. *(Narrowed from "cleaning & home-service" — verified against the booking-fe codebase: pricing model, seed data, and PRD scope are cleaning-only. No other vertical is built, tested, or supported today.)*
 **Companion skills:** `/seo` and `/aeo`.
 
 ---
@@ -44,9 +44,9 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
 ## The 9 sections
 
 ### §1 — Hero *(full photo)*
-- **Tells the visitor:** "This is booking + dispatch + payment for my home-service business, and I can start a free trial today." The whole value prop in 5 seconds.
+- **Tells the visitor:** "This is booking + dispatch + payment for my cleaning business, and I can start a free trial today." The whole value prop in 5 seconds.
 - **Copy:** H1 keyword-first; brand line as subhead; one primary CTA + one demo CTA.
-  - **H1:** `Online booking software for cleaning & home-service businesses`
+  - **H1:** `Online booking software for cleaning businesses`
   - **Subhead:** *Bookings in. Jobs dispatched. You just grow.* Take bookings online, dispatch your team, and get paid — with a booking page customers finish in about a minute.
   - **CTAs:** `Start your free trial` · `Watch a customer book (1:04)`
 - **SEO role:** primary keyword in H1; page-level `SoftwareApplication` JSON-LD; the LCP section.
@@ -80,14 +80,16 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
 
 ### §4 — Features deep-dive *(subtle / near-solid)* — **main ranking section**
 - **Tells the visitor:** exactly what the product does, each capability tied to a job it removes.
-- **Copy H2:** `Booking, scheduling & dispatch software built for home-service teams` → six H3 feature cards:
+- **Copy H2:** `Booking, scheduling & dispatch software built for cleaning businesses` → eight H3 feature cards:
   - **Online booking page for your customers** — guests book with no account.
   - **Arrival windows that match real availability** — 2-hour windows based on travel buffers and existing jobs.
   - **Instant quotes & upfront pricing** — customers see the price before they book.
-  - **Dispatch software for field teams** — auto-assign and route the day's jobs.
+  - **Smart dispatch suggestions for field teams** — every job gets a skill- and availability-matched provider suggested; assign with one click.
   - **Automated SMS & email reminders** — cut no-shows.
-  - **Payments with card on file** — verified at booking, charged after the job ("No payment due today").
-- **SEO role:** this is where you rank for feature terms — put the target keyword in each H3, one supporting sentence each. Densest keyword real estate on the page.
+  - **Card on file, one-click charge** — card verified via Stripe at booking, no payment due that day; charge it with one click once the job's done.
+  - **Set up by chatting, not clicking through forms** — an AI setup assistant configures your services, pricing rules, and categories from a conversation.
+  - **Embed on your site, or connect it to yours** — a drop-in booking widget plus a public API and webhooks for `booking.created` / `assigned` / `completed`.
+- **SEO role:** this is where you rank for feature terms — put the target keyword in each H3, one supporting sentence each. Densest keyword real estate on the page. *(The AI-setup and embed/API cards are real, differentiated capabilities competitors don't talk about — don't undersell them to filler length.)*
 - **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
 - **Alt:** "Soft ivory and sage color-blocked surface, mostly empty, for feature cards."
 - **Prompt:**
@@ -104,14 +106,15 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
   > A calm, dimly lit workspace at dusk; a single softly glowing monitor slightly out of focus casting warm light on a light-oak desk; moody but clean and premium; darker warm-neutral tones so bright video thumbnails pop against it; open negative space in the center; no readable UI, no people. [STYLE BLOCK] (allow a slightly darker, lower-key grade here)
 
 ### §6 — Who it's for / industries *(full photo)*
-- **Tells the visitor:** "Built for my trade specifically." Converts by relevance; captures vertical searches.
-- **Copy H2:** `Made for cleaning and every home-service trade` → keyword-rich list / chips:
-  - house cleaning & maid services · carpet & window cleaning · lawn care & landscaping · handyman · pool service · pest control · and more.
-- **SEO role:** vertical long-tail ("booking software for maid service", "scheduling for lawn care"). Each vertical is an H3 or a linked chip → future dedicated pages.
+- **Tells the visitor:** "Built for my trade specifically — cleaning, not a generic scheduler." Converts by relevance; captures vertical searches.
+- **Copy H2:** `Made for house cleaning & maid service businesses` → keyword-rich list / chips scoped to real cleaning sub-segments:
+  - residential cleaning · commercial/office cleaning · maid services · carpet & window cleaning · move-in/move-out cleaning.
+  - *Optional small-print line, not a chip:* "More home-service trades on the roadmap." **Do not** list lawn care, handyman, pool, or pest control as supported — per the product's own PRD ("Pro (Cleaner)") and pricing model (bed/bath/sqft), those trades aren't built, tested, or fit today. Ship this section cleaning-only; widen it only after the product actually supports another trade.
+- **SEO role:** cleaning-vertical long-tail ("booking software for maid service", "commercial cleaning scheduling software"). Each sub-segment is an H3 or a linked chip → future dedicated pages.
 - **Ratio:** 16:9 desktop (≥2400×1350) · 4:5 mobile crop.
-- **Alt:** "Bright, tidy modern home exterior and interior in warm daylight suggesting spotless service."
+- **Alt:** "Bright, tidy modern home interior in warm daylight suggesting spotless cleaning service."
 - **Prompt:**
-  > A beautiful, bright modern home in warm midday light, part exterior and part glimpsed interior through open glass doors: spotless clean windows, a tidy trimmed lawn edge, an immaculate kitchen just visible inside; aspirational, calm, cared-for; wide clean sky/wall negative space at the top for a headline; no people. [STYLE BLOCK]
+  > A beautiful, bright modern home interior in warm midday light, glimpsed through open glass doors: spotless clean windows, gleaming floors, an immaculate kitchen just visible inside; aspirational, calm, cared-for; wide clean sky/wall negative space at the top for a headline; no people. [STYLE BLOCK]
 
 ### §7 — Why neatr / comparison *(subtle)* — trimmable
 - **Tells the visitor:** "Why neatr beats spreadsheets, phone-and-text, or clunky legacy tools." Differentiation for buyers comparing options.
@@ -149,12 +152,12 @@ No text, no logos, no watermarks, no clutter. Photorealistic. 16:9.
 
 | # | Section | H-tag | Primary keyword focus | Structured data |
 |---|---------|-------|----------------------|-----------------|
-| 1 | Hero | H1 | online booking software for cleaning/home-service | SoftwareApplication |
+| 1 | Hero | H1 | online booking software for cleaning businesses | SoftwareApplication |
 | 2 | Problem | H2 | missed calls, double-booking, no-shows | — |
 | 3 | How it works | H2+H3×3 | how online booking works, setup | VideoObject (clips) |
-| 4 | Features | H2+H3×6 | booking page, arrival windows, dispatch, reminders, card on file | (feature terms) |
+| 4 | Features | H2+H3×8 | booking page, arrival windows, dispatch suggestions, reminders, card on file, AI setup, embed/API | (feature terms) |
 | 5 | Live proof | H2 | real product demo / recordings | VideoObject ×3 |
-| 6 | Industries | H2+H3 | maid service / carpet / lawn / handyman booking | — |
+| 6 | Industries | H2+H3 | maid service / commercial cleaning / move-out cleaning | — |
 | 7 | Comparison | H2 | booking software alternative / best for cleaning | — |
 | 8 | Pricing | H2 | booking software pricing / free trial / book a demo | Offer (no price=0) or omit |
 | 9 | FAQ + CTA | H2+H3 | long-tail questions (AEO) | Organization; FAQ text |
