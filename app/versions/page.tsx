@@ -13,7 +13,7 @@ const VERSIONS = [
   { route: "v4", label: "Variant 4", theme: "dark", desc: "Landing page variant" },
   { route: "v5", label: "Variant 5", theme: "dark", desc: "Landing page variant" },
   { route: "v6", label: "Variant 6", theme: "dark", desc: "Landing page variant" },
-  { route: "v7", label: "Light Theme", theme: "light", desc: "Everneat light theme — current root page" },
+  { route: "v7", label: "Light Theme", theme: "light", desc: "Everneat light theme" },
   { route: "v8", label: "Variant 8", theme: "dark", desc: "Landing page variant" },
   { route: "v9", label: "Distributional", theme: "dark", desc: "Dark/light alternating — distributional.com aesthetic, real screenshots" },
   { route: "v9-1", label: "v9 · Variant A", theme: "dark", desc: "Pre-launch honest content, no fake social proof" },
@@ -39,6 +39,11 @@ const VERSIONS = [
   { route: "v27", label: "vs Competitors", theme: "dark", desc: "Competitive urgency — side-by-side Monday comparison" },
   { route: "v28", label: "Vertical", theme: "dark", desc: "Residential cleaning vertical — live job board demo" },
   { route: "v29", label: "Editorial 3D", theme: "light", desc: "bureau.cool homage — oversized type, momentum scroll, 3D point-cloud background + live booking animation" },
+  { route: "v30", label: "Ops Agent", theme: "light", desc: "v29 repositioned — AI ops agent that runs a service business end-to-end: 24/7 voice agent, supplies, logistics tracking, auto-payments" },
+  { route: "v31", label: "Live Demo", theme: "light", desc: "Attio-style tabbed product demo — Ask / Records / Workflows / Reporting panels rebuilt as real DOM, auto-cycling with progress bars" },
+  { route: "v32", label: "Full-Stack Showcase", theme: "light", desc: "R3F hero, GSAP-pinned scrollytelling, Lenis smooth scroll, Framer Motion — real setup flow + interactive booking widget" },
+  { route: "v33", label: "Conversion Landing", theme: "light", desc: "Attio-style video showcase, server-rendered for SEO with HowTo + FAQ schema — current root page" },
+  { route: "v34", label: "Zoom Showcase", theme: "light", desc: "v33 plus pointer-follow zoom on the demo videos" },
 ];
 
 const THEME_BADGE: Record<string, { label: string; color: string; bg: string }> = {

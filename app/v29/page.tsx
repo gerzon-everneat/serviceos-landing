@@ -487,15 +487,38 @@ function Marquee({ reverse = false }: { reverse?: boolean }) {
   );
 }
 
+// neatr.ai backend (booking-fe). Override with NEXT_PUBLIC_NEATR_API for local dev.
+const NEATR_API = process.env.NEXT_PUBLIC_NEATR_API ?? "https://book.neatr.ai";
+
 function AccessForm() {
   const [email, setEmail] = useState("");
-  const [done, setDone] = useState(false);
-  if (done) return <p className="accessdone">On the list. We&apos;ll be in touch — {email}</p>;
+  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || status === "sending") return;
+    setStatus("sending");
+    try {
+      const r = await fetch(`${NEATR_API}/api/v1/leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source: "neatr.ai/v29 — request access" }),
+      });
+      setStatus(r.ok ? "done" : "error");
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  if (status === "done") return <p className="accessdone">On the list. We&apos;ll be in touch — {email}</p>;
   return (
-    <form className="accessform" onSubmit={(e) => { e.preventDefault(); if (email) setDone(true); }}>
+    <form className="accessform" onSubmit={submit}>
       <input type="email" required placeholder="your work email" value={email}
-        onChange={(e) => setEmail(e.target.value)} />
-      <button type="submit">Request invite →</button>
+        onChange={(e) => setEmail(e.target.value)} disabled={status === "sending"} />
+      <button type="submit" disabled={status === "sending"}>
+        {status === "sending" ? "Sending…" : "Request invite →"}
+      </button>
+      {status === "error" && <span className="accesserr">Something went wrong — please try again.</span>}
     </form>
   );
 }
@@ -672,6 +695,8 @@ const CSS = `
   padding:14px 26px; font-size:15px; font-weight:600; cursor:pointer; font-family:${SANS}; transition:opacity .2s;}
 .accessform button:hover{opacity:0.82;}
 .accessdone{font-family:${SERIF}; font-style:italic; font-size:clamp(20px,2.4vw,30px); color:${C.ink}; margin:0;}
+.accesserr{flex-basis:100%; font-size:13px; color:#b3261e; margin-top:2px;}
+.accessform button:disabled{opacity:0.5; cursor:default;}
 .footrow{display:flex; align-items:center; justify-content:space-between; width:100%;
   border-top:1px solid ${C.line}; padding-top:28px; flex-wrap:wrap; gap:18px;}
 .footlinks{display:flex; gap:24px;}
