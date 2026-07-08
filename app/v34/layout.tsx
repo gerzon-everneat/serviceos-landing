@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     siteName: "neatr",
     type: "website",
     locale: "en_US",
-    images: [{ url: `https://cdn.neatr.ai/videos/poster-03.jpg`, width: 1600, height: 900, alt: "A customer booking a cleaning on neatr" }],
+    images: [{ url: `https://cdn.neatr.ai/assets/videos/poster-03.jpg`, width: 1600, height: 900, alt: "A customer booking a cleaning on neatr" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "neatr — Bookings in. Jobs dispatched. You just grow.",
     description: "Real recordings of the live product — from sign-up to a paid booking.",
-    images: [`https://cdn.neatr.ai/videos/poster-03.jpg`],
+    images: [`https://cdn.neatr.ai/assets/videos/poster-03.jpg`],
   },
   robots: { index: true, follow: true },
 };

@@ -41,8 +41,8 @@ export default function HeroPlayer() {
         <div className="cursor-zoom-in overflow-hidden" {...zoomHandlers()}>
           <video
             ref={videoRef}
-            src="https://cdn.neatr.ai/videos/03-customer-booking.mp4"
-            poster="https://cdn.neatr.ai/videos/poster-03.jpg"
+            src="https://cdn.neatr.ai/assets/videos/03-customer-booking.mp4"
+            poster="https://cdn.neatr.ai/assets/videos/poster-03.jpg"
             muted
             playsInline
             loop

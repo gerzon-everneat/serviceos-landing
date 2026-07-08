@@ -36,8 +36,8 @@ export const VIDEOS = [
     time: "0:22",
     name: "Sign up for neatr in 22 seconds",
     description: "Unedited screen recording: creating a neatr account with an email and one-time code, landing in a live admin dashboard.",
-    src: "https://cdn.neatr.ai/videos/01-tenant-signup.mp4",
-    poster: "https://cdn.neatr.ai/videos/poster-01.jpg",
+    src: "https://cdn.neatr.ai/assets/videos/01-tenant-signup.mp4",
+    poster: "https://cdn.neatr.ai/assets/videos/poster-01.jpg",
     duration: "PT22S",
   },
   {
@@ -46,8 +46,8 @@ export const VIDEOS = [
     time: "1:45",
     name: "Set up a cleaning business on neatr in 1:45",
     description: "Unedited screen recording: configuring categories, spaces, services, pricing tiers, and business branding in the neatr admin.",
-    src: "https://cdn.neatr.ai/videos/02-operations-setup.mp4",
-    poster: "https://cdn.neatr.ai/videos/poster-02.jpg",
+    src: "https://cdn.neatr.ai/assets/videos/02-operations-setup.mp4",
+    poster: "https://cdn.neatr.ai/assets/videos/poster-02.jpg",
     duration: "PT1M45S",
   },
   {
@@ -56,8 +56,8 @@ export const VIDEOS = [
     time: "1:07",
     name: "A customer books a cleaning on neatr in 1:07",
     description: "Unedited screen recording: a guest customer checks their ZIP, picks a service and arrival window, pays, and gets a confirmed booking.",
-    src: "https://cdn.neatr.ai/videos/03-customer-booking.mp4",
-    poster: "https://cdn.neatr.ai/videos/poster-03.jpg",
+    src: "https://cdn.neatr.ai/assets/videos/03-customer-booking.mp4",
+    poster: "https://cdn.neatr.ai/assets/videos/poster-03.jpg",
     duration: "PT1M7S",
   },
 ];
