@@ -36,8 +36,8 @@ export const VIDEOS = [
     time: "1:42",
     name: "Set up a cleaning business on neatr in 1:42",
     description: "Unedited screen recording: configuring categories, spaces, services, pricing tiers, and business branding in the neatr admin.",
-    src: "/videos/02-operations-setup.mp4",
-    poster: "/videos/poster-02.jpg",
+    src: "https://cdn.neatr.ai/assets/videos/02-operations-setup.mp4",
+    poster: "https://cdn.neatr.ai/assets/videos/poster-02.jpg",
     duration: "PT1M42S",
   },
   {
@@ -46,8 +46,8 @@ export const VIDEOS = [
     time: "0:49",
     name: "Customize your booking form on neatr in 49 seconds",
     description: "Unedited screen recording: an owner adds a custom question to the booking form, drags it into place, and publishes — then a customer answers it on the live form and the quote updates.",
-    src: "/videos/04-form-builder.mp4",
-    poster: "/videos/poster-04.jpg",
+    src: "https://cdn.neatr.ai/assets/videos/04-form-builder.mp4",
+    poster: "https://cdn.neatr.ai/assets/videos/poster-04.jpg",
     duration: "PT49S",
   },
   {
@@ -56,8 +56,8 @@ export const VIDEOS = [
     time: "1:04",
     name: "A customer books a cleaning on neatr in 1:04",
     description: "Unedited screen recording: a guest customer checks their ZIP, picks a service and arrival window, pays, and gets a confirmed booking.",
-    src: "/videos/03-customer-booking.mp4",
-    poster: "/videos/poster-03.jpg",
+    src: "https://cdn.neatr.ai/assets/videos/03-customer-booking.mp4",
+    poster: "https://cdn.neatr.ai/assets/videos/poster-03.jpg",
     duration: "PT1M4S",
   },
 ];

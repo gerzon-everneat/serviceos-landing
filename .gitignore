@@ -49,3 +49,6 @@ next-env.d.ts
 !public/setup/*.png
 
 .vercel
+
+# large media — served via cdn.neatr.ai (S3), not git
+/public/videos/

@@ -490,9 +490,9 @@ function BookingFlow() {
 
 /* Real screen recordings of the live product — each tab is one unedited clip. */
 const SETUP_STEPS = [
-  { key: "signup", label: "Sign up", time: "0:22", secs: 22, copy: "An email and one code — a new business lands in its own live dashboard. Twenty-two seconds, unedited.", src: "/videos/01-tenant-signup.mp4", poster: "/videos/poster-01.jpg" },
-  { key: "setup", label: "Set up", time: "1:45", secs: 105, copy: "Categories, spaces, services, pricing tiers, and branding — the whole catalog configured live, saving as you type.", src: "/videos/02-operations-setup.mp4", poster: "/videos/poster-02.jpg" },
-  { key: "booking", label: "Customer books", time: "1:07", secs: 67, copy: "A guest checks their ZIP, picks an arrival window, pays — and walks away with a confirmed booking. No account needed.", src: "/videos/03-customer-booking.mp4", poster: "/videos/poster-03.jpg" },
+  { key: "signup", label: "Sign up", time: "0:22", secs: 22, copy: "An email and one code — a new business lands in its own live dashboard. Twenty-two seconds, unedited.", src: "https://cdn.neatr.ai/assets/videos/01-tenant-signup.mp4", poster: "https://cdn.neatr.ai/assets/videos/poster-01.jpg" },
+  { key: "setup", label: "Set up", time: "1:45", secs: 105, copy: "Categories, spaces, services, pricing tiers, and branding — the whole catalog configured live, saving as you type.", src: "https://cdn.neatr.ai/assets/videos/02-operations-setup.mp4", poster: "https://cdn.neatr.ai/assets/videos/poster-02.jpg" },
+  { key: "booking", label: "Customer books", time: "1:07", secs: 67, copy: "A guest checks their ZIP, picks an arrival window, pays — and walks away with a confirmed booking. No account needed.", src: "https://cdn.neatr.ai/assets/videos/03-customer-booking.mp4", poster: "https://cdn.neatr.ai/assets/videos/poster-03.jpg" },
 ];
 
 function SetupFlow() {
