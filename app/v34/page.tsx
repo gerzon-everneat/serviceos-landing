@@ -1,41 +1,16 @@
-import type { Metadata } from "next";
-import Bg3D from "./v33/components/Bg3D";
-import ShowcaseVideos from "./v33/components/ShowcaseVideos";
-import { FAQ, SITE, UPLOAD_DATE, VIDEOS } from "./v33/content";
+import Bg3D from "./components/Bg3D";
+import HeroPlayer from "./components/HeroPlayer";
+import StepVideos from "./components/StepVideos";
+import { FAQ } from "./content";
 
-/* Base landing page — v33: the conversion landing. Server-rendered for SEO;
-   the only client islands are the two video players. Warm paper canvas,
-   DM Sans + Cormorant, lime reserved for live-state and one highlight per screen. */
+/*/* v34 — v33 plus pointer-follow zoom on the demo videos (hover a recording
+   to magnify the forms inside it). Server-rendered for SEO; the only client
+   islands are the two video players. Warm paper canvas, DM Sans + Cormorant,
+   lime reserved for live-state and one highlight per screen. */
 
 const SANS = "var(--font-dm-sans), system-ui, sans-serif";
 const SERIF = "var(--font-cormorant), Georgia, serif";
 const SIGNUP = "https://book.neatr.ai/auth/signup";
-
-export const metadata: Metadata = {
-  title: "neatr — Online Booking Software for Cleaning & Home-Service Businesses",
-  description:
-    "Take bookings online, dispatch your team, and get paid — with a booking page customers finish in about a minute. Watch real recordings: full setup in 1:42, a 49-second form customization, a live customer booking in 1:04.",
-  keywords:
-    "online booking software, cleaning business software, home service booking system, service scheduling software, booking page for cleaning company, dispatch software, arrival windows",
-  alternates: { canonical: SITE },
-  openGraph: {
-    title: "neatr — Bookings in. Jobs dispatched. You just grow.",
-    description:
-      "Real recordings of the live product: set up operations in 1:42, customize your booking form in 49 seconds, and watch a customer book in 1:04.",
-    url: SITE,
-    siteName: "neatr",
-    type: "website",
-    locale: "en_US",
-    images: [{ url: `https://cdn.neatr.ai/videos/poster-03.jpg`, width: 1600, height: 900, alt: "A customer booking a cleaning on neatr" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "neatr — Bookings in. Jobs dispatched. You just grow.",
-    description: "Real recordings of the live product — from sign-up to a paid booking.",
-    images: [`https://cdn.neatr.ai/videos/poster-03.jpg`],
-  },
-  robots: { index: true, follow: true },
-};
 
 function MarkGrid() {
   const pts = [10, 24, 38].flatMap((y) => [10, 24, 38].map((x) => ({ x, y })));
@@ -49,12 +24,12 @@ function MarkGrid() {
 }
 
 const FEATURES = [
-  { t: "Online booking page for your customers", c: "A booking page customers finish in about a minute — from your website, Google profile, or social links. Guest checkout, no accounts, works on any phone." },
-  { t: "Service scheduling with arrival windows", c: "Customers pick a two-hour arrival window — and only windows your team can actually make are offered, based on real availability and travel buffers." },
-  { t: "Instant quotes & upfront pricing", c: "Production rates, size tiers, and pricing rules compute the quote while the customer books. No callbacks to “get you a price.”" },
-  { t: "Dispatch software for field teams", c: "Every booking lands on a dispatch board. Assign cleaners and technicians with availability already checked, and reassignments handled cleanly." },
-  { t: "Automated SMS & email reminders", c: "Booking confirmations, appointment reminders, and on-my-way messages send themselves — over email and SMS." },
-  { t: "Payments with card on file", c: "Cards are verified at booking and charged after the job. “No payment due today” for them, no no-show losses for you." },
+  { t: "Arrival windows", c: "Customers pick a two-hour window — and only windows your team can actually make are offered, based on real availability and travel buffers." },
+  { t: "Pricing matrix", c: "Production rates, size tiers, and dynamic rules compute the quote while the customer books. No callbacks to “get you a price.”" },
+  { t: "Dispatch & assignment", c: "Every booking lands on a board. Assign providers with availability already checked, and reassignments handled cleanly." },
+  { t: "Card on file", c: "Cards are verified at booking and charged after the job. “No payment due today” for them, no no-show losses for you." },
+  { t: "Three portals", c: "Owner admin, provider app, customer portal. Everyone sees exactly their slice of the same booking." },
+  { t: "Automated notifications", c: "Confirmations, reminders, and on-my-way messages go out by themselves, over email and SMS." },
 ];
 
 const PLANS = [
@@ -78,58 +53,9 @@ const PLANS = [
   },
 ];
 
-export default function Home() {
-  const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      name: "neatr",
-      url: SITE,
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Web",
-      description:
-        "Online booking software for cleaning and home-service businesses: booking page, dispatch, notifications, and payments.",
-      offers: {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "USD",
-      },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      name: "How to start taking online bookings with neatr",
-      totalTime: "PT5M",
-      step: VIDEOS.map((v, i) => ({
-        "@type": "HowToStep",
-        position: i + 1,
-        name: ["Set up your operations", "Customize your booking form", "Share your booking page"][i],
-        text: v.description,
-        video: {
-          "@type": "VideoObject",
-          name: v.name,
-          description: v.description,
-          contentUrl: `${SITE}${v.src}`,
-          thumbnailUrl: `${SITE}${v.poster}`,
-          duration: v.duration,
-          uploadDate: UPLOAD_DATE,
-        },
-      })),
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: FAQ.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
-  ];
-
+export default function V34Page() {
   return (
     <div style={{ fontFamily: SANS, background: "#FBFBF9", color: "#0A0A0A" }} className="min-h-screen">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Bg3D />
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm">
         Skip to content
@@ -159,24 +85,24 @@ export default function Home() {
       </header>
 
       <main id="main" className="relative z-[1]">
-        {/* ─── Hero — Attio-style: centered copy, then the product stage ─── */}
-        <section aria-labelledby="hero-h" className="w-full px-5 pb-16 pt-24 md:px-8 md:pb-24 md:pt-32">
-          <div className="mx-auto w-full max-w-[880px] text-center">
+        {/* ─── Hero ─── */}
+        <section aria-labelledby="hero-h" className="mx-auto grid w-full max-w-[1240px] items-center gap-12 px-5 pb-20 pt-28 md:grid-cols-[1.15fr_1fr] md:gap-12 md:px-8 md:pb-28 md:pt-40">
+          <div>
             <p className="mb-5 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0A0A0A]/45">
               Online booking software for home-service businesses
             </p>
-            <h1 id="hero-h" className="m-0 text-[clamp(42px,7vw,68px)] font-bold leading-[1.02] tracking-[-0.025em]">
+            <h1 id="hero-h" className="m-0 text-[clamp(42px,7.5vw,70px)] font-bold leading-[1.0] tracking-[-0.025em]">
               Bookings in.
               <br />
               Jobs dispatched.
               <br />
               <em style={{ fontFamily: SERIF, fontWeight: 600 }}>You just grow.</em>
             </h1>
-            <p className="mx-auto mt-6 max-w-[52ch] text-[16.5px] leading-relaxed text-[#0A0A0A]/62">
+            <p className="mt-6 max-w-[46ch] text-[16.5px] leading-relaxed text-[#0A0A0A]/62">
               neatr gives your cleaning or home-service business a booking page customers finish in about a minute — and runs the
               dispatch, notifications, and payments behind it.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3.5">
+            <div className="mt-8 flex flex-wrap items-center gap-3.5">
               <a
                 href={SIGNUP}
                 className="rounded-full bg-[#0A0A0A] px-6 py-3.5 text-[14.5px] font-semibold text-white no-underline transition-opacity hover:opacity-85"
@@ -192,34 +118,69 @@ export default function Home() {
             </div>
             <p className="mt-5 text-[13px] text-[#0A0A0A]/45">Free to start · No credit card · Your customers never need an account</p>
           </div>
-          {/* The product IS the hero — recordings on one big stage, Attio-style */}
-          <div id="how" className="mx-auto mt-14 w-full max-w-[1400px] scroll-mt-24 md:mt-16">
-            <ShowcaseVideos />
+          <HeroPlayer />
+        </section>
+
+        {/* ─── Timing strip — the numbers are the recordings' real durations ─── */}
+        <section aria-label="How fast neatr is, timed on the demo recordings" className="border-y border-[#E7E6E1] bg-white">
+          <div className="mx-auto w-full max-w-[1200px] px-5 py-12 md:px-8">
+            <div className="mb-8 flex flex-wrap items-baseline justify-between gap-2">
+              <h2 className="m-0 text-[15px] font-semibold">
+                This is how fast it actually is <span className="font-normal text-[#0A0A0A]/45">— stopwatch on the recordings, not marketing math.</span>
+              </h2>
+              <a href="#how" className="text-[13px] font-medium text-[#3A5000] no-underline hover:underline">
+                Watch the recordings ↓
+              </a>
+            </div>
+            <div className="grid gap-8 sm:grid-cols-3">
+              {[
+                ["22", "seconds", "to sign up and land in a live dashboard"],
+                ["1:45", "minutes", "to set up services, pricing, and branding"],
+                ["1:07", "minutes", "for a customer to book and pay"],
+              ].map(([n, unit, l]) => (
+                <a key={l} href="#how" className="group no-underline">
+                  <p className="m-0 flex items-baseline gap-2 text-[#0A0A0A]">
+                    <span className="text-[38px] font-bold tracking-tight">{n}</span>
+                    <span className="text-[13px] font-medium text-[#0A0A0A]/45">{unit}</span>
+                  </p>
+                  <p className="m-0 mt-1.5 max-w-[30ch] text-[14px] leading-snug text-[#0A0A0A]/60 group-hover:text-[#0A0A0A]/85">{l}</p>
+                </a>
+              ))}
+            </div>
           </div>
+        </section>
+
+        {/* ─── How it works ─── */}
+        <section id="how" aria-labelledby="how-h" className="mx-auto w-full max-w-[1200px] scroll-mt-20 px-5 py-20 md:px-8 md:py-28">
+          <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0A0A0A]/45">How it works</p>
+          <h2 id="how-h" className="m-0 max-w-[24ch] text-[clamp(28px,4.5vw,44px)] font-bold leading-tight tracking-[-0.015em]">
+            Watch the whole thing,{" "}
+            <em style={{ fontFamily: SERIF, fontWeight: 600 }}>start to finish.</em>
+          </h2>
+          <p className="mb-10 mt-4 max-w-[58ch] text-[15.5px] leading-relaxed text-[#0A0A0A]/60">
+            Three screen recordings of the live product — no mockups, no cuts. This is exactly what you and your customers get.
+          </p>
+          <StepVideos />
         </section>
 
         {/* ─── Features ─── */}
         <section id="product" aria-labelledby="product-h" className="scroll-mt-20 border-t border-[#E7E6E1] bg-white">
           <div className="mx-auto w-full max-w-[1200px] px-5 py-20 md:px-8 md:py-28">
             <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0A0A0A]/45">Product</p>
-            <h2 id="product-h" className="m-0 max-w-[34ch] text-[clamp(28px,4.5vw,44px)] font-bold leading-tight tracking-[-0.015em]">
-              Booking, scheduling & dispatch software for <em style={{ fontFamily: SERIF, fontWeight: 600 }}>cleaning and home-service businesses.</em>
+            <h2 id="product-h" className="m-0 max-w-[26ch] text-[clamp(28px,4.5vw,44px)] font-bold leading-tight tracking-[-0.015em]">
+              Everything between {"“"}booking request{"”"} and <em style={{ fontFamily: SERIF, fontWeight: 600 }}>paid.</em>
             </h2>
-            <p className="m-0 mt-5 max-w-[62ch] text-[15.5px] leading-relaxed text-[#0A0A0A]/60">
-              neatr is cleaning business software and a home-service booking system in one: an online booking form for your
-              customers, service scheduling and dispatch for your team, and automated notifications and payments behind it all.
-            </p>
-            <div className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            <dl className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
               {FEATURES.map((f) => (
                 <div key={f.t}>
-                  <h3 className="m-0 flex items-center gap-2.5 text-[15.5px] font-semibold">
+                  <dt className="flex items-center gap-2.5 text-[15.5px] font-semibold">
                     <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#C8FF00] ring-1 ring-[#3A5000]/30" aria-hidden />
                     {f.t}
-                  </h3>
-                  <p className="m-0 mt-2.5 text-[14.5px] leading-relaxed text-[#0A0A0A]/60">{f.c}</p>
+                  </dt>
+                  <dd className="m-0 mt-2.5 text-[14.5px] leading-relaxed text-[#0A0A0A]/60">{f.c}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </div>
         </section>
 

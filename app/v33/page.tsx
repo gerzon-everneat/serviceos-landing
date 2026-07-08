@@ -1,41 +1,14 @@
-import type { Metadata } from "next";
-import Bg3D from "./v33/components/Bg3D";
-import ShowcaseVideos from "./v33/components/ShowcaseVideos";
-import { FAQ, SITE, UPLOAD_DATE, VIDEOS } from "./v33/content";
+import Bg3D from "./components/Bg3D";
+import ShowcaseVideos from "./components/ShowcaseVideos";
+import { FAQ } from "./content";
 
-/* Base landing page — v33: the conversion landing. Server-rendered for SEO;
-   the only client islands are the two video players. Warm paper canvas,
-   DM Sans + Cormorant, lime reserved for live-state and one highlight per screen. */
+/* v33 — the conversion landing. Server-rendered for SEO; the only client
+   islands are the two video players. Warm paper canvas, DM Sans + Cormorant,
+   lime reserved for live-state and one highlight per screen. */
 
 const SANS = "var(--font-dm-sans), system-ui, sans-serif";
 const SERIF = "var(--font-cormorant), Georgia, serif";
 const SIGNUP = "https://book.neatr.ai/auth/signup";
-
-export const metadata: Metadata = {
-  title: "neatr — Online Booking Software for Cleaning & Home-Service Businesses",
-  description:
-    "Take bookings online, dispatch your team, and get paid — with a booking page customers finish in about a minute. Watch real recordings: full setup in 1:42, a 49-second form customization, a live customer booking in 1:04.",
-  keywords:
-    "online booking software, cleaning business software, home service booking system, service scheduling software, booking page for cleaning company, dispatch software, arrival windows",
-  alternates: { canonical: SITE },
-  openGraph: {
-    title: "neatr — Bookings in. Jobs dispatched. You just grow.",
-    description:
-      "Real recordings of the live product: set up operations in 1:42, customize your booking form in 49 seconds, and watch a customer book in 1:04.",
-    url: SITE,
-    siteName: "neatr",
-    type: "website",
-    locale: "en_US",
-    images: [{ url: `https://cdn.neatr.ai/videos/poster-03.jpg`, width: 1600, height: 900, alt: "A customer booking a cleaning on neatr" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "neatr — Bookings in. Jobs dispatched. You just grow.",
-    description: "Real recordings of the live product — from sign-up to a paid booking.",
-    images: [`https://cdn.neatr.ai/videos/poster-03.jpg`],
-  },
-  robots: { index: true, follow: true },
-};
 
 function MarkGrid() {
   const pts = [10, 24, 38].flatMap((y) => [10, 24, 38].map((x) => ({ x, y })));
@@ -78,58 +51,9 @@ const PLANS = [
   },
 ];
 
-export default function Home() {
-  const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      name: "neatr",
-      url: SITE,
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Web",
-      description:
-        "Online booking software for cleaning and home-service businesses: booking page, dispatch, notifications, and payments.",
-      offers: {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "USD",
-      },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      name: "How to start taking online bookings with neatr",
-      totalTime: "PT5M",
-      step: VIDEOS.map((v, i) => ({
-        "@type": "HowToStep",
-        position: i + 1,
-        name: ["Set up your operations", "Customize your booking form", "Share your booking page"][i],
-        text: v.description,
-        video: {
-          "@type": "VideoObject",
-          name: v.name,
-          description: v.description,
-          contentUrl: `${SITE}${v.src}`,
-          thumbnailUrl: `${SITE}${v.poster}`,
-          duration: v.duration,
-          uploadDate: UPLOAD_DATE,
-        },
-      })),
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: FAQ.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
-  ];
-
+export default function V33Page() {
   return (
     <div style={{ fontFamily: SANS, background: "#FBFBF9", color: "#0A0A0A" }} className="min-h-screen">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Bg3D />
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm">
         Skip to content
