@@ -25,7 +25,7 @@ export const FAQ = [
   },
   {
     q: "How much does neatr cost?",
-    a: "neatr is free while we finalize plans — you can put a booking page live today at no cost. Paid plans are coming soon, and for larger teams we offer custom enterprise pricing. Get in touch at hello@neatr.ai for a quote.",
+    a: "neatr is free while we finalize plans. We're onboarding businesses personally right now — request early access with your email and business details, and we'll set you up. For larger teams we offer custom enterprise pricing at hello@neatr.ai.",
   },
 ];
 
