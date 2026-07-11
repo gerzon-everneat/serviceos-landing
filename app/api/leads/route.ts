@@ -54,7 +54,14 @@ export async function POST(request: Request) {
   try {
     const r = await fetch(`${NEATR_API}/api/v1/leads`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-Requested-With": "fetch",
+        // Real client IP for the backend's shared (Mongo) rate limit — all
+        // proxied traffic reaches it from this function's egress IPs, so
+        // without this the backend can't tell visitors apart.
+        "X-Lead-Ip": ip,
+      },
       body: JSON.stringify({ email, source, message }),
     });
     return new Response(await r.text(), {
