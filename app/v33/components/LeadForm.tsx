@@ -8,8 +8,6 @@ import { useState } from "react";
    share the same subject line at the notify inbox, so they thread. POSTs to
    the existing booking-fe leads endpoint — no signup flow behind this, by design. */
 
-// neatr.ai backend (booking-fe). Override with NEXT_PUBLIC_NEATR_API for local dev.
-const NEATR_API = process.env.NEXT_PUBLIC_NEATR_API ?? "https://book.neatr.ai";
 const SOURCE = "neatr.ai — early access";
 
 const FIELD =
@@ -38,10 +36,11 @@ const PROFILE_FIELDS: Array<[name: string, label: string]> = [
 ];
 
 async function postLead(body: { email: string; source: string; message?: string }) {
-  const r = await fetch(`${NEATR_API}/api/v1/leads`, {
+  // Same-origin proxy (app/api/leads) — sidesteps the backend's CORS
+  // allowlist and attaches the csrfGuard header server-side.
+  const r = await fetch("/api/leads", {
     method: "POST",
-    // X-Requested-With is required by the backend's csrfGuard.
-    headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
   if (!r.ok) throw new Error("lead post failed");
