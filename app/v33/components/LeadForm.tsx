@@ -35,7 +35,7 @@ const PROFILE_FIELDS: Array<[name: string, label: string]> = [
   ["location", "Location"],
 ];
 
-async function postLead(body: { email: string; source: string; message?: string }) {
+async function postLead(body: { email: string; source: string; message?: string; hp?: string }) {
   // Same-origin proxy (app/api/leads) — sidesteps the backend's CORS
   // allowlist and attaches the csrfGuard header server-side.
   const r = await fetch("/api/leads", {
@@ -54,12 +54,13 @@ export default function LeadForm() {
 
   async function submitEmail(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const value = String(new FormData(e.currentTarget).get("email") ?? "").trim();
+    const f = new FormData(e.currentTarget);
+    const value = String(f.get("email") ?? "").trim();
     if (!value || sending) return;
     setSending(true);
     setError(false);
     try {
-      await postLead({ email: value, source: SOURCE });
+      await postLead({ email: value, source: SOURCE, hp: String(f.get("hp") ?? "") });
       setEmail(value);
       setStep("profile");
     } catch {
@@ -159,6 +160,15 @@ export default function LeadForm() {
 
   return (
     <form onSubmit={submitEmail} className="mx-auto mt-9 flex w-full max-w-[480px] flex-col gap-3 sm:flex-row sm:flex-wrap">
+      {/* Honeypot — visually hidden from humans, bots autofill it and get silently dropped. */}
+      <input
+        type="text"
+        name="hp"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute -left-[9999px] h-px w-px opacity-0"
+      />
       <input type="email" name="email" required aria-label="Work email" placeholder="Work email" className={`${FIELD} flex-1`} />
       <button
         type="submit"
