@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Bg3D from "./v33/components/Bg3D";
+import LeadForm from "./v33/components/LeadForm";
 import ShowcaseVideos from "./v33/components/ShowcaseVideos";
 import { FAQ, SITE, UPLOAD_DATE, VIDEOS } from "./v33/content";
 
@@ -9,7 +10,8 @@ import { FAQ, SITE, UPLOAD_DATE, VIDEOS } from "./v33/content";
 
 const SANS = "var(--font-dm-sans), system-ui, sans-serif";
 const SERIF = "var(--font-cormorant), Georgia, serif";
-const SIGNUP = "https://book.neatr.ai/auth/signup";
+/* No self-serve signup for now — every CTA routes to the early-access form. */
+const GET_ACCESS = "#get-access";
 
 export const metadata: Metadata = {
   title: "neatr — Online Booking Software for Cleaning & Home-Service Businesses",
@@ -64,8 +66,8 @@ const PLANS = [
     per: "while we finalize plans",
     tag: null as string | null,
     items: ["Your booking page, live today", "Catalog + pricing setup", "Guest checkout for customers", "Dispatch, notifications & payments"],
-    cta: "Start free",
-    href: SIGNUP,
+    cta: "Request access",
+    href: GET_ACCESS,
   },
   {
     name: "Enterprise",
@@ -150,10 +152,10 @@ export default function Home() {
             ))}
           </div>
           <a
-            href={SIGNUP}
+            href={GET_ACCESS}
             className="ml-auto rounded-full bg-[#0A0A0A] px-4 py-2 text-[13px] font-semibold text-white no-underline transition-opacity hover:opacity-85 md:ml-0"
           >
-            Start free
+            Get early access
           </a>
         </nav>
       </header>
@@ -178,10 +180,10 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3.5">
               <a
-                href={SIGNUP}
+                href={GET_ACCESS}
                 className="rounded-full bg-[#0A0A0A] px-6 py-3.5 text-[14.5px] font-semibold text-white no-underline transition-opacity hover:opacity-85"
               >
-                Start free
+                Get early access
               </a>
               <a
                 href="#how"
@@ -190,7 +192,7 @@ export default function Home() {
                 Watch the demos
               </a>
             </div>
-            <p className="mt-5 text-[13px] text-[#0A0A0A]/45">Free to start · No credit card · Your customers never need an account</p>
+            <p className="mt-5 text-[13px] text-[#0A0A0A]/45">Free while we finalize plans · No credit card · We set you up personally</p>
           </div>
           {/* The product IS the hero — recordings on one big stage, Attio-style */}
           <div id="how" className="mx-auto mt-14 w-full max-w-[1400px] scroll-mt-24 md:mt-16">
@@ -291,22 +293,18 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── Closing CTA ─── */}
-        <section aria-labelledby="cta-h" className="bg-[#0A0A0A]">
+        {/* ─── Closing CTA — early-access lead capture ─── */}
+        <section id="get-access" aria-labelledby="cta-h" className="scroll-mt-20 bg-[#0A0A0A]">
           <div className="mx-auto w-full max-w-[1200px] px-5 py-24 text-center md:px-8 md:py-32">
             <h2 id="cta-h" className="mx-auto m-0 max-w-[20ch] text-[clamp(32px,5.5vw,56px)] font-semibold leading-[1.05] text-white" style={{ fontFamily: SERIF, fontStyle: "italic" }}>
-              Watch it once — then run it yourself.
+              Watch it once — then get on the list.
             </h2>
-            <p className="mx-auto mt-5 max-w-[44ch] text-[15px] leading-relaxed text-white/55">
-              Your booking page can be live before the coffee{"’"}s done. Free to start, and your customers never need an account.
+            <p className="mx-auto mt-5 max-w-[46ch] text-[15px] leading-relaxed text-white/55">
+              We{"’"}re onboarding a few businesses at a time. Leave your email and a bit about your business — we{"’"}ll set
+              you up personally.
             </p>
-            <a
-              href={SIGNUP}
-              className="mt-9 inline-block rounded-full bg-[#C8FF00] px-8 py-4 text-[15px] font-bold text-[#0A0A0A] no-underline transition-opacity hover:opacity-85"
-            >
-              Start free
-            </a>
-            <p className="mt-4 text-[12.5px] text-white/35">book.neatr.ai</p>
+            <LeadForm />
+            <p className="mt-4 text-[12.5px] text-white/35">or email hello@neatr.ai</p>
           </div>
         </section>
       </main>

@@ -90,10 +90,6 @@ body {
   90%  { opacity: 1; }
   100% { transform: translateY(800%); opacity: 0; }
 }
-@keyframes gradient-pan {
-  0%, 100% { background-position: 0% 50%; }
-  50%       { background-position: 100% 50%; }
-}
 @keyframes mesh-1 {
   0%, 100% { transform: translate(0, 0) scale(1); }
   33%       { transform: translate(55px, -40px) scale(1.06); }
@@ -139,7 +135,6 @@ body {
 .animate-float3 { animation: float3 8s 2s ease-in-out infinite; }
 .animate-marquee { animation: marquee 42s linear infinite; will-change: transform; }
 .animate-scan    { animation: scan-down 4s ease-in-out infinite; }
-.animate-gradient-pan { animation: gradient-pan 5s ease infinite; background-size: 200% 200%; }
 
 /* ─── Shimmer card ─── */
 .shimmer-card { position: relative; overflow: hidden; }
@@ -152,13 +147,3 @@ body {
   pointer-events: none;
 }
 .shimmer-card:hover::after { animation: shimmer-sweep 0.65s ease; }
-
-/* ─── Gradient text ─── */
-.text-gradient-gold {
-  background: linear-gradient(135deg, #B8922A 0%, #D4A862 40%, #B8922A 70%, #C49040 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-pan 4s ease infinite;
-}
