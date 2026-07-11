@@ -35,7 +35,7 @@ const PROFILE_FIELDS: Array<[name: string, label: string]> = [
   ["location", "Location"],
 ];
 
-async function postLead(body: { email: string; source: string; message?: string; hp?: string }) {
+async function postLead(body: { email: string; source: string; message?: string; hp?: string }): Promise<{ returning?: boolean }> {
   // Same-origin proxy (app/api/leads) — sidesteps the backend's CORS
   // allowlist and attaches the csrfGuard header server-side.
   const r = await fetch("/api/leads", {
@@ -44,11 +44,13 @@ async function postLead(body: { email: string; source: string; message?: string;
     body: JSON.stringify(body),
   });
   if (!r.ok) throw new Error("lead post failed");
+  return r.json().catch(() => ({}));
 }
 
 export default function LeadForm() {
   const [step, setStep] = useState<"email" | "profile" | "done">("email");
   const [email, setEmail] = useState("");
+  const [returning, setReturning] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
 
@@ -60,7 +62,8 @@ export default function LeadForm() {
     setSending(true);
     setError(false);
     try {
-      await postLead({ email: value, source: SOURCE, hp: String(f.get("hp") ?? "") });
+      const result = await postLead({ email: value, source: SOURCE, hp: String(f.get("hp") ?? "") });
+      setReturning(!!result.returning);
       setEmail(value);
       setStep("profile");
     } catch {
@@ -106,8 +109,12 @@ export default function LeadForm() {
     return (
       <form onSubmit={submitProfile} className="mx-auto mt-9 grid w-full max-w-[620px] gap-3 text-left sm:grid-cols-2">
         <p className="m-0 text-center text-[14px] font-semibold text-[#C8FF00] sm:col-span-2" role="status">
-          You&rsquo;re on the list ✓&ensp;
-          <span className="font-normal text-white/55">Optional: tell us about your business so we can set you up faster.</span>
+          {returning ? <>You&rsquo;re already on the list ✓</> : <>You&rsquo;re on the list ✓</>}&ensp;
+          <span className="font-normal text-white/55">
+            {returning
+              ? "We have your request — updating your details below helps us reach out sooner."
+              : "Optional: tell us about your business so we can set you up faster."}
+          </span>
         </p>
         <input type="text" name="name" aria-label="Your name" placeholder="Your name" className={FIELD} />
         <input type="text" name="business" aria-label="Business name" placeholder="Business name" className={FIELD} />
