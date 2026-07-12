@@ -24,8 +24,16 @@ export const FAQ = [
     a: 'No. The card is verified and saved at booking with no charge — you charge after the job is done. Customers see "No payment due today" at checkout.',
   },
   {
+    q: "How do I sign up for neatr?",
+    a: "Go to book.neatr.ai/auth/signup, verify your email with a one-time code (no password needed), then name your business — that name becomes your own booking address, like sparkle-cleaning.neatr.ai, checked for availability as you type. The whole signup takes about two minutes and your booking page is live immediately.",
+  },
+  {
     q: "How much does neatr cost?",
-    a: "neatr is free while we finalize plans. We're onboarding businesses personally right now — request early access with your email and business details, and we'll set you up. For larger teams we offer custom enterprise pricing at hello@neatr.ai.",
+    a: "Every new business starts on a free trial — no credit card required, full access to the booking page, dispatch board, notifications, and payments. Paid plans are coming as we finalize pricing, and existing trials will get notice before anything changes. For larger teams we offer custom enterprise pricing at hello@neatr.ai.",
+  },
+  {
+    q: "Do I need a credit card to start?",
+    a: "No. The free trial requires no credit card and no sales call — you sign up with just an email, set up your services, and share your booking page. You only ever add payment details when you choose a paid plan later.",
   },
 ];
 
