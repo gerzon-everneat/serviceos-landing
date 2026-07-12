@@ -13,6 +13,7 @@ const SERIF = "var(--font-cormorant), Georgia, serif";
 /* Direct self-serve signup is open. Primary CTAs go straight to signup;
    the closing section keeps the lead form as a softer fallback. */
 const SIGNUP = "https://book.neatr.ai/auth/signup";
+const LOGIN = "https://book.neatr.ai/auth/login";
 
 export const metadata: Metadata = {
   title: "neatr — Online Booking Software for Cleaning & Home-Service Businesses",
@@ -67,7 +68,7 @@ const PLANS = [
     per: "while we finalize pricing",
     tag: null as string | null,
     items: ["Your booking page, live today", "Catalog + pricing setup", "Guest checkout for customers", "Dispatch, notifications & payments"],
-    cta: "Start free trial",
+    cta: "Sign up",
     href: SIGNUP,
   },
   {
@@ -153,11 +154,14 @@ export default function Home() {
               </a>
             ))}
           </div>
+          <a href={LOGIN} className="ml-auto text-[13.5px] font-medium text-[#0A0A0A]/60 no-underline transition-colors hover:text-[#0A0A0A] md:ml-0">
+            Log in
+          </a>
           <a
             href={SIGNUP}
-            className="ml-auto rounded-full bg-[#0A0A0A] px-4 py-2 text-[13px] font-semibold text-white no-underline transition-opacity hover:opacity-85 md:ml-0"
+            className="rounded-full bg-[#0A0A0A] px-4 py-2 text-[13px] font-semibold text-white no-underline transition-opacity hover:opacity-85"
           >
-            Start free trial
+            Sign up
           </a>
         </nav>
       </header>
@@ -185,7 +189,7 @@ export default function Home() {
                 href={SIGNUP}
                 className="rounded-full bg-[#0A0A0A] px-6 py-3.5 text-[14.5px] font-semibold text-white no-underline transition-opacity hover:opacity-85"
               >
-                Start free trial
+                Sign up
               </a>
               <a
                 href="#how"
@@ -344,7 +348,7 @@ export default function Home() {
               href={SIGNUP}
               className="mt-9 inline-block rounded-full bg-[#C8FF00] px-8 py-4 text-[15px] font-bold text-[#0A0A0A] no-underline transition-opacity hover:opacity-85"
             >
-              Start free trial
+              Sign up
             </a>
             <p className="mx-auto mt-14 max-w-[46ch] text-[14px] leading-relaxed text-white/45">
               Not ready yet? Leave your email and a bit about your business — we{"’"}ll set you up personally.
