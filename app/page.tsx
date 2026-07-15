@@ -10,15 +10,16 @@ import { FAQ, SITE, UPLOAD_DATE, VIDEOS } from "./v33/content";
 
 const SANS = "var(--font-dm-sans), system-ui, sans-serif";
 const SERIF = "var(--font-cormorant), Georgia, serif";
-/* Direct self-serve signup is open. Primary CTAs go straight to signup;
-   the closing section keeps the lead form as a softer fallback. */
-const SIGNUP = "https://book.neatr.ai/auth/signup";
+/* Early access: no self-serve signup for now. Every primary CTA routes to the
+   on-page lead form (#get-access); we onboard requesters personally. Existing
+   users still log in. */
+const GET_ACCESS = "#get-access";
 const LOGIN = "https://book.neatr.ai/auth/login";
 
 export const metadata: Metadata = {
   title: "neatr — Online Booking Software for Cleaning & Home-Service Businesses",
   description:
-    "Online booking, dispatch, and payments for cleaning and home-service businesses. Start a free trial — your booking page can be live in minutes, no credit card.",
+    "Online booking, dispatch, and payments for cleaning and home-service businesses. Request early access — we're onboarding businesses personally and building your booking page with you. No credit card.",
   keywords:
     "online booking software, cleaning business software, home service booking system, service scheduling software, booking page for cleaning company, dispatch software, arrival windows",
   alternates: { canonical: SITE },
@@ -63,13 +64,13 @@ const FEATURES = [
 
 const PLANS = [
   {
-    name: "Starter",
+    name: "Early access",
     price: "Free trial",
     per: "while we finalize pricing",
     tag: null as string | null,
-    items: ["Your booking page, live today", "Catalog + pricing setup", "Guest checkout for customers", "Dispatch, notifications & payments"],
-    cta: "Sign up",
-    href: SIGNUP,
+    items: ["Your booking page, set up for you", "Catalog + pricing setup", "Guest checkout for customers", "Dispatch, notifications & payments"],
+    cta: "Request access",
+    href: GET_ACCESS,
   },
   {
     name: "Enterprise",
@@ -158,10 +159,10 @@ export default function Home() {
             Log in
           </a>
           <a
-            href={SIGNUP}
+            href={GET_ACCESS}
             className="rounded-full bg-[#0A0A0A] px-4 py-2 text-[13px] font-semibold text-white no-underline transition-opacity hover:opacity-85"
           >
-            Sign up
+            Get early access
           </a>
         </nav>
       </header>
@@ -186,10 +187,10 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3.5">
               <a
-                href={SIGNUP}
+                href={GET_ACCESS}
                 className="rounded-full bg-[#0A0A0A] px-6 py-3.5 text-[14.5px] font-semibold text-white no-underline transition-opacity hover:opacity-85"
               >
-                Sign up
+                Get early access
               </a>
               <a
                 href="#how"
@@ -198,7 +199,7 @@ export default function Home() {
                 Watch the demos
               </a>
             </div>
-            <p className="mt-5 text-[13px] text-[#0A0A0A]/45">Free trial · No credit card · Your booking page live in minutes</p>
+            <p className="mt-5 text-[13px] text-[#0A0A0A]/45">Free trial · No credit card · We set you up personally</p>
           </div>
           {/* The product IS the hero — recordings on one big stage, Attio-style */}
           <div id="how" className="mx-auto mt-14 w-full max-w-[1400px] scroll-mt-24 md:mt-16">
@@ -238,9 +239,9 @@ export default function Home() {
             How do I start taking bookings with <em style={{ fontFamily: SERIF, fontWeight: 600 }}>neatr?</em>
           </h2>
           <p className="m-0 mt-5 max-w-[68ch] text-[15.5px] leading-relaxed text-[#0A0A0A]/60">
-            Sign up at book.neatr.ai, verify your email, name your business, and your booking page is live at your own
-            address — no credit card, no sales call. The core setup takes about two minutes; the full recordings on this
-            page show it unedited.
+            Request early access with your email, and we&rsquo;ll set you up personally — name your business, and your
+            booking page goes live at your own address, no credit card. The core setup takes about two minutes; the full
+            recordings on this page show it unedited.
           </p>
           <ol className="mt-10 grid list-none gap-8 p-0 sm:grid-cols-2 lg:grid-cols-4">
             {[
@@ -259,10 +260,10 @@ export default function Home() {
             ))}
           </ol>
           <a
-            href={SIGNUP}
+            href={GET_ACCESS}
             className="mt-10 inline-block rounded-full bg-[#0A0A0A] px-6 py-3.5 text-[14.5px] font-semibold text-white no-underline transition-opacity hover:opacity-85"
           >
-            Create your booking page
+            Request early access
           </a>
         </section>
 
@@ -334,24 +335,15 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── Closing CTA — signup primary, lead form as the softer fallback ─── */}
+        {/* ─── Closing CTA — early-access lead capture ─── */}
         <section id="get-access" aria-labelledby="cta-h" className="scroll-mt-20 bg-[#0A0A0A]">
           <div className="mx-auto w-full max-w-[1200px] px-5 py-24 text-center md:px-8 md:py-32">
             <h2 id="cta-h" className="mx-auto m-0 max-w-[20ch] text-[clamp(32px,5.5vw,56px)] font-semibold leading-[1.05] text-white" style={{ fontFamily: SERIF, fontStyle: "italic" }}>
-              Watch it once — then run it yourself.
+              Watch it once — then get on the list.
             </h2>
-            <p className="mx-auto mt-5 max-w-[44ch] text-[15px] leading-relaxed text-white/55">
-              Your booking page can be live before the coffee{"’"}s done. Free trial, no credit card, and your customers
-              never need an account.
-            </p>
-            <a
-              href={SIGNUP}
-              className="mt-9 inline-block rounded-full bg-[#C8FF00] px-8 py-4 text-[15px] font-bold text-[#0A0A0A] no-underline transition-opacity hover:opacity-85"
-            >
-              Sign up
-            </a>
-            <p className="mx-auto mt-14 max-w-[46ch] text-[14px] leading-relaxed text-white/45">
-              Not ready yet? Leave your email and a bit about your business — we{"’"}ll set you up personally.
+            <p className="mx-auto mt-5 max-w-[46ch] text-[15px] leading-relaxed text-white/55">
+              We{"’"}re onboarding a few businesses at a time. Leave your email and a bit about your business — we{"’"}ll set
+              you up personally.
             </p>
             <LeadForm />
             <p className="mt-4 text-[12.5px] text-white/35">or email hello@neatr.ai</p>
