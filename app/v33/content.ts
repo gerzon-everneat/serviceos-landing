@@ -24,16 +24,16 @@ export const FAQ = [
     a: 'No. The card is verified and saved at booking with no charge — you charge after the job is done. Customers see "No payment due today" at checkout.',
   },
   {
-    q: "How do I sign up for neatr?",
-    a: "Go to book.neatr.ai/auth/signup, verify your email with a one-time code (no password needed), then name your business — that name becomes your own booking address, like sparkle-cleaning.neatr.ai, checked for availability as you type. The whole signup takes about two minutes and your booking page is live immediately.",
+    q: "How do I get started with neatr?",
+    a: "neatr is in early access. Request access with your email and a bit about your business, and we'll set you up personally. Once you're in, you name your business — that name becomes your own booking address, like sparkle-cleaning.neatr.ai, checked for availability as you type — and your booking page goes live. The core setup takes about two minutes.",
   },
   {
     q: "How much does neatr cost?",
-    a: "Every new business starts on a free trial — no credit card required, full access to the booking page, dispatch board, notifications, and payments. Paid plans are coming as we finalize pricing, and existing trials will get notice before anything changes. For larger teams we offer custom enterprise pricing at hello@neatr.ai.",
+    a: "neatr is in early access and free while we finalize pricing — no credit card required, full access to the booking page, dispatch board, notifications, and payments. Request early access and we'll set you up. Paid plans are coming, and early businesses will get notice before anything changes. For larger teams we offer custom enterprise pricing at hello@neatr.ai.",
   },
   {
     q: "Do I need a credit card to start?",
-    a: "No. The free trial requires no credit card and no sales call — you sign up with just an email, set up your services, and share your booking page. You only ever add payment details when you choose a paid plan later.",
+    a: "No. Early access requires no credit card — request access with just your email, and we'll set you up: your services, your booking page, your own address. You only ever add payment details when you choose a paid plan later.",
   },
 ];
 
