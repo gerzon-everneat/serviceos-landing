@@ -17,7 +17,7 @@ const GET_ACCESS = "#get-access";
 const LOGIN = "https://book.neatr.ai/auth/login";
 
 export const metadata: Metadata = {
-  title: "neatr — Online Booking Software for Cleaning & Home-Service Businesses",
+  title: "Let customers book instantly while Neatr handles the rest",
   description:
     "Online booking, dispatch, and payments for cleaning and home-service businesses. Request early access — we're onboarding businesses personally and building your booking page with you. No credit card.",
   keywords:
