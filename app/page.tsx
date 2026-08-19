@@ -175,7 +175,9 @@ export default function Home() {
               Online booking software for home-service businesses
             </p>
             <h1 id="hero-h" className="m-0 text-[clamp(42px,7vw,68px)] font-bold leading-[1.02] tracking-[-0.025em]">
-              Let customers book instantly while Neatr handles the rest
+              Customers book instantly.
+              <br />
+              Neatr handles the rest.
             </h1>
             <p className="mx-auto mt-6 max-w-[52ch] text-[16.5px] leading-relaxed text-[#0A0A0A]/62">
               neatr gives your cleaning or home-service business a booking page customers finish in about a minute — and runs the
