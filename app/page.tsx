@@ -19,7 +19,7 @@ const LOGIN = "https://book.neatr.ai/auth/login";
 export const metadata: Metadata = {
   title: "Let customers book instantly while Neatr handles the rest",
   description:
-    "Online booking, dispatch, and payments for cleaning and home-service businesses. Request early access — we're onboarding businesses personally and building your booking page with you. No credit card.",
+    "Online booking, dispatch, and payments for cleaning and home-service businesses. Join the waiting list — we're onboarding businesses personally and building your booking page with you. No credit card.",
   keywords:
     "online booking software, cleaning business software, home service booking system, service scheduling software, booking page for cleaning company, dispatch software, arrival windows",
   alternates: { canonical: SITE },
@@ -162,7 +162,7 @@ export default function Home() {
             href={GET_ACCESS}
             className="rounded-full bg-[#0A0A0A] px-4 py-2 text-[13px] font-semibold text-white no-underline transition-opacity hover:opacity-85"
           >
-            Get early access
+            Join waiting list
           </a>
         </nav>
       </header>
@@ -188,7 +188,7 @@ export default function Home() {
                 href={GET_ACCESS}
                 className="rounded-full bg-[#0A0A0A] px-6 py-3.5 text-[14.5px] font-semibold text-white no-underline transition-opacity hover:opacity-85"
               >
-                Get early access
+                Join the waiting list
               </a>
               <a
                 href="#how"
@@ -237,7 +237,7 @@ export default function Home() {
             How do I start taking bookings with <em style={{ fontFamily: SERIF, fontWeight: 600 }}>neatr?</em>
           </h2>
           <p className="m-0 mt-5 max-w-[68ch] text-[15.5px] leading-relaxed text-[#0A0A0A]/60">
-            Request early access with your email, and we&rsquo;ll set you up personally — name your business, and your
+            Join the waiting list with your email, and we&rsquo;ll set you up personally — name your business, and your
             booking page goes live at your own address, no credit card. The core setup takes about two minutes; the full
             recordings on this page show it unedited.
           </p>
@@ -261,7 +261,7 @@ export default function Home() {
             href={GET_ACCESS}
             className="mt-10 inline-block rounded-full bg-[#0A0A0A] px-6 py-3.5 text-[14.5px] font-semibold text-white no-underline transition-opacity hover:opacity-85"
           >
-            Request early access
+            Join the waiting list
           </a>
         </section>
 
