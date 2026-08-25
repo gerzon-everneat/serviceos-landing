@@ -182,7 +182,7 @@ export default function LeadForm() {
         disabled={sending}
         className="shrink-0 rounded-full bg-[#C8FF00] px-7 py-3.5 text-[15px] font-bold text-[#0A0A0A] transition-opacity hover:opacity-85 disabled:opacity-60"
       >
-        {sending ? "Sending…" : "Get early access"}
+        {sending ? "Sending…" : "Request access"}
       </button>
       {error && (
         <p className="m-0 text-[13px] text-[#FF9A8A] sm:basis-full" role="alert">
