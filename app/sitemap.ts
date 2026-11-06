@@ -10,5 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    { url: "https://www.neatr.ai/support", changeFrequency: "yearly", priority: 0.3 },
+    { url: "https://www.neatr.ai/delete-account", changeFrequency: "yearly", priority: 0.3 },
   ];
 }
