@@ -3,75 +3,90 @@ import type { Metadata } from "next";
 import InfoPage, { Section } from "../../components/InfoPage";
 
 /* Google Play account-deletion page (support.google.com/googleplay/android-developer/answer/13327111):
-   names the app, gives prominent steps, says what is deleted and what is kept and for how long.
-   Deletion is per business (owner 11-06): there is no Neatr-wide customer account. */
+   names the app and developer, gives prominent request steps, says what is deleted and what is kept
+   and for how long. Deletion is per business (owner 11-06): there is no Neatr-wide customer account. */
 
 export const metadata: Metadata = {
   title: "Delete your account | Neatr",
-  description: "How to request deletion of your account and data in the Neatr app.",
+  description: "How to request deletion of your account and personal data in Neatr: Book & manage cleaning.",
   alternates: { canonical: "https://www.neatr.ai/delete-account" },
 };
+
+const MAILTO = "mailto:hello@neatr.ai?subject=Account%20deletion%20request";
+const POLICY = "https://book.neatr.ai/privacy-policy";
 
 export default function DeleteAccountPage() {
   return (
     <InfoPage
-      title="Delete your Neatr account"
+      title="Delete your account"
       intro={
         <p className="m-0">
-          This page explains how to request deletion of your account and data in the <strong>Neatr</strong> app.
-          In Neatr, your account details are held by each business you book with, so a deletion request goes to that
-          business and covers your data with that business only. If you book with more than one business, request
-          deletion from each one.
+          How to request deletion of your account and personal data in{" "}
+          <strong>Neatr: Book &amp; manage cleaning</strong>, the app by Neatlist LLC. Your account is held by each
+          business you book with, so you ask that business to delete it.
         </p>
       }
     >
-      <Section title="In the app">
-        <ol>
-          <li>Open the Neatr app and sign in.</li>
-          <li>
-            Go to <strong>Account</strong> → <strong>Delete account</strong>.
-          </li>
-          <li>
-            Tap <strong>Request account deletion</strong>. This opens a message to the business with the request
-            already written. Send it.
-          </li>
-          <li>The business replies in the same conversation once your data has been deleted.</li>
-        </ol>
-      </Section>
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <div className="rounded-2xl border border-[#E7E6E1] bg-white p-5">
+          <h2 className="m-0 text-[17px] font-semibold">In the app</h2>
+          <ol className="mt-3 list-decimal space-y-2 pl-5 text-[15px] leading-relaxed text-[#0A0A0A]/75">
+            <li>Open the app and sign in.</li>
+            <li>
+              Go to <strong>Account</strong> → <strong>Delete account</strong>.
+            </li>
+            <li>
+              Tap <strong>Request account deletion</strong>. A message to the business opens with the request
+              already written. Send it.
+            </li>
+            <li>The business confirms in the same conversation once it&apos;s done (within 30 days).</li>
+          </ol>
+        </div>
+        <div className="rounded-2xl border border-[#E7E6E1] bg-white p-5">
+          <h2 className="m-0 text-[17px] font-semibold">Without the app</h2>
+          <p className="mt-3 text-[15px] leading-relaxed text-[#0A0A0A]/75">
+            Contact the business you book with, or email us from the address on your account. Tell us the name of
+            the business and we will pass your request to them.
+          </p>
+          <a
+            href={MAILTO}
+            className="mt-4 inline-flex items-center rounded-full bg-[#0A0A0A] px-5 py-2.5 text-[14px] font-semibold text-white no-underline hover:bg-[#0A0A0A]/85"
+          >
+            Email hello@neatr.ai
+          </a>
+        </div>
+      </div>
 
-      <Section title="Without the app">
-        <ul>
-          <li>Contact the business you book with and ask them to delete your account, or</li>
-          <li>
-            email <a href="mailto:hello@neatr.ai">hello@neatr.ai</a> from the email address on your account. Tell us
-            the name of the business and we will pass your request to them.
-          </li>
-        </ul>
-      </Section>
-
-      <Section title="What is deleted">
-        <p>For the business you ask, deletion removes:</p>
-        <ul>
-          <li>your profile with that business (name, email, phone number);</li>
-          <li>the addresses and property details you saved with that business;</li>
-          <li>the payment cards saved for that business;</li>
-          <li>your booking history with that business, except the records described below.</li>
-        </ul>
-        <p>Your data with any other business you book with is not affected.</p>
-      </Section>
-
-      <Section title="What may be kept, and for how long">
+      <Section title="What happens">
         <p>
-          Some records have to be kept for legal, tax and accounting reasons, such as records of past visits and
-          payments. Our <a href="https://book.neatr.ai/privacy-policy">privacy policy</a> (section 9, Data retention)
-          says booking and account records are kept for at least 6–7 years, and records of privacy requests for at
-          least 24 months. Anonymized or aggregated data that does not identify you may be kept.
+          The business you choose removes your access and erases the personal details it holds about you, within 30
+          days of your request:
+        </p>
+        <ul>
+          <li>your profile (name, phone number, email);</li>
+          <li>your saved addresses and property notes;</li>
+          <li>the payment cards saved with that business.</li>
+        </ul>
+      </Section>
+
+      <Section title="What is kept, and for how long">
+        <p>
+          Booking, invoice and payment records the business must keep for tax and accounting are kept, with your
+          contact details removed, for the period in our <a href={POLICY}>privacy policy</a>. Section 9 (Data
+          retention) says booking and account records are kept for &ldquo;at least 6–7 years&rdquo;.
+        </p>
+      </Section>
+
+      <Section title="Each business is separate">
+        <p>
+          A request covers only the business you send it to. If you book with other businesses, they keep your
+          account until you ask them too.
         </p>
       </Section>
 
       <Section title="Questions">
         <p>
-          Email <a href="mailto:hello@neatr.ai">hello@neatr.ai</a> or see <Link href="/support">Support</Link>.
+          Email <a href={MAILTO}>hello@neatr.ai</a> or see <Link href="/support">Support</Link>.
         </p>
       </Section>
     </InfoPage>
